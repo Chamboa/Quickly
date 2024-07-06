@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ulogin">
+
+
+    <TextView
+        android:id="@+id/txtiniciarsesion"
+        android:layout_width="338dp"
+        android:layout_height="44dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/inter_extrabold"
+        android:gravity="center_horizontal|top"
+        android:text="Iniciar Sesion"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vwcodigorecu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.766" />
+
+    <View
+        android:id="@+id/vwcodigorecu"
+        android:layout_width="372dp"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#E7E5E5"
+        app:layout_constraintBottom_toTopOf="@+id/vwnuevacontra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.825" />
+
+    <View
+        android:id="@+id/vwnuevacontra"
+        android:layout_width="372dp"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="300dp"
+        android:background="#E7E5E5"
+        app:layout_constraintBottom_toTopOf="@+id/btncontraolvidada"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btniniciarsesion"
+        android:layout_width="356dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="208dp"
+        android:backgroundTint="#C2DCF8"
+        android:fontFamily="@font/inter_bold"
+        android:text="Iniciar Sesion"
+        android:textColor="#006CDA"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txtcorreologin"
+        android:layout_width="351dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Correo electrónico"
+        android:inputType="text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/vwcodigorecu"
+        app:layout_constraintEnd_toEndOf="@+id/vwcodigorecu"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="@+id/vwcodigorecu"
+        app:layout_constraintTop_toTopOf="@+id/vwcodigorecu" />
+
+    <EditText
+        android:id="@+id/txtContralogin"
+        android:layout_width="351dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:ems="10"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/vwnuevacontra"
+        app:layout_constraintEnd_toEndOf="@+id/vwnuevacontra"
+        app:layout_constraintStart_toStartOf="@+id/vwnuevacontra"
+        app:layout_constraintTop_toTopOf="@+id/vwnuevacontra"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/btncontraolvidada"
+        android:layout_width="240dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="384dp"
+        android:background="@null"
+        android:backgroundTint="#FFFF"
+        android:fontFamily="@font/inter_bold"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textAlignment="viewStart"
+        android:textColor="#006CDA"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btniniciarsesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="144dp"
+        android:layout_height="149dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/eliploguno" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="188dp"
+        android:layout_height="171dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/eliplogdos" />
+
+    <ImageView
+        android:id="@+id/idvercontra"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtcontralogin"
+        app:layout_constraintEnd_toEndOf="@+id/txtcontralogin"
+        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintStart_toStartOf="@+id/txtcontralogin"
+        app:layout_constraintTop_toTopOf="@+id/txtcontralogin"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/vercontrasena" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

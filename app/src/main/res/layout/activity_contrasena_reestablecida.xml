@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Contrasena_Reestablecida">
+
+    <TextView
+        android:id="@+id/txtContrares"
+        android:layout_width="367dp"
+        android:layout_height="95dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/inter_extrabold"
+        android:gravity="center_horizontal|top"
+        android:text="¡Éxito, tu contraseña ha sido restablecida!"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtRecordatorio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="RtlCompat" />
+
+    <TextView
+        android:id="@+id/txtRecordatorio"
+        android:layout_width="348dp"
+        android:layout_height="94dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="216dp"
+        android:fontFamily="@font/inter_bold"
+        android:gravity="top"
+        android:text="Asegurate de guardar correctamente tu contraseña para que no la olvides la próxima vez."
+        android:textAlignment="textStart"
+        android:textColor="#3A3A3A"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnenviarcod"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.349"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.349"
+        tools:ignore="RtlCompat,UnknownId" />
+
+    <Button
+        android:id="@+id/btnaceptarcontrasenarestablecida"
+        android:layout_width="213dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#C2DCF8"
+        android:fontFamily="@font/inter_bold"
+        android:text="Aceptar"
+        android:textColor="#006CDA"
+        android:textColorLink="#ff6750a4"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/elipcontrares" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

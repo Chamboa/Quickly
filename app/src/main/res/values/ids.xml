@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="txtcontraolvidada" type="id" />
+    <item name="txtnuevacontra" type="id" />
+    <item name="vwnuevacontradnv" type="id" />
+    <item name="imageView5" type="id" />
+    <item name="txtnuevacontradnv" type="id" />
+    <item name="etxtnewcontra" type="id" />
+    <item name="imgvernuevacontra" type="id" />
+    <item name="imgvernuevacontradnv" type="id" />
+    <item name="etxtnewcontradnv" type="id" />
+    <item name="btnaceptar" type="id" />
+    <item name="btnaceptarnuevacontra" type="id" />
+</resources>
