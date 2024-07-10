@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PTC"
         tools:targetApi="31">
         <activity
+            android:name=".Correoconfirmacion"
+            android:exported="false" />
+        <activity
             android:name=".Recuperar_contrasena"
             android:exported="false" />
         <activity

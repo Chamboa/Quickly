@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ulogin">
+    tools:context=".Login">
 
 
     <TextView
@@ -148,12 +148,12 @@
         android:id="@+id/idvercontra"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtcontralogin"
-        app:layout_constraintEnd_toEndOf="@+id/txtcontralogin"
-        app:layout_constraintHorizontal_bias="0.996"
-        app:layout_constraintStart_toStartOf="@+id/txtcontralogin"
-        app:layout_constraintTop_toTopOf="@+id/txtcontralogin"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintBottom_toBottomOf="@+id/txtcorreologin"
+        app:layout_constraintEnd_toEndOf="@+id/txtcorreologin"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/txtcorreologin"
+        app:layout_constraintTop_toTopOf="@+id/txtcorreologin"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/vercontrasena" />
 
 
