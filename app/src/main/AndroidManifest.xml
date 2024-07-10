@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,7 +15,11 @@
         android:theme="@style/Theme.PTC"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".Bandeja_chat"
+=======
+            android:name=".Eventos"
+>>>>>>> ac590f34dab3b75630829fe38c71446f49e08f37
             android:exported="false" />
         <activity
             android:name=".Recuperar_contrasena"
