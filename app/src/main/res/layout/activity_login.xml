@@ -148,10 +148,10 @@
         android:id="@+id/idvercontra"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtcontralogin"
-        app:layout_constraintEnd_toEndOf="@+id/txtcontralogin"
+        app:layout_constraintBottom_toBottomOf="@+id/txtContralogin"
+        app:layout_constraintEnd_toEndOf="@+id/txtContralogin"
         app:layout_constraintHorizontal_bias="0.212"
-        app:layout_constraintStart_toStartOf="@+id/txtcontralogin"
+        app:layout_constraintStart_toStartOf="@+id/txtContralogin"
         app:layout_constraintTop_toTopOf="@+id/txtContralogin"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/vercontrasena" />
