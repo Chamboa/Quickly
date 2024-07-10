@@ -18,6 +18,9 @@
             android:name=".Eventos"
             android:exported="false" />
         <activity
+            android:name=".Correoconfirmacion"
+            android:exported="false" />
+        <activity
             android:name=".Recuperar_contrasena"
             android:exported="false" />
         <activity
