@@ -10,7 +10,12 @@
         android:name="PTC.quickly.ui.home.HomeFragment"
         android:label="Pantalla Principal"
         tools:layout="@layout/fragment_home" />
+    <activity
+        android:id="@+id/calendario"
+        android:name="PTC.quickly.Calendario"
+        android:label="Calendario" />
 
+<<<<<<< HEAD
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -25,4 +30,6 @@
         tools:layout="@layout/fragment_notifications" />
 
 
+=======
+>>>>>>> master
 </navigation>
