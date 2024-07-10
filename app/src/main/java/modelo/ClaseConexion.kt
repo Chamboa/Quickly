@@ -18,12 +18,12 @@ class ClaseConexion {
             return connection*/
 
             //Conexion Gamboa
-             val url = "jdbc:oracle:thin@192.168.0.12:1521:xe"
+             /*val url = "jdbc:oracle:thin@192.168.0.12:1521:xe"
               val usuarioGamboa = "PTCbase"
               val contrasenaGamboa = "."
 
               val connection = DriverManager.getConnection(url, usuarioGamboa, contrasenaGamboa)
-              return connection
+              return connection*/
 
              //Conexion Ruth
              /*val url = "jdbc:oracle:thin@192.168.1.19:1521:xe"
@@ -34,12 +34,12 @@ class ClaseConexion {
                return connection*/
 
              //Conexion Samuel
-             /*val url = "jdbc:oracle:thin@192.168.1.19:1521:xe"
-               val usuarioSamuel = ""
-               val contrasenaSamuel = ""
+             val url = "jdbc:oracle:thin@192.168.1.19:1521:xe"
+               val usuarioSamuel = "SAMUElSS_DEVELOPER"
+               val contrasenaSamuel = "123456"
 
                val connection = DriverManager.getConnection(url, usuarioSamuel, contrasenaSamuel)
-               return connection*/
+               return connection
 
              //Conexion Mateo
              /*val url = "jdbc:oracle:thin@192.168.1.19:1521:xe"
