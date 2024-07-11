@@ -19,7 +19,7 @@ import java.sql.ResultSet
 class Unirse_Comite : AppCompatActivity() {
 
     private lateinit var txtEstado: TextView
-    private lateinit var connection: Connection
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,6 @@ class Unirse_Comite : AppCompatActivity() {
             insets
         }
 
-        val connection = ClaseConexion().cadenaConexion()
 
         verificarCupos()
     }
@@ -42,30 +41,41 @@ class Unirse_Comite : AppCompatActivity() {
         lifecycleScope.launch {
             val cuposDisponibles = ConsultarLogistica()
 
-            if (cuposDisponibles) {
-                txtEstado.text = "Cupos disponibles"
-            } else {
-                txtEstado.text = "No hay cupos disponibles"
+            withContext(Dispatchers.Main) {
+                if (cuposDisponibles > 0) {
+                    txtEstado.text = "Cupos disponibles"
+                } else {
+                    txtEstado.text = "No hay cupos disponibles"
+                    Toast.makeText(this@Unirse_Comite, "$cuposDisponibles", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
 
-    private suspend fun ConsultarLogistica(): Boolean {
+    private suspend fun ConsultarLogistica(): Int {
         return withContext(Dispatchers.IO) {
-            var hayCupos = false
+            var hayCupos = 0
+            var resultSet: ResultSet? = null
+            var statement: PreparedStatement? = null
+
             try {
+                val connection = ClaseConexion().cadenaConexion()
+                statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 3")
+                resultSet = statement?.executeQuery()
 
-                val statement = connection.createStatement()
-                val resultSet = statement.executeQuery("SELECT cupos FROM Comite WHERE id_comite = 3")// Verificar si hay resultados en el resultado
+                println("Este es lo que me trae el select $resultSet")
 
-                if (resultSet.next()) {
-                    val cupos = resultSet.getInt("cupos")
-                                    }
+                if (resultSet != null && resultSet.next()) {
+                    hayCupos = resultSet.getInt("cupos")
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
-                runOnUiThread {
+                withContext(Dispatchers.Main) {
                     Toast.makeText(this@Unirse_Comite, "Error al consultar la base de datos", Toast.LENGTH_LONG).show()
                 }
+            } finally {
+                resultSet?.close()
+                statement?.close()
             }
 
             hayCupos

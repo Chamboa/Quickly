@@ -23,7 +23,7 @@ return connection*/
 
  //Conexion Gamboa
 //<<<<<<< HEAD
-  val url = "jdbc:oracle:thin@192.168.0.12:1521:xe"
+  val url = "jdbc:oracle:thin:@10.10.2.61:1521:xe"
   val usuarioGamboa = "PTCbase"
   val contrasenaGamboa = "."
 
