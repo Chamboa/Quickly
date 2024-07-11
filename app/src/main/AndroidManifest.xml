@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PTC"
         tools:targetApi="31">
         <activity
+            android:name=".Agregar_Horas"
+            android:exported="false" />
+        <activity
             android:name=".Bandeja_chat"
             android:exported="false" />
         <activity
