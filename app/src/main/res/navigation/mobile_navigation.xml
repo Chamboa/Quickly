@@ -8,11 +8,28 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="PTC.quickly.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="Pantalla Principal"
         tools:layout="@layout/fragment_home" />
     <activity
         android:id="@+id/calendario"
         android:name="PTC.quickly.Calendario"
         android:label="Calendario" />
 
+<<<<<<< HEAD
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="PTC.quickly.ui.dashboard.DashboardFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="PTC.quickly.ui.notifications.NotificationsFragment"
+        android:label="Configuración"
+        tools:layout="@layout/fragment_notifications" />
+
+
+=======
+>>>>>>> master
 </navigation>

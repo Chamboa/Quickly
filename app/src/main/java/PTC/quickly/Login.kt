@@ -36,7 +36,7 @@ class Login : AppCompatActivity() {
         }*/
 
         val txtcorreologin = findViewById<EditText>(R.id.txtcorreologin)
-        val txtcontralogin = findViewById<EditText>(R.id.txtcontralogin)
+        val txtcontralogin = findViewById<EditText>(R.id.txtContralogin)
         val btniniciarsesion = findViewById<Button>(R.id.btniniciarsesion)
         val btncontraolvidada = findViewById<Button>(R.id.btncontraolvidada)
         val imgvercontra = findViewById<ImageView>(R.id.idvercontra)
@@ -77,7 +77,6 @@ class Login : AppCompatActivity() {
 
 
         btncontraolvidada.setOnClickListener{
-
             val recuperarcontrasena = Intent (this, Recuperar_contrasena::class.java)
             startActivity(recuperarcontrasena)
         }
