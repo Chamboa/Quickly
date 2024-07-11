@@ -2,8 +2,8 @@ package PTC.quickly
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,20 +13,19 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.sql.Connection
+import java.sql.PreparedStatement
 import java.sql.ResultSet
 
 class Unirse_Comite : AppCompatActivity() {
-    private lateinit var circuloVerde: View
-    private lateinit var circuloRojo: View
+
+    private lateinit var txtEstado: TextView
     private lateinit var connection: Connection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_unirse_comite)
 
-        circuloVerde = findViewById(R.id.circulo_verde)
-        circuloRojo = findViewById(R.id.circulo_rojo)
+        txtEstado = findViewById(R.id.txtEstado)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.comisiones)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -34,39 +33,34 @@ class Unirse_Comite : AppCompatActivity() {
             insets
         }
 
-        connection = ClaseConexion().cadenaConexion() ?: run {
-            Toast.makeText(this, "No se pudo establecer la conexión con la base de datos", Toast.LENGTH_LONG).show()
-            return
-        }
+        val connection = ClaseConexion().cadenaConexion()
 
         verificarCupos()
     }
 
     private fun verificarCupos() {
         lifecycleScope.launch {
-            val cuposDisponibles = consultarCuposEnBaseDeDatos()
+            val cuposDisponibles = ConsultarLogistica()
 
             if (cuposDisponibles) {
-                circuloVerde.visibility = View.VISIBLE
-                circuloRojo.visibility = View.GONE
+                txtEstado.text = "Cupos disponibles"
             } else {
-                circuloVerde.visibility = View.GONE
-                circuloRojo.visibility = View.VISIBLE
+                txtEstado.text = "No hay cupos disponibles"
             }
         }
     }
 
-    private suspend fun consultarCuposEnBaseDeDatos(): Boolean {
+    private suspend fun ConsultarLogistica(): Boolean {
         return withContext(Dispatchers.IO) {
             var hayCupos = false
             try {
+
                 val statement = connection.createStatement()
-                val resultSet: ResultSet = statement.executeQuery("SELECT cupos FROM Comite WHERE id_comite = 1")
+                val resultSet = statement.executeQuery("SELECT cupos FROM Comite WHERE id_comite = 3")// Verificar si hay resultados en el resultado
 
                 if (resultSet.next()) {
                     val cupos = resultSet.getInt("cupos")
-                    hayCupos = cupos > 0
-                }
+                                    }
             } catch (e: Exception) {
                 e.printStackTrace()
                 runOnUiThread {
