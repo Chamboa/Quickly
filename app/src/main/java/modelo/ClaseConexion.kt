@@ -26,7 +26,7 @@ class ClaseConexion {
               //return connection
 
              //Conexion Ruth
-             val url = "jdbc:oracle:thin@ 192.168.3.8:1521:xe"
+             val url = "jdbc:oracle:thin:@ 192.168.3.8:1521:xe"
                val usuarioRuth = "DBPRUEBA"
                val contrasenaRuth = "Ruth"
 

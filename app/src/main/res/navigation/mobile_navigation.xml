@@ -10,9 +10,10 @@
         android:name="PTC.quickly.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
-    <activity
-        android:id="@+id/calendario"
-        android:name="PTC.quickly.Calendario"
-        android:label="Calendario" />
+    <fragment
+        android:id="@+id/calendarioEvento"
+        android:name="PTC.quickly.calendarioEvento"
+        android:label="fragment_calendario_evento"
+        tools:layout="@layout/fragment_calendario_evento" />
 
 </navigation>
