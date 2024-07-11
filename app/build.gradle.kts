@@ -54,6 +54,7 @@ dependencies {
     implementation(files("libs\\additionnal.jar"))
     implementation(files("libs\\activation.jar"))
     implementation(files("libs\\activation.jar"))
+    implementation(files("libs\\activation.jar"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

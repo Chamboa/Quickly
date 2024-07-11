@@ -15,16 +15,13 @@
         android:theme="@style/Theme.PTC"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-            android:name=".Bandeja_chat"
-=======
             android:name=".Eventos"
->>>>>>> ac590f34dab3b75630829fe38c71446f49e08f37
+            android:exported="false" />
+
+        <activity
+            android:name=".Bandeja_chat"
             android:exported="false" />
         <activity
->>>>>>> master
             android:name=".Correoconfirmacion"
             android:exported="false" />
         <activity
