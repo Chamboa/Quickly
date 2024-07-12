@@ -43,6 +43,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    implementation("com.oracle.database.jdbc:ojdbc6:11.2.0.4")
+
+    implementation("com.oracle.database.jdbc:ojdbc6:11.2.0")
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -51,6 +55,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(files("libs\\mail.jar"))
     implementation(files("libs\\additionnal.jar"))
+    implementation(files("libs\\activation.jar"))
     implementation(files("libs\\activation.jar"))
     implementation(files("libs\\activation.jar"))
     testImplementation(libs.junit)
