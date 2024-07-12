@@ -8,6 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import modelo.ClaseConexion
 import java.sql.Connection
 import java.sql.PreparedStatement
@@ -27,54 +31,16 @@ class Pantalla_Carga : AppCompatActivity() {
             insets
         }
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            // Aquí se verifica si hay un comité en la base de datos
-            val hasComite = checkForComite()
+        GlobalScope.launch(Dispatchers.Main) {
+            delay( 3000)
 
-            val intent = if (hasComite) {
-                Intent(this, Unirse_Comite::class.java)
-            } else {
-                Intent(this, Login::class.java)
-            }
+            val intent = Intent(this@Pantalla_Carga, Login::class.java)
             startActivity(intent)
             finish()
-        }, 300) // 300 milisegundos de espera
-    }
-
-    private fun checkForComite(): Boolean {
-        var connection: Connection? = null
-        var preparedStatement: PreparedStatement? = null
-        var resultSet: ResultSet? = null
-        var hasComite = false
-
-        try {
-            connection = ClaseConexion().cadenaConexion()
-            val query = "Select *from usuario where id_comite = ?"
-            if (connection != null) {
-                preparedStatement = connection.prepareStatement(query)
-            }
-            if (preparedStatement != null) {
-                resultSet = preparedStatement.executeQuery()
-            }
-
-            if (resultSet != null) {
-                if (resultSet.next()) {
-                    val count = resultSet.getInt("count")
-                    hasComite = count > 0
-                }
-            }
-        } catch (e: SQLException) {
-            e.printStackTrace()
-        } finally {
-            try {
-                resultSet?.close()
-                preparedStatement?.close()
-                connection?.close()
-            } catch (e: SQLException) {
-                e.printStackTrace()
-            }
         }
 
-        return hasComite
+
     }
+
+
 }

@@ -5,75 +5,125 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Contrasena_Reestablecida">
+    tools:context=".Confirmar_Comite">
 
     <TextView
-        android:id="@+id/txtContrares"
-        android:layout_width="367dp"
-        android:layout_height="95dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/inter_extrabold"
-        android:gravity="center_horizontal|top"
-        android:text="¡Éxito, tu contraseña ha sido restablecida!"
-        android:textAlignment="textStart"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtRecordatorio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="RtlCompat" />
-
-    <TextView
-        android:id="@+id/txtRecordatorio"
-        android:layout_width="348dp"
-        android:layout_height="94dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="216dp"
-        android:fontFamily="@font/inter_bold"
-        android:gravity="top"
-        android:text="Asegurate de guardar correctamente tu contraseña para que no la olvides la próxima vez."
-        android:textAlignment="textStart"
-        android:textColor="#3A3A3A"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnenviarcod"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.349"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349"
-        tools:ignore="RtlCompat,UnknownId" />
-
-    <Button
-        android:id="@+id/btnaceptarcontrasenarestablecida"
-        android:layout_width="213dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#C2DCF8"
-        android:fontFamily="@font/inter_bold"
-        android:text="Aceptar"
-        android:textColor="#006CDA"
-        android:textColorLink="#ff6750a4"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.458"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555" />
-
-    <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="84dp"
+        android:text="Verifica tu información"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="213dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintVertical_bias="0.247">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:text="Has elegido:"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/lblComite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:text="Comunicaciones"
+            android:textColor="#9C27B0"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewEstudiante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="Estudiante : "
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewCorreo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Correo: "
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:contentDescription="announcement icon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="125dp"
+        android:layout_height="57dp"
+        android:layout_weight="1"
+        android:backgroundTint="#FF5252"
+        android:text="Cancelar"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/elipcontrares" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.774" />
 
+    <Button
+        android:id="@+id/buttonAccept"
+        android:layout_width="136dp"
+        android:layout_height="56dp"
+        android:layout_weight="1"
+        android:backgroundTint="#4CAF50"
+        android:text="Aceptar"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,9 @@
 package PTC.quickly
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +18,20 @@ class Confirmar_Comite : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+
+
+        }
+        val btnCancel = findViewById<Button>(R.id.buttonCancel)
+        val lblComite = findViewById<TextView>(R.id.lblComite)
+
+
+
+        val comision = Unirse_Comite.Comision
+        lblComite.text = comision
+
+        btnCancel.setOnClickListener {
+            val intent = Intent(this, Unirse_Comite::class.java)
+            startActivity(intent)
         }
     }
 }
