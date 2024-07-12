@@ -1,8 +1,12 @@
 package PTC.quickly
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,6 +22,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
+import java.io.ByteArrayOutputStream
 import java.util.UUID
 
 class RegistroCuenta : AppCompatActivity() {
@@ -40,60 +45,13 @@ class RegistroCuenta : AppCompatActivity() {
             insets
         }
         //1- mandar a llamar a todos los elementos de la vista
-        imageView = findViewById(R.id.imageView)
+        imageView = findViewById(R.id.imgPerfil)
         val txtNombreRegistro = findViewById<TextView>(R.id.txtNombreRegistro)
         val txtCorreoRegistro = findViewById<TextView>(R.id.txtCorreoRegistro)
         val txtContraseñaRegistro = findViewById<TextView>(R.id.txtContraseñaRegistro)
         val txtConfirmarContraseñaRegistro = findViewById<TextView>(R.id.txtConfirmarContraseñaRegistro)
         val btnCrearCuenta = findViewById<Button>(R.id.btnCrearCuenta)
         val btnSubirFoto = findViewById<Button>(R.id.btnSubirFoto)
-
-        btnSubirFoto.setOnClickListener{
-            checkStoragePermission()
-        }
-
-        private fun checkStorePermission() {
-            if (ContextCompat.CheckSelPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != packageManager.PERMISSION_GRANTED) {
-                pedirPermisoAlmacenamiento()
-            } else {
-                val intent = intent(Intent.ACTION_PICK)
-                intent.type = "image/*"
-                startActivityForResult(intent, codigo_opcional_galeria)
-            }
-        }
-
-        private fun pedirPermisoAlmacenamiento() {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
-            } else {
-                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),STORAGE_REQUEST_CODE)
-            }
-        }
-
-        override fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<String>, grantResults: IntArray
-        ) {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-            when (requestCode) {
-                STORAGE_REQUEST_CODE -> {
-                    if ((grantResultsisNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                        val intent = Intent(Intent.ACTION_PICK)
-                        intent.type = "image/*"
-                        startActivityForResult(intent, codigo_opcional_galeria)
-                    } else {
-                        Toast.makeText(this, "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
-                else -> {
-
-                }
-            }
-        }
-
-
-
 
         //2- programar el boton de crear
         //TODO: Boton para crear la cuenta//
@@ -123,5 +81,96 @@ class RegistroCuenta : AppCompatActivity() {
                 }
             }
         }
+
+
+
+        btnSubirFoto.setOnClickListener {
+            checkStoragePermission()
+        }
     }
+
+        private fun checkStoragePermission() {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                pedirPermisoAlmacenamiento()
+            } else {
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                startActivityForResult(intent, codigo_opcional_galeria)
+            }
+        }
+
+        private fun pedirPermisoAlmacenamiento() {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),STORAGE_REQUEST_CODE)
+            }
+        }
+
+        override fun onRequestPermissionsResult(
+            requestCode: Int,
+            permissions: Array<String>, grantResults: IntArray
+        ) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+            when (requestCode) {
+                STORAGE_REQUEST_CODE -> {
+                    if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                        val intent = Intent(Intent.ACTION_PICK)
+                        intent.type = "image/*"
+                        startActivityForResult(intent, codigo_opcional_galeria)
+                    } else {
+                        Toast.makeText(this, "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+                else -> {
+                    //else por si hay un permiso que no tenemos controlado
+                }
+            }
+        }
+
+        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            super.onActivityResult(requestCode, resultCode, data)
+            if (resultCode == Activity.RESULT_OK) {
+                when (requestCode) {
+                    codigo_opcional_galeria -> {
+                        val imageUri: Uri? = data?.data
+                        imageUri?.let {
+                            val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, it)
+                            subirimagenFirebase(imageBitmap) { url ->
+                                miPath = url
+                                imageView.setImageURI(it)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private fun subirimagenFirebase(bitmap: Bitmap, onSuccess: (String) -> Unit) {
+            val storageRef = Firebase.storage.reference
+            val inmageRef = storageRef.child("images/${uuid}.jpg")
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos   )
+            val data = baos.toByteArray()
+            val uploadTask = imageRef.putBytes(data)
+
+            uploadTask.addOnFailureListener {
+                Toast.makeText(this@RegistroCuenta, "Error al subir imagen", Toast.LENGTH_SHORT).show()
+
+            }.addOnSuccesListener {TaskSnapshot ->
+                imageRef.downloadUrl.addOnSuccessListener {uri ->
+                    onSuccess(uri.toString())
+                }
+            }
+        }
+
+
+
+
+
+
+    }
+
+
 }
