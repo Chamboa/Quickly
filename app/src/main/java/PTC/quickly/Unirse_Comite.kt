@@ -119,6 +119,7 @@ class Unirse_Comite : AppCompatActivity() {
         verificarCuposSeguridadYEmergencia()
         verificarCuposMedioAmbiente()
         verificarCuposVidaComunitaria()
+        verificarCuposTecnicoCientifico()
     }
 
     // Logistica
@@ -405,9 +406,9 @@ class Unirse_Comite : AppCompatActivity() {
 
             withContext(Dispatchers.Main) {
                 if (cuposDisponibles > 0) {
-                    txtSeguridadYEmergencia.text = "Cupos disponibles"
+                    txtVidaComunitaria.text = "Cupos disponibles"
                 } else {
-                    txtSeguridadYEmergencia.text = "No hay cupos disponibles"
+                    txtVidaComunitaria.text = "No hay cupos disponibles"
                     Toast.makeText(this@Unirse_Comite, "$cuposDisponibles", Toast.LENGTH_LONG).show()
                 }
             }
@@ -450,9 +451,9 @@ class Unirse_Comite : AppCompatActivity() {
 
             withContext(Dispatchers.Main) {
                 if (cuposDisponibles > 0) {
-                    txtSeguridadYEmergencia.text = "Cupos disponibles"
+                    txtMedioAmbiente.text = "Cupos disponibles"
                 } else {
-                    txtSeguridadYEmergencia.text = "No hay cupos disponibles"
+                    txtMedioAmbiente.text = "No hay cupos disponibles"
                     Toast.makeText(this@Unirse_Comite, "$cuposDisponibles", Toast.LENGTH_LONG).show()
                 }
             }
@@ -496,9 +497,9 @@ class Unirse_Comite : AppCompatActivity() {
 
             withContext(Dispatchers.Main) {
                 if (cuposDisponibles > 0) {
-                    txtSeguridadYEmergencia.text = "Cupos disponibles"
+                    txtTecnicoCientifico.text = "Cupos disponibles"
                 } else {
-                    txtSeguridadYEmergencia.text = "No hay cupos disponibles"
+                    txtTecnicoCientifico.text = "No hay cupos disponibles"
                     Toast.makeText(this@Unirse_Comite, "$cuposDisponibles", Toast.LENGTH_LONG).show()
                 }
             }
