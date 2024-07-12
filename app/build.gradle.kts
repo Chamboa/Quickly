@@ -43,11 +43,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-<<<<<<< HEAD
+
     implementation("com.oracle.database.jdbc:ojdbc6:11.2.0.4")
-=======
+
     implementation("com.oracle.database.jdbc:ojdbc6:11.2.0")
->>>>>>> 6d1449719948c5ad16cb579270c8199f7b85b4ee
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
