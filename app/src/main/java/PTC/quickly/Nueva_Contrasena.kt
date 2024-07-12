@@ -28,6 +28,42 @@ class Nueva_Contrasena : AppCompatActivity() {
         val imgvernuevacontradnv = findViewById<ImageView>(R.id.imgvernuevacontradnv)
         val btnaceptarnuevacontra = findViewById<Button>(R.id.btnaceptarnuevacontra)
 
+        btnaceptarnuevacontra.setOnClickListener {
+
+            val nuevacontrasena = etxtnewcontra.text.toString()
+            val contrasenadigitadanuevamente = etxtnewcontradnv.text.toString()
+            var hayErrores = false
+
+            if (nuevacontrasena.length <= 7){
+                etxtnewcontra.error = "Tu nueva contraseña debe contener más de 7 dígitos"
+                hayErrores = true
+            }
+
+            else {
+                etxtnewcontra.error = null
+            }
+
+            if (contrasenadigitadanuevamente.length <= 7){
+                etxtnewcontradnv.error = "Tu nueva contraseña debe contener más de 7 dígitos"
+                hayErrores = true
+            }
+
+            else {
+                etxtnewcontradnv.error = null
+            }
+
+            if (!hayErrores){
+                if (nuevacontrasena != contrasenadigitadanuevamente) {
+                    etxtnewcontradnv.error = "Las contraseñas no coinciden"
+                    hayErrores = true
+                }
+
+                else {
+                    etxtnewcontradnv.error = null
+                }
+            }
+        }
+
         imgvernuevacontra.setOnClickListener {
             if (etxtnewcontra.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
                 etxtnewcontra.inputType =

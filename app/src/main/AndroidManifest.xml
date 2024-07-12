@@ -17,10 +17,18 @@
 
         <!-- Otras actividades -->
         <activity
+
             android:name=".Bandeja_chat"
             android:exported="false" />
         <activity
             android:name=".Eventos"
+
+            android:name=".Eventos"
+            android:exported="false" />
+
+        <activity
+            android:name=".Bandeja_chat"
+
             android:exported="false" />
         <activity
             android:name=".Correoconfirmacion"
