@@ -27,8 +27,8 @@ class ClaseConexion {
 
              //Conexion Ruth
              val url = "jdbc:oracle:thin:@ 192.168.3.8:1521:xe"
-               val usuarioRuth = "DBPRUEBA"
-               val contrasenaRuth = "Ruth"
+               val usuarioRuth = "Quickly"
+               val contrasenaRuth = "QUICKLY"
 
                val connection = DriverManager.getConnection(url, usuarioRuth, contrasenaRuth)
                return connection

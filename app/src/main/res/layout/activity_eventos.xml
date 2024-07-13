@@ -8,7 +8,6 @@
     tools:context=".Eventos">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
@@ -25,7 +24,7 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/txtNombreEvento"
         android:layout_width="272dp"
         android:layout_height="58dp"
         android:background="@null"
@@ -40,12 +39,12 @@
         app:layout_constraintVertical_bias="0.215" />
 
     <EditText
-        android:id="@+id/editTextRounded"
+        android:id="@+id/txtDescripcion"
         android:layout_width="282dp"
         android:layout_height="132dp"
         android:background="@drawable/reunded_textview"
         android:gravity="center"
-        android:hint="Texto Redondeado"
+        android:hint="Ingresa una descripcion"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +55,7 @@
         app:layout_constraintVertical_bias="0.48" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtD"
         android:layout_width="125dp"
         android:layout_height="35dp"
         android:text="Descripcion"
@@ -69,7 +68,7 @@
         app:layout_constraintVertical_bias="0.349" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/txtLugar"
         android:layout_width="257dp"
         android:layout_height="41dp"
         android:ems="10"
@@ -82,7 +81,7 @@
         app:layout_constraintVertical_bias="0.644" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/txtFecha"
         android:layout_width="152dp"
         android:layout_height="63dp"
         android:ems="10"
@@ -97,7 +96,7 @@
         app:layout_constraintVertical_bias="0.781" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/txtHora"
         android:layout_width="159dp"
         android:layout_height="58dp"
         android:ems="10"
@@ -111,7 +110,7 @@
         app:layout_constraintVertical_bias="0.775" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCancelar"
         android:layout_width="140dp"
         android:layout_height="63dp"
         android:backgroundTint="#ff6961"
@@ -127,7 +126,7 @@
         app:strokeColor="#ff6961" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnAgregarEvento"
         android:layout_width="166dp"
         android:layout_height="60dp"
         android:backgroundTint="#67B46A"
@@ -138,5 +137,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.952" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
