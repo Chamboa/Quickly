@@ -9,4 +9,6 @@
     <string name="title_activity_pantallaprincipalcoordi">pantallaprincipalcoordi</string>
     <string name="title_activity_pantallaprincipalalum">pantallaprincipalalum</string>
     <string name="title_activity_pantallaprincipalalumnos">pantallaprincipalalumnos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

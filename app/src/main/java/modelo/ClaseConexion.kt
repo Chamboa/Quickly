@@ -7,55 +7,32 @@ class ClaseConexion {
 
     fun cadenaConexion(): Connection? {
 
-        try  {
+        try {
+           val ipLevi = "jdbc:oracle:thin@192.168.1.19:1521:xe"
+           val ipGamboa = "jdbc:oracle:thin@192.168.0.12:1521:xe"
+           val ipRuth = "jdbc:oracle:thin@ 192.168.3.8:1521:xe"
+           val ipSamuel = "jdbc:oracle:thin@192.168.1.19:1521:xe"
+           val ipMateo = "jdbc:oracle:thin@:1521:xe"
 
-            //Conexion Levi
-           /* val url = "jdbc:oracle:thin@192.168.1.19:1521:xe"
-            val usuariolevi = "SARAVIA_DEVELOPER"
-            val contrasenalevi = "JLSN2024"
+            val usuario = "Quickly"
+            val contrasena = "QUICKLY"
 
-            val connection = DriverManager.getConnection(url, usuariolevi, contrasenalevi)
-            return connection*/
+            val connection = DriverManager.getConnection(ipLevi, usuario, contrasena)
+            return connection
 
-            //Conexion Gamboa
-             val url = "jdbc:oracle:thin@192.168.0.12:1521:xe"
-              val usuarioGamboa = "PTCbase"
-              val contrasenaGamboa = "."
 
-              val connection = DriverManager.getConnection(url, usuarioGamboa, contrasenaGamboa)
-              return connection
+ //Conexion Gamboa
 
-             //Conexion Ruth
-             /*val url = "jdbc:oracle:thin@192.168.1.19:1521:xe"
-               val usuarioRuth = ""
-               val contrasenaRuth = ""
+  val url = "jdbc:oracle:thin:@10.10.2.61:1521:xe"
+  val usuarioGamboa = "PTCbase"
+  val contrasenaGamboa = "."
 
-               val connection = DriverManager.getConnection(url, usuarioRuth, contrasenaRuth)
-               return connection*/
 
-             //Conexion Samuel
-             /*val url = "jdbc:oracle:thin@192.168.1.19:1521:xe"
-               val usuarioSamuel = ""
-               val contrasenaSamuel = ""
-
-               val connection = DriverManager.getConnection(url, usuarioSamuel, contrasenaSamuel)
-               return connection*/
-
-             //Conexion Mateo
-             /*val url = "jdbc:oracle:thin@192.168.1.19:1521:xe"
-               val usuarioMateo = ""
-               val contrasenaMateo = ""
-
-               val connection = DriverManager.getConnection(url, usuarioMateo, contrasenaMateo)
-               return connection*/
-        }
-
-        catch (e: Exception) {
+        } catch (e: Exception) {
             println("Ha ocurrido un error: $e")
             return null
 
-}
-
+        }
 
 }
 }

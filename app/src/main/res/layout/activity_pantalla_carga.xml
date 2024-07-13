@@ -23,8 +23,8 @@
 
     <View
         android:id="@+id/imgquickly"
-        android:layout_width="272dp"
-        android:layout_height="223dp"
+        android:layout_width="301dp"
+        android:layout_height="349dp"
         android:background="@drawable/imgquickly"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
