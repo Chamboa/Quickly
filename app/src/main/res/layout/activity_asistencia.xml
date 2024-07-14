@@ -8,10 +8,10 @@
     tools:context=".Asistencia">
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imgAtrasflecha"
         android:layout_width="66dp"
         android:layout_height="52dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView9"
         app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,23 +20,94 @@
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="137dp"
-        android:layout_height="124dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/elipalumdos" />
 
     <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/txtBuscarAlumnos"
+        android:layout_width="334dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/style_bordertxt"
         android:ems="10"
-        android:hint="Buscar alumnos"
+        android:hint="             Buscar alumnos"
         android:inputType="text"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="88dp" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView9"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvAsistencia"
+        android:layout_width="396dp"
+        android:layout_height="355dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgBuscar"
+        android:layout_width="29dp"
+        android:layout_height="27dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtBuscarAlumnos"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="@+id/txtBuscarAlumnos"
+        app:srcCompat="@android:drawable/ic_search_category_default"
+        tools:layout_editor_absoluteY="83dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="322dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="28dp"
+        android:background="#567DDC"
+        app:layout_constraintBottom_toTopOf="@+id/rcvAsistencia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBuscarAlumnos"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="297dp"
+        android:text="Nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBuscarAlumnos" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/rcvAsistencia"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintVertical_bias="0.039"
+        app:srcCompat="@drawable/ac_x"
+        tools:layout_editor_absoluteX="290dp" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/rcvAsistencia"
+        app:layout_constraintTop_toBottomOf="@+id/txtBuscarAlumnos"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ac_check"
+        tools:layout_editor_absoluteX="242dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PTC"
         tools:targetApi="31" >
         <activity
+            android:name=".item_card_asistencia"
+            android:exported="false" />
+        <activity
             android:name=".Asistencia"
             android:exported="false" />
         <activity
