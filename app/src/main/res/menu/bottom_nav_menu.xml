@@ -2,19 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/casapntprincipal"
-        android:title="Principal" />
+        android:id="@+id/pantalla_admin"
+        android:icon="@drawable/ic_principal"
+        android:title="" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_perfil"
-        android:title="Perfil" />
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_perf"
+        android:title=""/>
+
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_configuracion"
-        android:title="Configuración" />
+        android:icon="@drawable/ic_config"
+        android:title="" />
 
 </menu>
 

@@ -6,6 +6,7 @@ import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -39,9 +40,8 @@ class Login : AppCompatActivity() {
         val txtcorreologin = findViewById<EditText>(R.id.txtcorreologin)
         val txtcontralogin = findViewById<EditText>(R.id.txtContralogin)
         val btniniciarsesion = findViewById<Button>(R.id.btniniciarsesion)
-        val btncontraolvidada = findViewById<Button>(R.id.btncontraolvidada)
+        val txtcuentaolvidada = findViewById<TextView>(R.id.txtcuentaolvidada)
         val imgvercontra = findViewById<ImageView>(R.id.idvercontra)
-
 
         btniniciarsesion.setOnClickListener {
 
@@ -103,7 +103,7 @@ class Login : AppCompatActivity() {
         }
 
 
-        btncontraolvidada.setOnClickListener{
+        txtcuentaolvidada.setOnClickListener{
             val recuperarcontrasena = Intent (this, Recuperar_contrasena::class.java)
             startActivity(recuperarcontrasena)
         }

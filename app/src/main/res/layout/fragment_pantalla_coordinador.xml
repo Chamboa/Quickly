@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pantalla_coordinador" >
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="391dp"
+        android:layout_height="42dp"
+        android:fontFamily="@font/inter_extrabold"
+        android:text="¡Hola, es bueno volver a verte!"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="387dp"
+        android:layout_height="70dp"
+        android:src="@drawable/imgbaramorada"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
+        android:text="¿Qué deseas hacer hoy?"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+        app:layout_constraintEnd_toEndOf="@+id/imageView19"
+        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView19"
+        app:layout_constraintVertical_bias="0.468" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="176dp"
+        android:layout_height="160dp"
+        android:src="@drawable/circulosadmin1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.357" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="147dp"
+        android:layout_height="144dp"
+        android:src="@drawable/circulosadmin2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="139dp"
+        android:layout_height="139dp"
+        android:src="@drawable/circulosadmin3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.677" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="168dp"
+        android:layout_height="181dp"
+        android:src="@drawable/circulosadmin4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="286dp"
+        android:layout_height="162dp"
+        android:background="@drawable/btnasishoras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.307">
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="144dp"
+            android:layout_height="113dp"
+            android:src="@drawable/imgbtnasishoras"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.51" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="125dp"
+            android:layout_height="64dp"
+            android:fontFamily="@font/inter_extrabold"
+            android:text="Asistencia y horas sociales"
+            android:textColor="#0BA89F"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView24"
+            app:layout_constraintHorizontal_bias="0.108"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="286dp"
+        android:layout_height="162dp"
+        android:background="@drawable/btnverhistorialpntcoordi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.623">
+
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="101dp"
+            android:layout_height="117dp"
+            android:src="@drawable/imgbtnhistorialus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.913"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.511" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="163dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/inter_extrabold"
+            android:text="Ver historial de horas sociales"
+            android:textColor="#FF8831"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.149"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
