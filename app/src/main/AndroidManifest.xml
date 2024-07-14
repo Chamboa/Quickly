@@ -2,7 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+       <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:ignore="SelectedPhotoAccess" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -14,6 +25,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PTC"
         tools:targetApi="31">
+
+        <!-- Otras actividades -->
+        <activity
+            android:name=".Bandeja_chat"
+            android:exported="false" />
         <activity
             android:name=".Eventos"
             android:exported="true" >
@@ -24,6 +40,12 @@
         </intent-filter>
         </activity>
         <activity
+            android:name=".Correoconfirmacion"
+            android:exported="false" />
+        <activity
+            android:name=".RegistroCuenta"
+            android:exported="false" />
+        <activity
             android:name=".Recuperar_contrasena"
             android:exported="false" />
         <activity
@@ -31,24 +53,38 @@
             android:exported="false" />
         <activity
             android:name=".Confirmar_Comite"
-            android:exported="false" />
-        <activity
-            android:name=".Pantalla_Carga"
-            android:exported="false" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity
             android:name=".Contrasena_Reestablecida"
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
+
         <activity
             android:name=".Unirse_Comite"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/app_name"/>
+
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:exported="false"
+            android:label="@string/app_name"/>
+
+
+        <!-- Actividad principal (launcher) -->
+        <activity
+            android:name=".Pantalla_Carga"
+            android:exported="false">
         </activity>
+
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".nNuevaContrasena">
+    tools:context=".Nueva_Contrasena">
 
     <Button
         android:id="@+id/btnaceptarnuevacontra"
@@ -18,10 +18,10 @@
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951" />
+        app:layout_constraintVertical_bias="0.974" />
 
     <View
         android:id="@+id/vwnuevacontradnv"
@@ -36,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941" />
+        app:layout_constraintVertical_bias="0.454" />
 
     <EditText
         android:id="@+id/etxtnewcontradnv"
