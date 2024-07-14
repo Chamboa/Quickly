@@ -25,51 +25,30 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/inter_bold"
         android:text="Agregar usuario"
         android:textColor="#000000"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:fontFamily="@font/inter_extrabold"
         android:text="Datos personales"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/vwnombre"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936"
-        tools:layout_editor_absoluteX="25dp" />
-
-    <View
-        android:id="@+id/vwcontraseña"
-        android:layout_width="360dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="#E7E5E5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="454dp" />
-
-    <View
-        android:id="@+id/vwconfirmar"
-        android:layout_width="360dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="#E7E5E5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="525dp" />
+        app:layout_constraintVertical_bias="0.964" />
 
     <View
         android:id="@+id/vwnombre"
@@ -78,10 +57,26 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="#E7E5E5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="307dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <View
+        android:id="@+id/vwcontraseña"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#E7E5E5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.648" />
 
     <View
         android:id="@+id/vwcorreo"
@@ -90,10 +85,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="#E7E5E5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="382dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524" />
 
     <ImageView
         android:id="@+id/imgPerfil"
@@ -188,20 +185,4 @@
         app:layout_constraintTop_toTopOf="@+id/vwcontraseña"
         app:layout_constraintVertical_bias="0.516" />
 
-    <EditText
-        android:id="@+id/txtConfirmarContraseñaRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:ems="10"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Confirmar contraseña"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/vwconfirmar"
-        app:layout_constraintEnd_toEndOf="@+id/vwconfirmar"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/vwconfirmar"
-        app:layout_constraintTop_toTopOf="@+id/vwconfirmar"
-        app:layout_constraintVertical_bias="0.483" />
 </androidx.constraintlayout.widget.ConstraintLayout>
