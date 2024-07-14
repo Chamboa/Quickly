@@ -28,19 +28,17 @@
 
         <!-- Otras actividades -->
         <activity
-
             android:name=".Bandeja_chat"
             android:exported="false" />
         <activity
             android:name=".Eventos"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-            android:name=".Eventos"
-            android:exported="false" />
-
-        <activity
-            android:name=".Bandeja_chat"
-
-            android:exported="false" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".Correoconfirmacion"
             android:exported="false" />
@@ -54,32 +52,37 @@
             android:name=".Nueva_Contrasena"
             android:exported="false" />
         <activity
-            android:name=".Calendario"
-            android:exported="false" />
-        <activity
             android:name=".Confirmar_Comite"
-            android:exported="true" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity
             android:name=".Contrasena_Reestablecida"
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
+
         <activity
             android:name=".Unirse_Comite"
-            android:exported="true"/>
+            android:exported="false"
+            android:label="@string/app_name"/>
+
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/app_name"/>
+
 
         <!-- Actividad principal (launcher) -->
         <activity
             android:name=".Pantalla_Carga"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
 
     </application>

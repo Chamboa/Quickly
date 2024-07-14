@@ -1,12 +1,23 @@
 package PTC.quickly
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import modelo.ClaseConexion
+import java.util.UUID
+import android.app.AlertDialog
+import android.view.LayoutInflater
 
 class Eventos : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -16,5 +27,75 @@ class Eventos : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // 1- Mandar a llamar a los elementos
+        val txtNombreEventos = findViewById<EditText>(R.id.txtNombreEvento)
+        val txtDescripcion = findViewById<EditText>(R.id.txtDescripcion)
+        val txtLugar = findViewById<EditText>(R.id.txtLugar)
+        val txtHora = findViewById<EditText>(R.id.txtHora)
+        val txtFecha = findViewById<EditText>(R.id.txtFecha)
+        val btnCancelar = findViewById<Button>(R.id.btnCancelar)
+        val btnAgregarEvento = findViewById<Button>(R.id.btnAgregarEvento)
+
+        // Programar el botón de agregar evento
+        btnAgregarEvento.setOnClickListener {
+            // Validar los campos antes de proceder
+            if (validarCampos(txtNombreEventos, txtDescripcion, txtLugar, txtHora, txtFecha)) {
+                // Si hay errores, no proceder con la inserción
+                return@setOnClickListener
+            }
+
+            CoroutineScope(Dispatchers.IO).launch {
+                // Crear un objeto de la clase conexión
+                val objConexion = ClaseConexion().cadenaConexion()
+                // Crear una variable que tenga un prepare statement
+                val addEvento = objConexion?.prepareStatement(
+                    "INSERT INTO Eventos (uuid, lugar, descripcion, nombre, fecha, hora) VALUES (?, ?, ?, ?, ?, ?)"
+                )!!
+
+                addEvento.setString(1, UUID.randomUUID().toString())
+                addEvento.setString(2, txtLugar.text.toString())
+                addEvento.setString(3, txtDescripcion.text.toString())
+                addEvento.setString(4, txtNombreEventos.text.toString())
+                addEvento.setString(5, txtFecha.text.toString())
+                addEvento.setString(6, txtHora.text.toString())
+
+                addEvento.executeUpdate()
+
+                // Mostrar el AlertDialog en el hilo principal
+                withContext(Dispatchers.Main) {
+                    mostrarDialogoExito()
+                }
+            }
+        }
+    }
+
+    private fun validarCampos(vararg campos: EditText): Boolean {
+        var hayErrores = false
+        for (campo in campos) {
+            if (campo.text.isNullOrEmpty()) {
+                campo.error = "Este campo no puede estar vacío"
+                hayErrores = true
+            } else {
+                campo.error = null
+            }
+        }
+        return hayErrores
+    }
+
+    private fun mostrarDialogoExito() {
+        val builder = AlertDialog.Builder(this)
+        val inflater = LayoutInflater.from(this)
+        val dialogView = inflater.inflate(R.layout.dialog_exito, null)
+
+        builder.setView(dialogView)
+            .setTitle("Evento agregado")
+            .setMessage("Se han agregado eventos a seguridad y emergencia")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        val dialog = builder.create()
+        dialog.show()
     }
 }
