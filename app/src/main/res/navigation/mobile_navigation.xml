@@ -3,33 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/pantalla_admin">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="PTC.quickly.ui.home.HomeFragment"
-        android:label="Pantalla Principal"
-        tools:layout="@layout/fragment_home" />
-    <activity
-        android:id="@+id/calendario"
-        android:name="PTC.quickly.Calendario"
-        android:label="Calendario" />
-
-<<<<<<< HEAD
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="PTC.quickly.ui.dashboard.DashboardFragment"
         android:label="Perfil"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="PTC.quickly.ui.notifications.NotificationsFragment"
         android:label="Configuración"
         tools:layout="@layout/fragment_notifications" />
-
-
-=======
->>>>>>> master
+    <fragment
+        android:id="@+id/pantalla_admin"
+        android:name="PTC.quickly.Pantalla_admin"
+        android:label="Pantalla admin"
+        tools:layout="@layout/fragment_pantalla_admin" />
+    <fragment
+        android:id="@+id/pantalla_coordinador"
+        android:name="PTC.quickly.pantalla_coordinador"
+        android:label="fragment_pantalla_coordinador"
+        tools:layout="@layout/fragment_pantalla_coordinador" />
+    <fragment
+        android:id="@+id/pantalla_alumno"
+        android:name="PTC.quickly.pantalla_alumno"
+        android:label="fragment_pantalla_alumno"
+        tools:layout="@layout/fragment_pantalla_alumno" />
 </navigation>
