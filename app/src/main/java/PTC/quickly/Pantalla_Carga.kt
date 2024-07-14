@@ -21,26 +21,12 @@ import java.sql.SQLException
 class Pantalla_Carga : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pantalla_carga) // Usa el layout pantalla_de_carga
 
-        enableEdgeToEdge()
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        GlobalScope.launch(Dispatchers.Main) {
-            delay( 3000)
-
-            val intent = Intent(this@Pantalla_Carga, Login::class.java)
-            startActivity(intent)
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, Login::class.java))
             finish()
-        }
-
-
+        }, 3000) // 3 segundos de retraso
     }
-
-
 }
