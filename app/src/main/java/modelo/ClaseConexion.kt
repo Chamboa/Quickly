@@ -21,6 +21,13 @@ class ClaseConexion {
             return connection
 
 
+ //Conexion Gamboa
+
+  val url = "jdbc:oracle:thin:@10.10.2.61:1521:xe"
+  val usuarioGamboa = "PTCbase"
+  val contrasenaGamboa = "."
+
+
         } catch (e: Exception) {
             println("Ha ocurrido un error: $e")
             return null

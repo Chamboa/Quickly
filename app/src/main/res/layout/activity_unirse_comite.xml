@@ -4,316 +4,379 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/comisiones"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:id="@+id/rwhdo0904zcf"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginBottom="21dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:padding="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/ri0tvmt9sb2o"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv76e49iagwm">
-
-        <TextView
-            android:id="@+id/lblTecnicoCientifico"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Técnico científico"
-            android:textColor="#656363"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/riuozrxf95vn"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="115dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/rv76e49iagwm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r80wh8y1xc9h">
-
-        <TextView
-            android:id="@+id/lblVidaComunitaria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vida comunitaria"
-            android:textColor="#C67A50"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/r46juy0uztyy"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="115dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:padding="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/rx36cdzopo3c"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rk0y6he4zchj">
-
-        <TextView
-            android:id="@+id/lblSocialYProtocolo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Social y protocólo"
-            android:textColor="#1C9FB3"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/r4kz78yv91wl"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="115dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/rynjvnu5ye7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rx36cdzopo3c">
-
-        <TextView
-            android:id="@+id/lblDeportivo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Deportivo"
-            android:textColor="#E76820"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rx36cdzopo3c"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="115dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/r4kz78yv91wl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r46juy0uztyy">
-
-        <TextView
-            android:id="@+id/rhmg0npzh6f"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Comunicaciones"
-            android:textColor="#936EC2"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rk0y6he4zchj"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="115dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/r46juy0uztyy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rs3qlfx2tgvm">
-
-        <TextView
-            android:id="@+id/r4vlpbwl5j"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logística"
-            android:textColor="#006BD9"
-            android:textSize="13sp" />
-    </LinearLayout>
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/ri0tvmt9sb2o"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="40dp"
-        android:text="Habla con los entrenadores deportivos para poder realizar tu servicio social en selección"
-        android:textColor="#263238"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rwhdo0904zcf" />
-
-    <TextView
-        android:id="@+id/rd6c7gc7i716"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="333dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="492dp"
-        android:text="Disponibilidad"
-        android:textColor="#263238"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/ri0tvmt9sb2o"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rw63gnrlcgm" />
-
-    <LinearLayout
-        android:id="@+id/rynjvnu5ye7"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="115dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/r80wh8y1xc9h"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r4kz78yv91wl">
-
-        <TextView
-            android:id="@+id/rmwzdqz60lkb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cultural"
-            android:textColor="#EE4E64"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/r80wh8y1xc9h"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="115dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/riuozrxf95vn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rynjvnu5ye7">
-
-        <TextView
-            android:id="@+id/rqi8qalfkj"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Seguridad y emergencia"
-            android:textColor="#FD960E"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/rv76e49iagwm"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="115dp"
-        android:elevation="4dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/rwhdo0904zcf"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/riuozrxf95vn">
-
-        <TextView
-            android:id="@+id/rv4btd66aa9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medio ambiente"
-            android:textColor="#409949"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/rs3qlfx2tgvm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="140dp"
-        android:text="Selecciona una comisión"
-        android:textColor="#7A7A7A"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/rd6c7gc7i716"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rw63gnrlcgm" />
-
-    <TextView
-        android:id="@+id/rw63gnrlcgm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="88dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="59dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="49dp"
+        android:layout_marginTop="30dp"
         android:text="Unete a una comisión para poder realizar tu servicio social."
         android:textColor="#000000"
         android:textSize="23sp"
-        app:layout_constraintBottom_toTopOf="@+id/rs3qlfx2tgvm"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Selecciona una comisión"
+        android:textColor="#7A7A7A"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/availabilityHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:id="@+id/availabilityLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Disponibilidad"
+            android:textColor="#000000"
+            android:textSize="13sp"
+            android:textAlignment="viewEnd" />
+    </LinearLayout>
+
+    <!-- Button for Logística -->
+
+    <!-- Circle for Logística availability -->
+
+    <Button
+        android:id="@+id/btnLogistica"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+        android:elevation="4dp"
+        android:text="Logística"
+        android:textColor="#006BD9"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/availabilityHeader"
+        app:strokeColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnComunicaciones"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+        android:elevation="4dp"
+        android:text="Comunicaciones"
+        android:textColor="#936EC2"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLogistica" />
+
+    <Button
+        android:id="@+id/btnSocialProtocolo"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+
+        android:elevation="4dp"
+        android:text="Social y protocólo"
+        android:textColor="#1C9FB3"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnComunicaciones" />
+
+    <Button
+        android:id="@+id/btnTecnicoCientifico"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+        android:elevation="4dp"
+        android:text="Técnico científico"
+        android:textColor="#656363"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSocialProtocolo" />
+
+    <Button
+        android:id="@+id/btnMedioAmbiente"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+        android:elevation="4dp"
+        android:text="Medio ambiente"
+        android:textColor="#409949"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnTecnicoCientifico" />
+
+    <Button
+        android:id="@+id/btnVidaComunitaria"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+
+        android:elevation="4dp"
+        android:text="Vida comunitaria"
+        android:textColor="#EB660A"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnMedioAmbiente" />
+
+    <Button
+        android:id="@+id/btnSeguridadEmergencia"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+        android:elevation="4dp"
+        android:text="Seguridad y emergencia"
+        android:textColor="#EB660A"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnVidaComunitaria" />
+
+    <Button
+        android:id="@+id/btnCultural"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+        android:elevation="4dp"
+        android:text="Cultural"
+        android:textColor="#E94D8A"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSeguridadEmergencia" />
+
+    <Button
+        android:id="@+id/btnDeportivo"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#FFFCFC"
+
+        android:elevation="4dp"
+        android:text="Deportivo"
+        android:textColor="#E94D48"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCultural" />
+
+    <!-- Button for Comunicaciones -->
+
+    <!-- Circle for Comunicaciones availability -->
+
+    <!-- Button for Social y protocólo -->
+
+    <!-- Circle for Social y protocólo availability -->
+
+    <!-- Button for Técnico científico -->
+
+    <!-- Circle for Técnico científico availability -->
+
+    <!-- Button for Medio ambiente -->
+
+    <!-- Circle for Medio ambiente availability -->
+
+    <!-- Button for Vida comunitaria -->
+
+    <!-- Circle for Vida comunitaria availability -->
+
+    <!-- Button for Seguridad y emergencia -->
+
+    <!-- Circle for Seguridad y emergencia availability -->
+
+    <!-- Button for Cultural -->
+
+    <!-- Circle for Cultural availability -->
+
+    <!-- Button for Deportivo -->
+
+    <!-- Circle for Deportivo availability -->
+
+    <TextView
+        android:id="@+id/footer"
+        android:layout_width="393dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Habla con los entrenadores deportivos para poder realizar tu servicio social en selección"
+        android:textColor="#7A7A7A"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btnDeportivo"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <View
-        android:id="@+id/circulo_verde"
-        android:layout_width="38dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/circulo_verde_unirse_comision"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/ri0tvmt9sb2o"
-        app:layout_constraintStart_toEndOf="@+id/rk0y6he4zchj"
-        app:layout_constraintTop_toTopOf="@+id/rw63gnrlcgm" />
+    <TextView
+        android:id="@+id/txtLogistica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnLogistica"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnLogistica"
+        app:layout_constraintTop_toTopOf="@+id/btnLogistica" />
 
-    <Button
-        android:id="@+id/circulo_rojo"
-        android:layout_width="41dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:text="lleno"
-        android:textAlignment="center"
-        android:textSize="10sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/ri0tvmt9sb2o"
-        app:layout_constraintStart_toEndOf="@+id/circulo_verde"
-        app:layout_constraintTop_toTopOf="@+id/rw63gnrlcgm" />
+    <TextView
+        android:id="@+id/txtComunicaciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnComunicaciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toEndOf="@+id/btnComunicaciones"
+        app:layout_constraintTop_toTopOf="@+id/btnComunicaciones"
+        app:layout_constraintVertical_bias="1.0" />
 
+    <TextView
+        android:id="@+id/txtSocialYProtocolo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSocialProtocolo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSocialProtocolo"
+        app:layout_constraintTop_toTopOf="@+id/btnSocialProtocolo" />
+
+    <TextView
+        android:id="@+id/txtTecnicoCientifico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnTecnicoCientifico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnTecnicoCientifico"
+        app:layout_constraintTop_toTopOf="@+id/btnTecnicoCientifico"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtMedioAmbiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMedioAmbiente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnMedioAmbiente"
+        app:layout_constraintTop_toTopOf="@+id/btnMedioAmbiente"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txtVidaComunitaria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnVidaComunitaria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnVidaComunitaria"
+        app:layout_constraintTop_toTopOf="@+id/btnVidaComunitaria" />
+
+    <TextView
+        android:id="@+id/txtSeguridadYEmergencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSeguridadEmergencia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSeguridadEmergencia"
+        app:layout_constraintTop_toTopOf="@+id/btnSeguridadEmergencia" />
+
+    <TextView
+        android:id="@+id/txtCultural"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCultural"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCultural"
+        app:layout_constraintTop_toTopOf="@+id/btnCultural" />
+
+    <TextView
+        android:id="@+id/txtDeportivo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDeportivo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDeportivo"
+        app:layout_constraintTop_toTopOf="@+id/btnDeportivo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

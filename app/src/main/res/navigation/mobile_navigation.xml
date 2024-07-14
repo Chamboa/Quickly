@@ -8,6 +8,13 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="PTC.quickly.ui.home.HomeFragment"
+        android:label="Pantalla Principal"
+        tools:layout="@layout/fragment_home" />
+
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="PTC.quickly.ui.home.HomeFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_home" />
 
@@ -16,6 +23,7 @@
         android:name="PTC.quickly.ui.notifications.NotificationsFragment"
         android:label="Configuración"
         tools:layout="@layout/fragment_notifications" />
+
     <fragment
         android:id="@+id/pantalla_admin"
         android:name="PTC.quickly.Pantalla_admin"
@@ -31,4 +39,5 @@
         android:name="PTC.quickly.pantalla_alumno"
         android:label="fragment_pantalla_alumno"
         tools:layout="@layout/fragment_pantalla_alumno" />
+
 </navigation>

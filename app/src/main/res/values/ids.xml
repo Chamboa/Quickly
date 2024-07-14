@@ -11,4 +11,8 @@
     <item name="etxtnewcontradnv" type="id" />
     <item name="btnaceptar" type="id" />
     <item name="btnaceptarnuevacontra" type="id" />
+    <item name="rn1fvdjczwcb" type="id" />
+    <item name="lblAdministrativo" type="id" />
+    <item name="btnDeportivo" type="id" />
+    <item name="footer" type="id" />
 </resources>
