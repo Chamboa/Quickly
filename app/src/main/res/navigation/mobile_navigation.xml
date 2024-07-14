@@ -15,5 +15,10 @@
         android:name="PTC.quickly.calendarioEvento"
         android:label="fragment_calendario_evento"
         tools:layout="@layout/fragment_calendario_evento" />
+    <fragment
+        android:id="@+id/calendario_b"
+        android:name="PTC.quickly.calendario_b"
+        android:label="fragment_calendario_b"
+        tools:layout="@layout/fragment_calendario_b" />
 
 </navigation>

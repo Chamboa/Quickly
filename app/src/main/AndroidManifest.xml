@@ -30,9 +30,6 @@
             android:name=".Nueva_Contrasena"
             android:exported="false" />
         <activity
-            android:name=".Calendario"
-            android:exported="false" />
-        <activity
             android:name=".Confirmar_Comite"
             android:exported="false" />
         <activity
