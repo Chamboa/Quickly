@@ -20,6 +20,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
 import com.example.ptc1.modelo.dcRoles
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +34,6 @@ import java.security.MessageDigest
 import java.util.UUID
 
 class RegistroCuenta : AppCompatActivity() {
-
     val codigo_opcional_galeria = 102
     val STORAGE_REQUEST_CODE = 1
 
@@ -72,27 +73,41 @@ class RegistroCuenta : AppCompatActivity() {
         //Al darle clic al boton se hace un insert a la base con los valores que escribe el usuario
         btnCrearCuenta.setOnClickListener {
             GlobalScope.launch(Dispatchers.IO) {
-                //Creo un objeto de la clase conexion
-                val objConexion = ClaseConexion().cadenaConexion()
-
-                //encripto la contraseña usando la función de arriba
-                val contraseniaEncriptada = hashSHA256(txtContraseñaRegistro.text.toString())
-
-                //Creo una variable que contenga un PrepareStatement
-                val crearUsuario =
-                    objConexion?.prepareStatement("INSERT INTO tbCrearCuenta(uuid, NombreRegistro, CorreoRegistro, ContraseñaRegistro) VALUES (?, ?, ?, ?)")!!
-                crearUsuario.setString(1, UUID.randomUUID().toString())
-                crearUsuario.setString(2, txtNombreRegistro.text.toString())
-                crearUsuario.setString(3, txtCorreoRegistro.text.toString())
-                crearUsuario.setString(4, contraseniaEncriptada)
-                crearUsuario.executeUpdate()
-                withContext(Dispatchers.Main) {
-                    //Abro otra corrutina o "Hilo" para mostrar un mensaje y limpiar los campos
-                    //Lo hago en el Hilo Main por que el hilo IO no permite mostrar nada en pantalla
-                    Toast.makeText(this@RegistroCuenta, "Usuario creado", Toast.LENGTH_SHORT).show()
-                    txtNombreRegistro.setText("")
-                    txtCorreoRegistro.setText("")
-                    txtContraseñaRegistro.setText("")
+                try {
+                    val objConexion = ClaseConexion().cadenaConexion()
+                    objConexion?.use { connection ->
+                        connection.autoCommit = false
+                        val contraseniaEncriptada = hashSHA256(txtContraseñaRegistro.text.toString())
+                        val crearUsuario = connection.prepareStatement(
+                            "INSERT INTO Usuario(UUID, nombre, correo_electronico, contraseña, id_rol) VALUES (?, ?, ?, ?, ?)"
+                        )
+                        crearUsuario.use {
+                            it.setString(1, UUID.randomUUID().toString())
+                            it.setString(2, txtNombreRegistro.text.toString())
+                            it.setString(3, txtCorreoRegistro.text.toString())
+                            it.setString(4, contraseniaEncriptada)
+                            it.setInt(5, spRoles.selectedItemPosition + 1)  // Asumiendo que los IDs de rol comienzan en 1
+                            val rowsAffected = it.executeUpdate()
+                            if (rowsAffected > 0) {
+                                connection.commit()
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(this@RegistroCuenta, "Usuario creado", Toast.LENGTH_SHORT).show()
+                                    txtNombreRegistro.setText("")
+                                    txtCorreoRegistro.setText("")
+                                    txtContraseñaRegistro.setText("")
+                                }
+                            } else {
+                                connection.rollback()
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(this@RegistroCuenta, "Error al crear usuario", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@RegistroCuenta, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }
@@ -103,7 +118,7 @@ class RegistroCuenta : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Main).launch {
             val listaRoles = obtenerRoles()
-            val roles = listaRoles.map { it.rol }
+            val roles = listaRoles.map { it.tipo_rol }
             val adaptador = ArrayAdapter(this@RegistroCuenta, android.R.layout.simple_spinner_dropdown_item, roles)
             spRoles.adapter = adaptador
         }
@@ -119,17 +134,18 @@ class RegistroCuenta : AppCompatActivity() {
         return withContext(Dispatchers.IO) {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()!!
-            val resultSet = statement.executeQuery("select * from spinnerRoles")
+            val resultSet = statement.executeQuery("select * from Rol")
             val lista = mutableListOf<dcRoles>()
             while (resultSet.next()) {
                 val id_rol = resultSet.getInt("id_Rol")
-                val nombreRol = resultSet.getString("rol")
+                val nombreRol = resultSet.getString("tipo_rol")
                 val valoresJuntos = dcRoles(id_rol, nombreRol)
                 lista.add(valoresJuntos)
             }
             return@withContext lista
         }
     }
+
 
 
     private fun checkStoragePermission() {
@@ -201,6 +217,7 @@ class RegistroCuenta : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     private fun subirimagenFirebase(bitmap: Bitmap, onSuccess: (String) -> Unit) {
@@ -209,15 +226,17 @@ class RegistroCuenta : AppCompatActivity() {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
-        val uploadTask = imageRef.putBytes(data)
+        val uploadTask = inmageRef.putBytes(data)
 
         uploadTask.addOnFailureListener {
             Toast.makeText(this@RegistroCuenta, "Error al subir imagen", Toast.LENGTH_SHORT).show()
 
-        }.addOnSuccesListener { TaskSnapshot ->
-            imageRef.downloadUrl.addOnSuccessListener { uri ->
+        }.addOnSuccessListener { TaskSnapshot ->
+            inmageRef.downloadUrl.addOnSuccessListener { uri ->
                 onSuccess(uri.toString())
             }
         }
     }
+
+
 }

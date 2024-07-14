@@ -84,6 +84,8 @@ class Login : AppCompatActivity() {
                     validarusuario?.setString(1, txtcorreologin.text.toString())
                     validarusuario?.setString(2, contraencriptada)
 
+
+
                     val resultado = validarusuario?.executeQuery()
 
 
@@ -118,5 +120,8 @@ class Login : AppCompatActivity() {
             }
 
         }
+
     }
+
 }
+
