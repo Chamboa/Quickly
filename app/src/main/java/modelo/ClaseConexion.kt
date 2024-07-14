@@ -8,11 +8,13 @@ class ClaseConexion {
     fun cadenaConexion(): Connection? {
 
         try {
-            val ipLevi = "jdbc:oracle:thin:@192.168.1.19:1521:xe"
+
+            val ipLevi = "jdbc:oracle:thin@192.168.1.19:1521:xe"
             val ipGamboa = "jdbc:oracle:thin:@192.168.0.12:1521:xe"
-            val ipRuth = "jdbc:oracle:thin:@192.168.3.8:1521:xe"
-            val ipSamuel = "jdbc:oracle:thin:@192.168.1.19:1521:xe"
-            val ipMateo = "jdbc:oracle:thin:192.168.1.19@:1521:xe"
+            val ipRuth = "jdbc:oracle:thin@ 192.168.3.8:1521:xe"
+            val ipSamuel = "jdbc:oracle:thin@192.168.1.19:1521:xe"
+            val ipMateo = "jdbc:oracle:thin@192.168.1.19:1521:xe"
+
 
             val usuario = "PTCbase"
             val contrasena = "."
@@ -21,11 +23,10 @@ class ClaseConexion {
             return connection
 
 
-        }
-       catch (e: Exception) {
-           println("Ha ocurrido un error: $e")
-           return null
-       }
+        } catch (e: Exception) {
+            println("Ha ocurrido un error: $e")
+            return null
 
+        }
     }
 }
