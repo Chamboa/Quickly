@@ -60,7 +60,7 @@ class Login : AppCompatActivity() {
             }
 
             if (Contrasena.length <= 7) {
-                txtcontralogin.error = "Ingresa lo datos que se te piden"
+                txtcontralogin.error = "Ingresa lo datos que se te piden."
                 hayErrores = true
             } else {
                 txtcontralogin.error = null
