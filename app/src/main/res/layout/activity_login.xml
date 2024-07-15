@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF"
     tools:context=".Login">
 
 
@@ -51,7 +52,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="300dp"
         android:background="#E7E5E5"
-        app:layout_constraintBottom_toTopOf="@+id/btncontraolvidada"
+        app:layout_constraintBottom_toTopOf="@+id/txtcuentaolvidada"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +70,7 @@
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.345"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -104,31 +105,13 @@
         app:layout_constraintTop_toTopOf="@+id/vwnuevacontra"
         app:layout_constraintVertical_bias="0.499" />
 
-    <Button
-        android:id="@+id/btncontraolvidada"
-        android:layout_width="240dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="384dp"
-        android:background="@null"
-        android:backgroundTint="#FFFF"
-        android:fontFamily="@font/inter_bold"
-        android:text="¿Olvidaste tu contraseña?"
-        android:textAlignment="viewStart"
-        android:textColor="#006CDA"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/btniniciarsesion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="144dp"
         android:layout_height="149dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.011"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/eliploguno" />
@@ -144,17 +127,61 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/eliplogdos" />
 
+
+<!--    <ImageView-->
+<!--        android:id="@+id/idvercontra"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+
+<!--        app:layout_constraintBottom_toBottomOf="@+id/txtcorreologin"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/txtcorreologin"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/txtcorreologin"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/txtcorreologin"-->
+<!--                app:layout_constraintVertical_bias="0.0"-->
+
+<!--        app:layout_constraintBottom_toBottomOf="@+id/txtContralogin"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/txtContralogin"-->
+<!--        app:layout_constraintHorizontal_bias="0.212"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/txtContralogin"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/txtContralogin"-->
+<!--        app:layout_constraintVertical_bias="0.0"-->
+
+<!--        app:srcCompat="@drawable/vercontrasena" />-->
+
     <ImageView
         android:id="@+id/idvercontra"
         android:layout_width="50dp"
         android:layout_height="50dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/txtcorreologin"
+        app:layout_constraintEnd_toEndOf="@+id/txtcorreologin"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/txtcorreologin"
+        app:layout_constraintTop_toTopOf="@+id/txtcorreologin"
+                app:layout_constraintVertical_bias="0.0"
+
         app:layout_constraintBottom_toBottomOf="@+id/txtContralogin"
         app:layout_constraintEnd_toEndOf="@+id/txtContralogin"
-        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/txtContralogin"
         app:layout_constraintTop_toTopOf="@+id/txtContralogin"
         app:layout_constraintVertical_bias="0.0"
+
         app:srcCompat="@drawable/vercontrasena" />
+
+
+    <TextView
+        android:id="@+id/txtcuentaolvidada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/inter_extrabold"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textColor="#006CDA"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btniniciarsesion"
+        tools:layout_editor_absoluteX="19dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
