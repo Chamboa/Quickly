@@ -8,6 +8,7 @@ class ClaseConexion {
     fun cadenaConexion(): Connection? {
 
         try {
+<<<<<<< HEAD
 
            val ipLevi = "jdbc:oracle:thin@192.168.1.19:1521:xe"
            val ipGamboa = "jdbc:oracle:thin@192.168.0.12:1521:xe"
@@ -16,10 +17,13 @@ class ClaseConexion {
            val ipMateo = "jdbc:oracle:thin@192.168.1.19:1521:xe"
 
            val ipLevi = "jdbc:oracle:thin:@192.168.1.19:1521:xe"
+=======
+           val ipLevi = "jdbc:oracle:thin:@192.168.1.17:1521:xe"
+>>>>>>> Levi
            val ipGamboa = "jdbc:oracle:thin:@192.168.0.12:1521:xe"
            val ipRuth = "jdbc:oracle:thin:@192.168.3.8:1521:xe"
            val ipSamuel = "jdbc:oracle:thin:@192.168.1.19:1521:xe"
-           val ipMateo = "jdbc:oracle:thin:192.168.1.19@:1521:xe"
+           val ipMateo = "jdbc:oracle:thin:@192.168.1.19:1521:xe"
 
 
             val usuario = "QUICKLY"

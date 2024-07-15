@@ -22,6 +22,8 @@ import java.security.MessageDigest
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
+        setContentView(R.layout.activity_login)
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_login)
@@ -32,9 +34,9 @@ class Login : AppCompatActivity() {
             insets
         }
 
-        fun hashSHA256 (contraencriptada: String): String {
+        fun hashSHA256(contraencriptada: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraencriptada.toByteArray())
-            return bytes.joinToString("") { "%02x".format(it)}
+            return bytes.joinToString("") { "%02x".format(it) }
         }
 
         val txtcorreologin = findViewById<EditText>(R.id.txtcorreologin)
@@ -43,57 +45,53 @@ class Login : AppCompatActivity() {
         val txtcuentaolvidada = findViewById<TextView>(R.id.txtcuentaolvidada)
         val imgvercontra = findViewById<ImageView>(R.id.idvercontra)
 
+
         btniniciarsesion.setOnClickListener {
-
-            val activity_main = Intent(this, MainActivity::class.java)
-
-            //Variables de los valores escritos por el usuarios
 
             val Correo = txtcorreologin.text.toString()
             val Contrasena = txtcontralogin.text.toString()
             var hayErrores = false
 
-            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))){
-                txtcorreologin.error = "formato de correo inválido"
+            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))) {
+                txtcorreologin.error = "Ingresa lo datos que se te piden"
                 hayErrores = true
-            }
-
-            else{
+            } else {
                 txtcorreologin.error = null
             }
 
-            if (Contrasena.length <= 7){
-                txtcontralogin.error = "La contraseña debe contener más de 7 dígitos"
+            if (Contrasena.length <= 7) {
+                txtcontralogin.error = "Ingresa lo datos que se te piden"
                 hayErrores = true
-            }
-
-            else {
+            } else {
                 txtcontralogin.error = null
             }
 
-            //val activity_main = Intent(this, MainActivity::class.java)
+            val activity_main = Intent(this, MainActivity::class.java)
 
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     val objConexion = ClaseConexion().cadenaConexion()
-
                     val contraencriptada = hashSHA256(txtcontralogin.text.toString())
 
-
-                    val validarusuario = objConexion?.prepareStatement("SELECT * FROM Usuario WHERE correo_electronico = ? AND contraseña = ?")
+                    val validarusuario =
+                        objConexion?.prepareStatement("SELECT * FROM Usuario WHERE correo_electronico = ? AND contraseña = ?")
                     validarusuario?.setString(1, txtcorreologin.text.toString())
                     validarusuario?.setString(2, contraencriptada)
 
                     val resultado = validarusuario?.executeQuery()
 
-
-                    withContext(Dispatchers.Main) {
-                        if (resultado?.next() == true) {
-                            startActivity(activity_main)
-                        } else {
-                            Toast.makeText(this@Login, "Usuario no encontrado, verifique las credenciales", Toast.LENGTH_LONG).show()
+                    if (resultado?.next() == true) {
+                        startActivity(activity_main)
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                this@Login,
+                                "Usuario o contraseña incorrectos",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
+
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(this@Login, "Error: ${e.message}", Toast.LENGTH_LONG).show()
@@ -103,8 +101,8 @@ class Login : AppCompatActivity() {
         }
 
 
-        txtcuentaolvidada.setOnClickListener{
-            val recuperarcontrasena = Intent (this, Recuperar_contrasena::class.java)
+        txtcuentaolvidada.setOnClickListener {
+            val recuperarcontrasena = Intent(this, Recuperar_contrasena::class.java)
             startActivity(recuperarcontrasena)
         }
 

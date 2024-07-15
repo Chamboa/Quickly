@@ -17,6 +17,8 @@ import kotlinx.coroutines.launch
 class Recuperar_contrasena : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
+        setContentView(R.layout.activity_recuperar_contrasena)
         enableEdgeToEdge()
         setContentView(R.layout.activity_recuperar_contrasena)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -36,7 +38,7 @@ class Recuperar_contrasena : AppCompatActivity() {
             var hayerrores = false
 
             if(!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))){
-                txtcorreocontraolvidada.error = "El correo ha sido escrito incorrectamente"
+                txtcorreocontraolvidada.error = "Ingresa lo datos que se te piden"
                 hayerrores = true
             }
             else{

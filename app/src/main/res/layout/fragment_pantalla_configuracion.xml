@@ -2,20 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".pantalla_configuracion" >
 
     <ImageView
         android:id="@+id/imgcirculosconfig"
-        android:layout_width="192dp"
-        android:layout_height="214dp"
-        android:layout_marginBottom="52dp"
+        android:layout_width="188dp"
+        android:layout_height="191dp"
         android:src="@drawable/imgcirconfig"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.774" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vwnotificaciones"
@@ -27,7 +29,7 @@
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809">
+        app:layout_constraintVertical_bias="0.739">
 
         <ImageView
             android:id="@+id/imageView16"
@@ -60,11 +62,11 @@
         android:id="@+id/vwidioma"
         android:layout_width="377dp"
         android:layout_height="106dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/cuadroidioma"
         app:layout_constraintBottom_toTopOf="@+id/vwtema"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
@@ -98,7 +100,7 @@
         android:id="@+id/vwtema"
         android:layout_width="377dp"
         android:layout_height="106dp"
-        android:layout_marginBottom="272dp"
+        android:layout_marginBottom="312dp"
         android:background="@drawable/cuadrotema"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,6 +144,6 @@
         app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
