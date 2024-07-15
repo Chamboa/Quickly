@@ -139,6 +139,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnpntgestus"
         android:layout_width="150dp"
         android:layout_height="180dp"
         android:background="@drawable/btnvrlistus"
@@ -178,7 +179,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/btnpntasishoradmin"
         android:layout_width="150dp"
         android:layout_height="180dp"
         android:background="@drawable/btnasishoras"
@@ -218,7 +219,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
+        android:id="@+id/btnpnthistorial"
         android:layout_width="150dp"
         android:layout_height="180dp"
         android:background="@drawable/btnvrhistorial"

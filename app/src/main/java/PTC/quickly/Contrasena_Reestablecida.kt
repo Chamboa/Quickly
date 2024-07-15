@@ -11,6 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 class Contrasena_Reestablecida : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
+        setContentView(R.layout.activity_contrasena_reestablecida)
         enableEdgeToEdge()
         setContentView(R.layout.activity_contrasena_reestablecida)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

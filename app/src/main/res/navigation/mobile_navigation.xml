@@ -5,17 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/pantalla_admin">
 
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="PTC.quickly.ui.home.HomeFragment"
-        android:label="Perfil"
-        tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="PTC.quickly.ui.notifications.NotificationsFragment"
-        android:label="Configuración"
-        tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/pantalla_admin"
         android:name="PTC.quickly.Pantalla_admin"
@@ -24,11 +14,21 @@
     <fragment
         android:id="@+id/pantalla_coordinador"
         android:name="PTC.quickly.pantalla_coordinador"
-        android:label="fragment_pantalla_coordinador"
+        android:label="Pantalla coordinador"
         tools:layout="@layout/fragment_pantalla_coordinador" />
     <fragment
         android:id="@+id/pantalla_alumno"
         android:name="PTC.quickly.pantalla_alumno"
-        android:label="fragment_pantalla_alumno"
+        android:label="Pantalla alumno"
         tools:layout="@layout/fragment_pantalla_alumno" />
+    <fragment
+        android:id="@+id/pantalla_perfil"
+        android:name="PTC.quickly.Pantalla_perfil"
+        android:label="Pantalla perfil"
+        tools:layout="@layout/fragment_pantalla_perfil" />
+    <fragment
+        android:id="@+id/pantalla_configuracion"
+        android:name="PTC.quickly.pantalla_configuracion"
+        android:label="Pantalla configuraciones"
+        tools:layout="@layout/fragment_pantalla_configuracion" />
 </navigation>
