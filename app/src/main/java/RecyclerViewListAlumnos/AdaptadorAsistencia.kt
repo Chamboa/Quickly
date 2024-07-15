@@ -1,6 +1,8 @@
 package com.example.ptc1.RecyclerViewListAlumnos
 
+import PTC.quickly.Agregar_Horas
 import PTC.quickly.R
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,8 +27,27 @@ class AdaptadorAsistencia (var Datos: List<tbAsistencia>): RecyclerView.Adapter<
     fun onBindViewHolder(holder: ViewHolderAsistencia, position: Int) {
         //Control a la Card
         val item = Datos[position]
-        holder.txtNombreCard.text = item.Asistencia.toString()
+        holder.txtNombreCard.text = item.id_Asistencia  .toString()
+
+        holder.imgBuscar.setOnClickListener {
+            val context = holder.itemView.context
         }
+
+
+        holder.imgAgregar_Horas.setOnClickListener {
+            val context = holder.itemView.context
+
+            val intent = Intent(context, Agregar_Horas::class.java)
+        }
+
+
+        }
+
+
+
+
+
+
     }
 
 

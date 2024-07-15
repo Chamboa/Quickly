@@ -39,6 +39,11 @@ class Asistencia(
 
         ///Espero mostrar datos
 
+
+
+
+
+
         fun obtenerAlumnos(): List<tbAsistencia> {
 
             //1-Creo conexion
@@ -52,16 +57,15 @@ class Asistencia(
 
             while (resultSet.next()){
                 val id_Asistencia = resultSet.getInt("id_Asistencia")
-                val Hora_de_entrada = resultSet.getDate("Hora_de_entrada")
-                val Hora_de_salida = resultSet.getDate("Hora_de_salida")
-                val Asistencia_total = resultSet.getInt("Asistencia_total")
 
-                val valoresJuntos = Asistencia(id_Asistencia, Hora_de_entrada, Hora_de_salida, Asistencia_total)
 
-                 listaAsistencia.add()
+                val valoresJuntos = tbAsistencia(id_Asistencia)
+
+                 listaAsistencia.add(valoresJuntos)
 
             }
             return listaAsistencia
+
 
 
         }
@@ -70,6 +74,27 @@ class Asistencia(
             withContext(Dispatchers.Main){
                 val adapter = AdaptadorAsistencia(AsistenciaDB)
                 rcvAsistencia.adapter = adapter
+            }
+
+
+
+            fun buscarAlumnos(): List<tbAsistencia>{
+                val objConexion = ClaseConexion().cadenaConexion()
+
+
+
+                val statement = objConexion?.createStatement()
+                val resultSet = statement?.executeQuery("SELECT * FROM Alumnos")!!
+
+                val listaAlumnos = mutableListOf<tbAsistencia>()
+                while (resultSet.next()){
+                    val id_alumno = resultSet.getInt("id_alumno")
+
+                    val valoresUnidos = tbAsistencia(id_alumno)
+
+                    listaAlumnos.add(valoresUnidos)
+                }
+                return listaAlumnos
             }
         }
 

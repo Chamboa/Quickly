@@ -13,4 +13,8 @@ class ViewHolderAsistencia(view: View) : RecyclerView.ViewHolder(view) {
 
     val imgBuscar: ImageView =view.findViewById(R.id.imgBuscar)
 
+    val imgAgregar_Horas: ImageView = view.findViewById(R.id.imgAgregarHoras)
+
+
+
 }

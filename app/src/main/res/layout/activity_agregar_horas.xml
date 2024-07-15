@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtFechaHoras" />
 
     <EditText
-        android:id="@+id/editTextText6"
+        android:id="@+id/txtCantidadhoras"
         android:layout_width="180dp"
         android:layout_height="39dp"
         android:layout_marginTop="20dp"
@@ -119,7 +119,7 @@
         android:backgroundTint="#D73939"
         android:text="Cancelar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCantidadhoras" />
 
     <Button
         android:id="@+id/btnAgregarHoras"
@@ -132,6 +132,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toEndOf="@+id/btnCancelarHoras"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCantidadhoras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
