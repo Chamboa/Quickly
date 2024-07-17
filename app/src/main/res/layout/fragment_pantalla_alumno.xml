@@ -7,31 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".pantalla_alumno" >
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout5"
+    <ImageButton
+        android:id="@+id/btnWelcome"
         android:layout_width="385dp"
         android:layout_height="54dp"
-        android:layout_marginStart="16dp"
         android:background="@drawable/barrapntalum"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332">
+        app:layout_constraintVertical_bias="0.332" />
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_extrabold"
-            android:text="¡Bienvenido, me alegro que estés de vuelta!"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_extrabold"
+        android:text="¡Bienvenido, me alegro que estés de vuelta!"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnWelcome"
+        app:layout_constraintEnd_toEndOf="@+id/btnWelcome"
+        app:layout_constraintStart_toStartOf="@+id/btnWelcome"
+        app:layout_constraintTop_toTopOf="@+id/btnWelcome" />
 
     <ImageView
         android:id="@+id/imageView28"
@@ -50,59 +49,64 @@
         android:layout_width="181dp"
         android:layout_height="182dp"
         android:src="@drawable/imgpntalumtres"
-        tools:layout_editor_absoluteX="-4dp"
-        tools:layout_editor_absoluteY="45dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageButton
+        android:id="@+id/btnEventos"
         android:layout_width="170dp"
         android:layout_height="54dp"
         android:background="@drawable/barradospntalum"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425">
+        app:layout_constraintVertical_bias="0.425" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_extrabold"
-            android:text="Eventos"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_extrabold"
+        android:text="Eventos"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEventos"
+        app:layout_constraintEnd_toEndOf="@+id/btnEventos"
+        app:layout_constraintStart_toStartOf="@+id/btnEventos"
+        app:layout_constraintTop_toTopOf="@+id/btnEventos" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout6"
+    <ImageButton
+        android:id="@+id/btnHistorial"
         android:layout_width="170dp"
         android:layout_height="54dp"
         android:background="@drawable/barratrespntalum"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.917"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426">
+        app:layout_constraintVertical_bias="0.426" />
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_extrabold"
-            android:text="Historial"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_extrabold"
+        android:text="Historial"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnHistorial"
+        app:layout_constraintEnd_toEndOf="@+id/btnHistorial"
+        app:layout_constraintStart_toStartOf="@+id/btnHistorial"
+        app:layout_constraintTop_toTopOf="@+id/btnHistorial" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -126,4 +130,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.088" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,14 @@
 package PTC.quickly
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView // Asegúrate de importar TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +50,6 @@ class Pantalla_perfil : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment Pantalla_perfil.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             Pantalla_perfil().apply {
@@ -55,5 +58,33 @@ class Pantalla_perfil : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val txtCorreo = view.findViewById<TextView>(R.id.id_Correo)
+        val txtNombre = view.findViewById<TextView>(R.id.Id_Nombre)
+        val Cerrar = view.findViewById<Button>(R.id.btncerrarsesion)
+
+        txtNombre.text = Login.nombre
+        txtCorreo.text = Login.correo
+
+        Cerrar.setOnClickListener{
+            cerrarSesion()
+        }
+    }
+
+    private fun cerrarSesion() {
+        // Aquí puedes limpiar los datos de sesión, como SharedPreferences
+        val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", 0)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+
+        // Navegar de regreso a la pantalla de inicio de sesión
+        val intent = Intent(activity, Login::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 }

@@ -1,54 +1,23 @@
 package com.example.ptc1.RecyclerViewListAlumnos
 
-import PTC.quickly.Agregar_Horas
 import PTC.quickly.R
-import android.content.Intent
+import PTC.quickly.ViewHolderAsistencia
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.ptc1.modelo.tbAsistencia
 
-class AdaptadorAsistencia (var Datos: List<tbAsistencia>): RecyclerView.Adapter<ViewHolder> (){
-
+class AdaptadorAsistencia(var listaAsistencia: List<tbAsistencia>) : RecyclerView.Adapter<ViewHolderAsistencia>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderAsistencia {
-        //Uno mi recyclerView
-        val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_card_asistencia, parent, false   )
+        TODO("Not yet implemented")
+        val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_card_asistencia, parent, false)
         return ViewHolderAsistencia(vista)
     }
+    override fun getItemCount() = listaAsistencia.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
-
-    //Devuelvo la cantidad de datos que se muestran
-    override fun getItemCount() = Datos.size
-
-    fun onBindViewHolder(holder: ViewHolderAsistencia, position: Int) {
-        //Control a la Card
-        val item = Datos[position]
-        holder.txtNombreCard.text = item.id_Asistencia  .toString()
-
-        holder.imgBuscar.setOnClickListener {
-            val context = holder.itemView.context
-        }
-
-
-        holder.imgAgregar_Horas.setOnClickListener {
-            val context = holder.itemView.context
-
-            val intent = Intent(context, Agregar_Horas::class.java)
-        }
-
-
-        }
-
-
-
-
-
+    override fun onBindViewHolder(holder: ViewHolderAsistencia, position: Int) {
+        val asistencia = listaAsistencia[position]
+        holder.txtNombreCard.text = asistencia.nombre
 
     }
-
-
-
+}

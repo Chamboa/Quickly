@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
-
-       <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
         tools:ignore="SelectedPhotoAccess" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,13 +23,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PTC"
-
-        tools:targetApi="31" >
+        tools:targetApi="31">
         <activity
             android:name=".item_card_asistencia"
             android:exported="false" />
         <activity
-            android:name=".Asistencia"
+            android:name=".AsistenciaActivity"
             android:exported="false" />
         <activity
             android:name=".Agregar_Horas"
@@ -38,23 +36,9 @@
         <activity
             android:name=".Eventos"
             android:exported="false" />
-
-        tools:targetApi="31">
-
-        <!-- Otras actividades -->
-
         <activity
             android:name=".Bandeja_chat"
             android:exported="false" />
-        <activity
-            android:name=".Eventos"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
         <activity
             android:name=".Correoconfirmacion"
             android:exported="false" />
@@ -69,34 +53,10 @@
             android:exported="false" />
         <activity
             android:name=".Confirmar_Comite"
-
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pantalla_Carga"
-            android:exported="false" />
-        <activity
-            android:name=".Contrasena_Reestablecida"
-            android:exported="false" />
-        <activity
-            android:name=".Login"
-            android:exported="false" >
-
-        </activity>
-
-        <activity
-            android:name=".Contrasena_Reestablecida"
-            android:exported="false" />
-
-        <activity
-            android:name=".Unirse_Comite"
-            android:exported="true"
-            android:label="@string/app_name" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -104,40 +64,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Contrasena_Reestablecida"
             android:exported="false" />
-
         <activity
             android:name=".Login"
-            android:exported="false" >
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".Unirse_Comite"
             android:exported="false"
-            android:label="@string/app_name"/>
-
+            android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
-
-            android:exported="false"
-            android:label="@string/app_name"/>
-
-
-        <!-- Actividad principal (launcher) -->
-        <activity
-            android:name=".Pantalla_Carga"
-            android:exported="false">
-
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-        </activity>
-
-
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -39,34 +39,13 @@ class Eventos : AppCompatActivity() {
 
         // Programar el botón de agregar evento
         btnAgregarEvento.setOnClickListener {
-            // Validar los campos antes de proceder
             if (validarCampos(txtNombreEventos, txtDescripcion, txtLugar, txtHora, txtFecha)) {
-                // Si hay errores, no proceder con la inserción
-                return@setOnClickListener
+                agregarEvento(txtNombreEventos, txtDescripcion, txtLugar, txtHora, txtFecha)
             }
+        }
 
-            CoroutineScope(Dispatchers.IO).launch {
-                // Crear un objeto de la clase conexión
-                val objConexion = ClaseConexion().cadenaConexion()
-                // Crear una variable que tenga un prepare statement
-                val addEvento = objConexion?.prepareStatement(
-                    "INSERT INTO Eventos (uuid, lugar, descripcion, nombre, fecha, hora) VALUES (?, ?, ?, ?, ?, ?)"
-                )!!
-
-                addEvento.setString(1, UUID.randomUUID().toString())
-                addEvento.setString(2, txtLugar.text.toString())
-                addEvento.setString(3, txtDescripcion.text.toString())
-                addEvento.setString(4, txtNombreEventos.text.toString())
-                addEvento.setString(5, txtFecha.text.toString())
-                addEvento.setString(6, txtHora.text.toString())
-
-                addEvento.executeUpdate()
-
-                // Mostrar el AlertDialog en el hilo principal
-                withContext(Dispatchers.Main) {
-                    mostrarDialogoExito()
-                }
-            }
+        btnCancelar.setOnClickListener {
+            finish()
         }
     }
 
@@ -80,7 +59,39 @@ class Eventos : AppCompatActivity() {
                 campo.error = null
             }
         }
-        return hayErrores
+        return !hayErrores
+    }
+
+    private fun agregarEvento(
+        txtNombreEventos: EditText,
+        txtDescripcion: EditText,
+        txtLugar: EditText,
+        txtHora: EditText,
+        txtFecha: EditText
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            // Crear un objeto de la clase conexión
+            val objConexion = ClaseConexion().cadenaConexion()
+            // Crear una variable que tenga un prepare statement
+            val addEvento = objConexion?.prepareStatement(
+                "INSERT INTO Eventos (UUID, UUID_Usuario, lugar, descripcion, nombre, fecha, hora) VALUES (?, ?, ?, ?, ?, ?, ?)"
+            )!!
+
+            addEvento.setString(1, UUID.randomUUID().toString())
+            addEvento.setString(2, Login.UUID)
+            addEvento.setString(3, txtLugar.text.toString())
+            addEvento.setString(4, txtDescripcion.text.toString())
+            addEvento.setString(5, txtNombreEventos.text.toString())
+            addEvento.setString(6, txtFecha.text.toString())
+            addEvento.setString(7, txtHora.text.toString())
+
+            addEvento.executeUpdate()
+
+            // Mostrar el AlertDialog en el hilo principal
+            withContext(Dispatchers.Main) {
+                mostrarDialogoExito()
+            }
+        }
     }
 
     private fun mostrarDialogoExito() {
@@ -90,7 +101,7 @@ class Eventos : AppCompatActivity() {
 
         builder.setView(dialogView)
             .setTitle("Evento agregado")
-            .setMessage("Se han agregado eventos a seguridad y emergencia")
+            .setMessage("Se ha agregado el evento exitosamente.")
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }
