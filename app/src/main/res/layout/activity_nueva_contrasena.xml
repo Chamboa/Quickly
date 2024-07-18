@@ -21,37 +21,7 @@
         app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.974" />
-
-    <View
-        android:id="@+id/vwnuevacontradnv"
-        android:layout_width="372dp"
-        android:layout_height="75dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="344dp"
-        android:background="#E7E5E5"
-        app:layout_constraintBottom_toTopOf="@+id/btnaceptarnuevacontra"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.307"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.454" />
-
-    <EditText
-        android:id="@+id/etxtnewcontradnv"
-        android:layout_width="356dp"
-        android:layout_height="56dp"
-        android:background="@null"
-        android:ems="10"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/vwnuevacontradnv"
-        app:layout_constraintEnd_toEndOf="@+id/vwnuevacontradnv"
-        app:layout_constraintStart_toStartOf="@+id/vwnuevacontradnv"
-        app:layout_constraintTop_toTopOf="@+id/vwnuevacontradnv" />
+        app:layout_constraintVertical_bias="0.843" />
 
     <View
         android:id="@+id/vwnuevacontra"
@@ -59,14 +29,12 @@
         android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="248dp"
         android:background="#E7E5E5"
-        app:layout_constraintBottom_toTopOf="@+id/txtnuevacontradnv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etxtnewcontra"
@@ -113,28 +81,14 @@
         app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txtnuevacontradnv"
-        android:layout_width="282dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/inter_extrabold"
-        android:text="Digite nuevamente su contraseña"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/vwnuevacontradnv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="176dp"
         android:layout_height="180dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/elipcontranueva" />
 
@@ -147,18 +101,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/etxtnewcontra"
         app:layout_constraintTop_toTopOf="@+id/etxtnewcontra"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/vercontrasena" />
-
-    <ImageView
-        android:id="@+id/imgvernuevacontradnv"
-        android:layout_width="49dp"
-        android:layout_height="56dp"
-        app:layout_constraintBottom_toBottomOf="@+id/etxtnewcontradnv"
-        app:layout_constraintEnd_toEndOf="@+id/etxtnewcontradnv"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/etxtnewcontradnv"
-        app:layout_constraintTop_toTopOf="@+id/etxtnewcontradnv"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/vercontrasena" />
 
