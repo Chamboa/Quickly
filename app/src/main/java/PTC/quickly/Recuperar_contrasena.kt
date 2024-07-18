@@ -15,6 +15,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class Recuperar_contrasena : AppCompatActivity() {
+    companion object varialesglobales{
+        lateinit var correoingresado: String
+        val Codigorecuperacion = (100000..999999).random()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -34,6 +38,9 @@ class Recuperar_contrasena : AppCompatActivity() {
         btnsolicitarcorreo.setOnClickListener {
             val activity_correoconfirmacion = Intent(this, Correoconfirmacion::class.java)
 
+            CoroutineScope(Dispatchers.Main).launch {
+                correoingresado=txtcorreocontraolvidada.text.toString()
+                startActivity(intent)
             val correo = txtcorreocontraolvidada.text.toString()
             var hayerrores = false
 
@@ -45,13 +52,9 @@ class Recuperar_contrasena : AppCompatActivity() {
                 txtcorreocontraolvidada.error = null
             }
 
-            CoroutineScope(Dispatchers.Main).launch {
-
-                val Codigorecuperacion = (100000..999999).random()
-
                 enviarCorreo(
-                    "quicklyptc2024@gmail.com",
-                    "Recuperación de constraseña",
+                    correoingresado,
+                    "Recuperación de contraseña",
                     "¡Hola! aquí está tu código de recuperación $Codigorecuperacion"
                 )
         }

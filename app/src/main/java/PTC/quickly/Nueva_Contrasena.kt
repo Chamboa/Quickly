@@ -10,6 +10,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import modelo.ClaseConexion
 
 class Nueva_Contrasena : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,14 +31,13 @@ class Nueva_Contrasena : AppCompatActivity() {
 
         val etxtnewcontra = findViewById<EditText>(R.id.etxtnewcontra)
         val imgvernuevacontra = findViewById<ImageView>(R.id.imgvernuevacontra)
-        val etxtnewcontradnv = findViewById<EditText>(R.id.etxtnewcontradnv)
-        val imgvernuevacontradnv = findViewById<ImageView>(R.id.imgvernuevacontradnv)
         val btnaceptarnuevacontra = findViewById<Button>(R.id.btnaceptarnuevacontra)
 
         btnaceptarnuevacontra.setOnClickListener {
-
+            val pantallacontrasenarestablecida = Intent(this, Contrasena_Reestablecida::class.java)
+            startActivity(pantallacontrasenarestablecida)
+            val usuario = Recuperar_contrasena.correoingresado
             val nuevacontrasena = etxtnewcontra.text.toString()
-            val contrasenadigitadanuevamente = etxtnewcontradnv.text.toString()
             var hayErrores = false
 
             if (nuevacontrasena.length <= 7){
@@ -45,25 +49,14 @@ class Nueva_Contrasena : AppCompatActivity() {
                 etxtnewcontra.error = null
             }
 
-            if (contrasenadigitadanuevamente.length <= 7){
-                etxtnewcontradnv.error = "Tu nueva contraseña debe contener más de 7 dígitos"
-                hayErrores = true
+            CoroutineScope(Dispatchers.IO).launch {
+                val objConexion = ClaseConexion().cadenaConexion()
+                val actualizarcontrasena = objConexion?.prepareStatement("UPDATE Usuario SET contraseña = ? WHERE correo_electronico = ?")!!
+                actualizarcontrasena.setString(1, etxtnewcontra.text.toString())
+                actualizarcontrasena.setString(2,usuario)
+                actualizarcontrasena.executeUpdate()
             }
 
-            else {
-                etxtnewcontradnv.error = null
-            }
-
-            if (!hayErrores){
-                if (nuevacontrasena != contrasenadigitadanuevamente) {
-                    etxtnewcontradnv.error = "Las contraseñas no coinciden"
-                    hayErrores = true
-                }
-
-                else {
-                    etxtnewcontradnv.error = null
-                }
-            }
         }
 
         imgvernuevacontra.setOnClickListener {
@@ -74,21 +67,6 @@ class Nueva_Contrasena : AppCompatActivity() {
                 etxtnewcontra.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
-        }
-
-        imgvernuevacontradnv.setOnClickListener {
-            if (etxtnewcontradnv.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-                etxtnewcontradnv.inputType =
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            } else {
-                etxtnewcontradnv.inputType =
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            }
-        }
-
-        btnaceptarnuevacontra.setOnClickListener {
-            val pantallacontrasenarestablecida = Intent(this, Contrasena_Reestablecida::class.java)
-            startActivity(pantallacontrasenarestablecida)
         }
     }
 }

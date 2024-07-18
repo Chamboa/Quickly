@@ -31,6 +31,11 @@ class Correoconfirmacion : AppCompatActivity() {
         val etxtcodigoconfirmacion = findViewById<EditText>(R.id.etxtcodigoconfirmacion)
         val btnenviarcod = findViewById<Button>(R.id.btnenviarcod)
 
+        btnenviarcod.setOnClickListener {
+            val pantallanuevacontrasena = Intent (this, Nueva_Contrasena::class.java)
+            startActivity(pantallanuevacontrasena)
+        }
+
         imgregresarrecuccontra.setOnClickListener {
             val pantallarecuperarcontrasena = Intent (this, Recuperar_contrasena::class.java)
             startActivity(pantallarecuperarcontrasena)
