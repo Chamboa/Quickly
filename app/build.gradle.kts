@@ -53,6 +53,8 @@ dependencies {
     implementation(files("libs\\mail.jar"))
     implementation(files("libs\\additionnal.jar"))
     implementation(files("libs\\activation.jar"))
+    implementation(libs.firebase.common.ktx)
+    implementation(libs.firebase.storage.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

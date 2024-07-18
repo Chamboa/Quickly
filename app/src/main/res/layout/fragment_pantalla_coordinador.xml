@@ -95,81 +95,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.94" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout4"
+    <ImageButton
+        android:id="@+id/btnAsisHoras"
         android:layout_width="286dp"
         android:layout_height="162dp"
         android:background="@drawable/btnasishoras"
+        android:src="@drawable/imgbtnasishoras"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.307">
+        app:layout_constraintVertical_bias="0.307" />
 
-        <ImageView
-            android:id="@+id/imageView24"
-            android:layout_width="144dp"
-            android:layout_height="113dp"
-            android:src="@drawable/imgbtnasishoras"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.51" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="125dp"
-            android:layout_height="64dp"
-            android:fontFamily="@font/inter_extrabold"
-            android:text="Asistencia y horas sociales"
-            android:textColor="#0BA89F"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView24"
-            app:layout_constraintHorizontal_bias="0.108"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageButton
+        android:id="@+id/btnHistorial"
         android:layout_width="286dp"
         android:layout_height="162dp"
         android:background="@drawable/btnverhistorialpntcoordi"
+        android:src="@drawable/imgbtnhistorialus"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.623">
-
-        <ImageView
-            android:id="@+id/imageView25"
-            android:layout_width="101dp"
-            android:layout_height="117dp"
-            android:src="@drawable/imgbtnhistorialus"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.913"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.511" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="163dp"
-            android:layout_height="50dp"
-            android:fontFamily="@font/inter_extrabold"
-            android:text="Ver historial de horas sociales"
-            android:textColor="#FF8831"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.149"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintVertical_bias="0.623" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-

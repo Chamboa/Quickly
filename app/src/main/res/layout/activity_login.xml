@@ -151,7 +151,11 @@
         android:textColor="#006CDA"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/btniniciarsesion"
-        tools:layout_editor_absoluteX="19dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
