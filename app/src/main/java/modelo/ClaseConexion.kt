@@ -19,10 +19,10 @@ class ClaseConexion {
 
 
 
-            val usuario = "PTCbase"
-            val contrasena = "."
+            val usuario = "Quickly"
+            val contrasena = "QUICKLY"
 
-            val connection = DriverManager.getConnection(ipGamboa, usuario, contrasena)
+            val connection = DriverManager.getConnection(ipLevi, usuario, contrasena)
             return connection
 
 

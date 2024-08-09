@@ -6,6 +6,7 @@ import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -31,6 +32,8 @@ class Nueva_Contrasena : AppCompatActivity() {
 
         val etxtnewcontra = findViewById<EditText>(R.id.etxtnewcontra)
         val imgvernuevacontra = findViewById<ImageView>(R.id.imgvernuevacontra)
+        val etxtcontranuevamente = findViewById<EditText>(R.id.etxtcontranuevamente)
+        val imgvercontranuevamente = findViewById<ImageView>(R.id.imgvercontranuevamente)
         val btnaceptarnuevacontra = findViewById<Button>(R.id.btnaceptarnuevacontra)
 
         btnaceptarnuevacontra.setOnClickListener {
@@ -38,10 +41,11 @@ class Nueva_Contrasena : AppCompatActivity() {
             startActivity(pantallacontrasenarestablecida)
             val usuario = Recuperar_contrasena.correoingresado
             val nuevacontrasena = etxtnewcontra.text.toString()
+            val contrasenanuevamente = etxtcontranuevamente.text.toString()
             var hayErrores = false
 
             if (nuevacontrasena.length <= 7){
-                etxtnewcontra.error = "Tu nueva contraseña debe contener más de 7 dígitos"
+                etxtnewcontra.error = "La contraseña debe contener más de 7 dígitos"
                 hayErrores = true
             }
 
@@ -49,12 +53,28 @@ class Nueva_Contrasena : AppCompatActivity() {
                 etxtnewcontra.error = null
             }
 
-            CoroutineScope(Dispatchers.IO).launch {
-                val objConexion = ClaseConexion().cadenaConexion()
-                val actualizarcontrasena = objConexion?.prepareStatement("UPDATE Usuario SET contraseña = ? WHERE correo_electronico = ?")!!
-                actualizarcontrasena.setString(1, etxtnewcontra.text.toString())
-                actualizarcontrasena.setString(2,usuario)
-                actualizarcontrasena.executeUpdate()
+            if (contrasenanuevamente.length <= 7){
+                etxtcontranuevamente.error = "La contraseña debe contener más de 7 dígitos"
+                hayErrores = true
+            }
+
+            else {
+                etxtnewcontra.error = null
+            }
+
+            if (!hayErrores) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val objConexion = ClaseConexion().cadenaConexion()
+                    val actualizarContrasena = objConexion?.prepareStatement("UPDATE Usuario SET contraseña = ? WHERE correo_electronico = ?")!!
+                    actualizarContrasena.setString(1, nuevacontrasena)
+                    actualizarContrasena.setString(2, usuario)
+                    actualizarContrasena.executeUpdate()
+                }
+
+                val pantallacontrasenarestablecida = Intent(this, Contrasena_Reestablecida::class.java)
+                startActivity(pantallacontrasenarestablecida)
+            } else {
+                Toast.makeText(this, "Las contraseñas no coinciden, verifíca si estan escritas de manera correcta", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -65,6 +85,16 @@ class Nueva_Contrasena : AppCompatActivity() {
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             } else {
                 etxtnewcontra.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+        }
+
+        imgvercontranuevamente.setOnClickListener {
+            if (etxtcontranuevamente.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
+                etxtcontranuevamente.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                etxtcontranuevamente.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
         }

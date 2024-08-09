@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,8 +33,17 @@ class Correoconfirmacion : AppCompatActivity() {
         val btnenviarcod = findViewById<Button>(R.id.btnenviarcod)
 
         btnenviarcod.setOnClickListener {
-            val pantallanuevacontrasena = Intent (this, Nueva_Contrasena::class.java)
-            startActivity(pantallanuevacontrasena)
+
+            val codigoIngresado = etxtcodigoconfirmacion.text.toString().toIntOrNull()
+
+            if (codigoIngresado != null && codigoIngresado == Recuperar_contrasena.varialesglobales.Codigorecuperacion) {
+                val pantallanuevacontrasena = Intent(this, Nueva_Contrasena::class.java)
+                startActivity(pantallanuevacontrasena)
+            }
+
+            else {
+                Toast.makeText(this, "Código incorrecto. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         imgregresarrecuccontra.setOnClickListener {

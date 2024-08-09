@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -36,11 +37,6 @@ class Recuperar_contrasena : AppCompatActivity() {
         val imgregresar = findViewById<ImageView>(R.id.imgregresar)
 
         btnsolicitarcorreo.setOnClickListener {
-            val activity_correoconfirmacion = Intent(this, Correoconfirmacion::class.java)
-
-            CoroutineScope(Dispatchers.Main).launch {
-                correoingresado=txtcorreocontraolvidada.text.toString()
-                startActivity(intent)
             val correo = txtcorreocontraolvidada.text.toString()
             var hayerrores = false
 
@@ -52,17 +48,25 @@ class Recuperar_contrasena : AppCompatActivity() {
                 txtcorreocontraolvidada.error = null
             }
 
+            CoroutineScope(Dispatchers.Main).launch {
+                correoingresado = txtcorreocontraolvidada.text.toString()
+
+
+
                 enviarCorreo(
-                    correoingresado,
+                    "${correoingresado}",
                     "Recuperación de contraseña",
                     "¡Hola! aquí está tu código de recuperación $Codigorecuperacion"
                 )
+            }
+
+            val pantallaenviarcorreo = Intent (this, Correoconfirmacion::class.java)
+            startActivity(pantallaenviarcorreo)
         }
 
         imgregresar.setOnClickListener {
             val pantallalogin = Intent (this, Login::class.java)
             startActivity(pantallalogin)
         }
-    }
     }
 }
