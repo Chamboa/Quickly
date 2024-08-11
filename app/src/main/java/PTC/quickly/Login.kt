@@ -60,7 +60,7 @@ class Login : AppCompatActivity() {
             val Contrasena = txtcontralogin.text.toString()
             var hayErrores = false
 
-            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))) {
+            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@ricaldone.edu.sv"))) {
                 txtcorreologin.error = "Ingresa los datos que se te piden"
                 hayErrores = true
             } else {
