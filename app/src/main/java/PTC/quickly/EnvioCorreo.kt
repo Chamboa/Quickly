@@ -23,8 +23,8 @@ suspend fun enviarCorreo(receptor: String, asunto: String, mensaje: String) = wi
         put ("mail. smtp.host", "smtp.gmail.com")
         put ("mail.smtp.socketFactory.port", "465")
         put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
-        put ("mail. smtp.auth", "true")
-        put ("mail. smtp.port", "465")
+        put ("mail.smtp.auth", "true")
+        put ("mail.smtp.port", "465")
     }
 
     val session = Session.getInstance(props, object : javax.mail.Authenticator() {
