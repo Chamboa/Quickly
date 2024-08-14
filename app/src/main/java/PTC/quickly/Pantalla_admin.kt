@@ -42,7 +42,7 @@ class Pantalla_admin : Fragment() {
 
 
         btnAsistenciaHorasSociales.setOnClickListener {
-            val intent = Intent(requireContext(), AsistenciaActivity::class.java)
+            val intent = Intent(requireContext(), Asistencia_Alumno::class.java)
             startActivity(intent)
 
 

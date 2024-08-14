@@ -14,10 +14,10 @@ import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.sql.SQLException
 
-class AsistenciaActivity : AppCompatActivity() {
+class Asistencia_Alumno : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_asistencia)
+        setContentView(R.layout.activity_asistencia_alumno)
 
         val txtBuscarAlumnos = findViewById<EditText>(R.id.txtBuscarAlumnos)
         val rcvAsistencia = findViewById<RecyclerView>(R.id.rcvAsistencia)
