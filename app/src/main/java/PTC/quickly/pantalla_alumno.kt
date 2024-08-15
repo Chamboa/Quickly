@@ -1,10 +1,13 @@
 package PTC.quickly
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,7 +20,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class pantalla_alumno : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -34,19 +36,22 @@ class pantalla_alumno : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pantalla_alumno, container, false)
+        val view = inflater.inflate(R.layout.fragment_pantalla_alumno, container, false)
+
+        // Referencia al ConstraintLayout BtnChat después de inflar la vista
+        val btnChat = view.findViewById<ConstraintLayout>(R.id.btnChat)
+
+        // Configurar el OnClickListener
+        btnChat?.setOnClickListener {
+            // Crear un Intent para iniciar la actividad elegirChat
+            val intent = Intent(activity, elegirChat::class.java)
+            startActivity(intent)
+        }
+
+        return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment pantalla_alumno.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             pantalla_alumno().apply {

@@ -1,10 +1,12 @@
 package PTC.quickly
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.navigation.fragment.findNavController
 
@@ -19,7 +21,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Pantalla_admin : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -36,21 +37,22 @@ class Pantalla_admin : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pantalla_admin, container, false)
+        val view = inflater.inflate(R.layout.fragment_pantalla_admin, container, false)
 
+        // Encuentra el ConstraintLayout después de inflar la vista
+        val btnAgregarUsuario = view.findViewById<ConstraintLayout>(R.id.btnpntagregarusuario)
 
+        // Configurar el OnClickListener
+        btnAgregarUsuario?.setOnClickListener {
+            // Crear un Intent para iniciar la actividad RegistroCuenta
+            val intent = Intent(activity, RegistroCuenta::class.java)
+            startActivity(intent)
+        }
+
+        return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Pantalla_admin.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             Pantalla_admin().apply {

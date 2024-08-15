@@ -20,6 +20,12 @@ import modelo.ClaseConexion
 import java.security.MessageDigest
 
 class Login : AppCompatActivity() {
+
+    companion object {
+        var userUUID = ""
+        var userRoleId: Int? = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,9 +38,9 @@ class Login : AppCompatActivity() {
             insets
         }
 
-        fun hashSHA256 (contraencriptada: String): String {
+        fun hashSHA256(contraencriptada: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraencriptada.toByteArray())
-            return bytes.joinToString("") { "%02x".format(it)}
+            return bytes.joinToString("") { "%02x".format(it) }
         }
 
         val txtcorreologin = findViewById<EditText>(R.id.txtcorreologin)
@@ -47,53 +53,52 @@ class Login : AppCompatActivity() {
 
             val activity_main = Intent(this, MainActivity::class.java)
 
-            //Variables de los valores escritos por el usuarios
-
+            // Variables de los valores escritos por el usuario
             val Correo = txtcorreologin.text.toString()
             val Contrasena = txtcontralogin.text.toString()
             var hayErrores = false
 
-            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))){
+            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))) {
                 txtcorreologin.error = "formato de correo inválido"
                 hayErrores = true
-            }
-
-            else{
+            } else {
                 txtcorreologin.error = null
             }
 
-            if (Contrasena.length <= 7){
+            if (Contrasena.length <= 7) {
                 txtcontralogin.error = "La contraseña debe contener más de 7 dígitos"
                 hayErrores = true
-            }
-
-            else {
+            } else {
                 txtcontralogin.error = null
             }
-
-            //val activity_main = Intent(this, MainActivity::class.java)
 
             GlobalScope.launch(Dispatchers.IO) {
                 try {
                     val objConexion = ClaseConexion().cadenaConexion()
 
-                    val contraencriptada = hashSHA256(txtcontralogin.text.toString())
+                    val contraencriptada = hashSHA256(Contrasena)
 
-
-                    val validarusuario = objConexion?.prepareStatement("SELECT * FROM Usuario WHERE correo_electronico = ? AND contraseña = ?")
-                    validarusuario?.setString(1, txtcorreologin.text.toString())
+                    val validarusuario = objConexion?.prepareStatement(
+                        "SELECT UUID, id_rol FROM Usuario WHERE correo_electronico = ? AND contraseña = ?"
+                    )
+                    validarusuario?.setString(1, Correo)
                     validarusuario?.setString(2, contraencriptada)
-
-
 
                     val resultado = validarusuario?.executeQuery()
 
-
                     withContext(Dispatchers.Main) {
                         if (resultado?.next() == true) {
+                            userUUID = resultado.getString("UUID")
+                            userRoleId = resultado.getInt("id_rol")
                             startActivity(activity_main)
+
+
                         } else {
-                            Toast.makeText(this@Login, "Usuario no encontrado, verifique las credenciales", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this@Login,
+                                "Usuario no encontrado, verifique las credenciales",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                 } catch (e: Exception) {
@@ -104,9 +109,8 @@ class Login : AppCompatActivity() {
             }
         }
 
-
-        txtcuentaolvidada.setOnClickListener{
-            val recuperarcontrasena = Intent (this, Recuperar_contrasena::class.java)
+        txtcuentaolvidada.setOnClickListener {
+            val recuperarcontrasena = Intent(this, Recuperar_contrasena::class.java)
             startActivity(recuperarcontrasena)
         }
 
@@ -118,10 +122,6 @@ class Login : AppCompatActivity() {
                 txtcontralogin.inputType =
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
-
         }
-
     }
-
 }
-
