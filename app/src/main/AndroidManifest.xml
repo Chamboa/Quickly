@@ -25,6 +25,12 @@
         android:theme="@style/Theme.PTC"
         tools:targetApi="31">
         <activity
+            android:name=".item_card_registro_cuenta"
+            android:exported="false" />
+        <activity
+            android:name=".EditarCuenta"
+            android:exported="false" />
+        <activity
             android:name=".item_card_asistencia"
             android:exported="false" />
         <activity
