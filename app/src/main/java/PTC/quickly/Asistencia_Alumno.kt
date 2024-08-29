@@ -1,9 +1,11 @@
 package PTC.quickly
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ptc1.RecyclerViewListAlumnos.AdaptadorAsistencia
 import com.example.ptc1.modelo.tbAsistencia
@@ -19,12 +21,16 @@ class Asistencia_Alumno : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_asistencia_alumno)
 
-        val txtBuscarAlumnos = findViewById<EditText>(R.id.txtBuscarAlumnos)
-        val rcvAsistencia = findViewById<RecyclerView>(R.id.rcvAsistencia)
-        val imgBuscar = findViewById<ImageView>(R.id.imgBuscar)
+
         val imgAtrasflecha = findViewById<ImageView>(R.id.imgAtrasflecha)
-        val imageView12 = findViewById<ImageView>(R.id.imageView12)
-        val imageView13 = findViewById<ImageView>(R.id.imageView13)
+        val txtBuscarAlumnos = findViewById<EditText>(R.id.txtBuscarAlumnos)
+        val imgBuscar = findViewById<ImageView>(R.id.imgBuscar)
+        val rcvAsistencia = findViewById<RecyclerView>(R.id.rcvAsistencia)
+
+rcvAsistencia.layoutManager = LinearLayoutManager(this)
+
+
+
 
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -52,6 +58,11 @@ class Asistencia_Alumno : AppCompatActivity() {
 
 
             }
+            return listaUsuarios
+
+
+
+
 
 
         } catch (e: SQLException) {

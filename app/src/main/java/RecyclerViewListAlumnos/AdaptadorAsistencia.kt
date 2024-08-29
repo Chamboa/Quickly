@@ -20,4 +20,7 @@ class AdaptadorAsistencia(var listaAsistencia: List<tbAsistencia>) : RecyclerVie
         holder.txtNombreCard.text = asistencia.nombre
 
     }
+    fun
+
+
 }

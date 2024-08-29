@@ -16,7 +16,9 @@ class ViewHolderAsistencia(view: View) : RecyclerView.ViewHolder(view) {
 
     val imgAgregar_Horas: ImageView = view.findViewById(R.id.imgAgregarHoras)
 
-    val checkBox: CheckBox = view.findViewById(R.id.check_si)
+    val btncheckBox: CheckBox = view.findViewById(R.id.btnCheck_si)
+
+    val checkBox: CheckBox = view.findViewById(R.id.btnCheck_no)
 
 
 
