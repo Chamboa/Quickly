@@ -19,5 +19,20 @@ class AdaptadorAsistencia(var listaAsistencia: List<tbAsistencia>) : RecyclerVie
         val asistencia = listaAsistencia[position]
         holder.txtNombreCard.text = asistencia.nombre
 
+        holder.btncheckBoxsi.setOnClickListener {
+
+        }
+
     }
+
+    fun insertAsistenciaSi(nombre: String){
+        if (){
+
+        } else {
+
+        }
+    }
+
+
+
 }
