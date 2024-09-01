@@ -14,13 +14,13 @@ class ClaseConexion {
            val ipGamboa = "jdbc:oracle:thin:@ 192.168.0.12:1521:xe"
            val ipRuth = "jdbc:oracle:thin@ 192.168.3.8:1521:xe"
 
-           val ipSamuel = "jdbc:oracle:thin@192.168.56.1:1521:xe"
+           val ipSamuel = "jdbc:oracle:thin@192.168.0.11:1521:xe"
            val ipMateo = "jdbc:oracle:thin@:1521:xe"
 
 
 
-            val usuario = "system"
-            val contrasena = "ITR2024"
+            val usuario = "Quickly"
+            val contrasena = "QUICKLY"
 
             val connection = DriverManager.getConnection(ipSamuel, usuario, contrasena)
             return connection

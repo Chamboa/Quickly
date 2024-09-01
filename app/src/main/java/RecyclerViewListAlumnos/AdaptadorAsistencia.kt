@@ -4,6 +4,8 @@ import PTC.quickly.R
 import PTC.quickly.ViewHolderAsistencia
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.CompoundButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ptc1.modelo.tbAsistencia
 
@@ -19,20 +21,35 @@ class AdaptadorAsistencia(var listaAsistencia: List<tbAsistencia>) : RecyclerVie
         val asistencia = listaAsistencia[position]
         holder.txtNombreCard.text = asistencia.nombre
 
-        holder.btncheckBoxsi.setOnClickListener {
+        holder.btncheckBoxsi.setOnCheckedChangeListener {_, isChecked  ->
+            if (isChecked){
+                holder.btncheckBoxno.isChecked = false
+                updateAsistencia(asistencia.id_comite, true)
+            }else{
+                updateAsistencia(asistencia.id_comite, false)
+            }
 
+        }
+
+        holder.btncheckBoxno.setOnCheckedChangeListener {_, isChecked ->
+            if (isChecked){
+
+            }else{
         }
 
     }
 
-    fun insertAsistenciaSi(nombre: String){
-        if (){
-
-        } else {
-
-        }
-    }
 
 
+
+
+
+
+
+
+
+
+// fun insertAsistenciaSi(nombre: String){
+   // }
 
 }
