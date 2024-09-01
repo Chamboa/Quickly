@@ -24,4 +24,5 @@ class ViewHolderAsistencia(view: View) : RecyclerView.ViewHolder(view) {
 
 
 
+
 }
