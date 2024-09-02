@@ -81,7 +81,13 @@ INSERT INTO Rol (id_rol, tipo_rol) VALUES (2, 'Coordinador');
 INSERT INTO Rol (id_rol, tipo_rol) VALUES (3, 'Administrador');
 
 
-
+CREATE TABLE Expediente (
+    UUID_expediente VARCHAR2(50) PRIMARY KEY,
+    UUID_evento VARCHAR2(50) NOT NULL,
+    nombre_evento VARCHAR2(100) NOT NULL,
+    horas_agregadas NUMBER NOT NULL,
+    FOREIGN KEY (UUID_evento) REFERENCES Eventos(UUID)
+);
 
 
 CREATE TABLE Comite (
