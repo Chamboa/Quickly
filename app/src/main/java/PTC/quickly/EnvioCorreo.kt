@@ -1,4 +1,4 @@
-package com.example.ptc1.PTC.quickly
+package PTC.quickly
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

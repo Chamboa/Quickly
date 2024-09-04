@@ -11,7 +11,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.ptc1.PTC.quickly.enviarCorreo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,6 +38,42 @@ class Recuperar_contrasena : AppCompatActivity() {
         val btnsolicitarcorreo = findViewById<Button>(R.id.btnsolicitarcorreo)
         val imgregresar = findViewById<ImageView>(R.id.imgregresar)
 
+<<<<<<< HEAD
+=======
+
+        // Leví: Tuve que crear una función para que solo permita enviarle códigos
+        // de recuperación de contraseña a correos que han sido registrados en la app
+
+        fun verificarcorreoregistrado (email: String): Boolean {
+
+            val objConexion = ClaseConexion().cadenaConexion()
+            var estaregistrado = false
+
+            if (objConexion != null) {
+                val query = "SELECT * FROM Usuario WHERE correo_electronico = ?"
+                val consultarcorreo = objConexion.prepareStatement(query)
+                consultarcorreo.setString(1, email)
+
+
+
+                val resultSet: ResultSet = consultarcorreo.executeQuery()
+                if (resultSet.next()) {
+                    val count = resultSet.getInt(1)
+                    estaregistrado = count > 0
+                }
+
+                println("Correo ingresado: $email")
+
+                resultSet.close()
+                consultarcorreo.close()
+                objConexion.close()
+            }
+
+            return estaregistrado
+        }
+
+        btnsolicitarcorreo.setOnClickListener {
+>>>>>>> master
 
         // Leví: Tuve que crear una función para que solo permita enviarle códigos
         // de recuperación de contraseña a correos que han sido registrados en la app
@@ -72,18 +107,36 @@ class Recuperar_contrasena : AppCompatActivity() {
             val correo = txtcorreocontraolvidada.text.toString()
             var hayerrores = false
 
+<<<<<<< HEAD
             if(!correo.matches(Regex("[a-zA-Z0-9._-]+@ricaldone.edu.sv"))){
                 txtcorreocontraolvidada.error = "Ingresa el correo con el formato correspondiente"
+=======
+<<<<<<< HEAD
+            /*if(!correo.matches(Regex("[a-zA-Z0-9._-]+@ricaldone.edu.sv"))){
+                txtcorreocontraolvidada.error = "Ingresa el correo con el formato correspondiente"
+=======
+            if(!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))){
+                txtcorreocontraolvidada.error = "Ingresa lo datos que se te piden"
+>>>>>>> master
+>>>>>>> master
                 hayerrores = true
             }
             else{
                 txtcorreocontraolvidada.error = null
-            }
+            }*/
 
             if (hayerrores){
                 return@setOnClickListener
             }
 
+<<<<<<< HEAD
+            if (hayerrores){
+                return@setOnClickListener
+            }
+
+=======
+<<<<<<< HEAD
+>>>>>>> master
             // Leví: metí la acción de la corrutine a un if else para que verifique si
             // cumple o no con la funcion de "verificarcorreoregistrado"
 
@@ -107,6 +160,16 @@ class Recuperar_contrasena : AppCompatActivity() {
                 }
             }
 
+<<<<<<< HEAD
+=======
+=======
+                enviarCorreo(
+                    correoingresado,
+                    "Recuperación de contraseña",
+                    "¡Hola! aquí está tu código de recuperación $Codigorecuperacion"
+                )
+>>>>>>> master
+>>>>>>> master
         }
 
         imgregresar.setOnClickListener {

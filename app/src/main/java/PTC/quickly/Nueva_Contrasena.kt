@@ -32,8 +32,16 @@ class Nueva_Contrasena : AppCompatActivity() {
 
         val etxtnewcontra = findViewById<EditText>(R.id.etxtnewcontra)
         val imgvernuevacontra = findViewById<ImageView>(R.id.imgvernuevacontra)
+<<<<<<< HEAD
         val etxtcontranuevamente = findViewById<EditText>(R.id.etxtcontranuevamente)
         val imgvercontranuevamente = findViewById<ImageView>(R.id.imgvercontranuevamente)
+=======
+<<<<<<< HEAD
+        val etxtcontranuevamente = findViewById<EditText>(R.id.etxtcontranuevamente)
+        val imgvercontranuevamente = findViewById<ImageView>(R.id.imgvercontranuevamente)
+=======
+>>>>>>> master
+>>>>>>> master
         val btnaceptarnuevacontra = findViewById<Button>(R.id.btnaceptarnuevacontra)
 
         btnaceptarnuevacontra.setOnClickListener {
@@ -41,7 +49,14 @@ class Nueva_Contrasena : AppCompatActivity() {
             startActivity(pantallacontrasenarestablecida)
             val usuario = Recuperar_contrasena.correoingresado
             val nuevacontrasena = etxtnewcontra.text.toString()
+<<<<<<< HEAD
             val contrasenanuevamente = etxtcontranuevamente.text.toString()
+=======
+<<<<<<< HEAD
+            val contrasenanuevamente = etxtcontranuevamente.text.toString()
+=======
+>>>>>>> master
+>>>>>>> master
             var hayErrores = false
 
             if (nuevacontrasena.length <= 7){
@@ -53,6 +68,10 @@ class Nueva_Contrasena : AppCompatActivity() {
                 etxtnewcontra.error = null
             }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
             if (contrasenanuevamente.length <= 7){
                 etxtcontranuevamente.error = "La contraseña debe contener más de 7 dígitos"
                 hayErrores = true
@@ -75,8 +94,21 @@ class Nueva_Contrasena : AppCompatActivity() {
                 startActivity(pantallacontrasenarestablecida)
             } else {
                 Toast.makeText(this, "Las contraseñas no coinciden, verifíca si estan escritas de manera correcta", Toast.LENGTH_SHORT).show()
+<<<<<<< HEAD
+=======
             }
 
+=======
+            CoroutineScope(Dispatchers.IO).launch {
+                val objConexion = ClaseConexion().cadenaConexion()
+                val actualizarcontrasena = objConexion?.prepareStatement("UPDATE Usuario SET contraseña = ? WHERE correo_electronico = ?")!!
+                actualizarcontrasena.setString(1, etxtnewcontra.text.toString())
+                actualizarcontrasena.setString(2,usuario)
+                actualizarcontrasena.executeUpdate()
+>>>>>>> master
+            }
+
+>>>>>>> master
         }
 
         imgvernuevacontra.setOnClickListener {
@@ -88,6 +120,10 @@ class Nueva_Contrasena : AppCompatActivity() {
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 
         imgvercontranuevamente.setOnClickListener {
             if (etxtcontranuevamente.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD) {
@@ -98,5 +134,10 @@ class Nueva_Contrasena : AppCompatActivity() {
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
         }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> master
+>>>>>>> master
     }
 }

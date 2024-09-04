@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.0"
+agp = "8.5.1"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -15,6 +15,11 @@ navigationUiKtx = "2.7.7"
 activity = "1.9.0"
 firebaseCommonKtx = "21.0.0"
 firebaseStorageKtx = "21.0.0"
+<<<<<<< HEAD
+identityJvm = "202408.1"
+uiTextAndroid = "1.6.8"
+=======
+>>>>>>> master
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +36,11 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
+<<<<<<< HEAD
+identity-jvm = { group = "com.android.identity", name = "identity-jvm", version.ref = "identityJvm" }
+androidx-ui-text-android = { group = "androidx.compose.ui", name = "ui-text-android", version.ref = "uiTextAndroid" }
+=======
+>>>>>>> master
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
