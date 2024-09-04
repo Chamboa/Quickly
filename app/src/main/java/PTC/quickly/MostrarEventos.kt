@@ -2,6 +2,8 @@ package PTC.quickly
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -30,6 +32,11 @@ class MostrarEventos : AppCompatActivity() {
         // Configurar el RecyclerView
         val rcvwMostrarEvento = findViewById<RecyclerView>(R.id.rcvMostrarEventos)
         rcvwMostrarEvento.layoutManager = LinearLayoutManager(this)
+
+        val btnAtras = findViewById<ImageButton>(R.id.btnAtrasea)
+        btnAtras.setOnClickListener {
+            finish()
+        }
 
         // Iniciar la corutina para cargar los datos de los eventos
         CoroutineScope(Dispatchers.IO).launch {

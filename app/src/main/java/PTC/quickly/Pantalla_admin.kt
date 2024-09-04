@@ -42,7 +42,7 @@ class Pantalla_admin : Fragment() {
         val btnAsistenciaHorasSociales = view.findViewById<ConstraintLayout>(R.id.btnAsistencia)
         val btnGestionarUsuarios = view.findViewById<ConstraintLayout>(R.id.btnGestionarUsuario)
         val btnHistorialHoras = view.findViewById<ConstraintLayout>(R.id.btnHistorial)
-        val btnChat = view.findViewById<Button>(R.id.chat)
+        val btnActualizarCom = view.findViewById<ConstraintLayout>(R.id.btnActualizarComites)
 
         btnAgregarUsuario?.setOnClickListener {
             // Crear un Intent para iniciar la actividad RegistroCuenta
@@ -53,8 +53,8 @@ class Pantalla_admin : Fragment() {
             val intent = Intent(activity, MostrarEventos::class.java)
             startActivity(intent)
         }
-        btnChat?.setOnClickListener {
-            val intent = Intent(activity, elegirChat::class.java)
+        btnActualizarCom?.setOnClickListener {
+            val intent = Intent(activity, ActualizarCuposComite::class.java)
             startActivity(intent)
         }
         btnGestionarUsuarios?.setOnClickListener {

@@ -152,8 +152,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 3")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
-
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")
                 }
@@ -198,7 +196,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 5")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
 
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")
@@ -244,7 +241,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 4")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
 
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")
@@ -290,7 +286,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 2")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
 
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")
@@ -336,7 +331,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 9")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
 
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")
@@ -381,7 +375,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 1")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
 
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")
@@ -426,7 +419,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 8")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
 
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")
@@ -471,7 +463,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 7")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
 
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")
@@ -517,7 +508,6 @@ class Unirse_Comite : AppCompatActivity() {
                 statement = connection?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = 6")
                 resultSet = statement?.executeQuery()
 
-                println("Este es lo que me trae el select $resultSet")
 
                 if (resultSet != null && resultSet.next()) {
                     hayCupos = resultSet.getInt("cupos")

@@ -45,7 +45,7 @@ class EditarCuenta : AppCompatActivity() {
             val listaRegistroUsuario = mutableListOf<tbUsuario>()
 
             while (resultSet.next()){
-                val uuid = resultSet.getString("UUID")
+                val uuid = resultSet.getString("UUID_Usuario")
                 val nombre = resultSet.getString("nombre")
                 val correo_electronico = resultSet.getString("correo_electronico")
                 val contraña = resultSet.getString("contraseña")
@@ -67,7 +67,7 @@ class EditarCuenta : AppCompatActivity() {
 
         //programo el boton de regresar
         btnRegresarRegistroCuenta.setOnClickListener {
-            val intent = Intent(this, RegistroCuenta::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
 
         }

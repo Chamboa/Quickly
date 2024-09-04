@@ -5,25 +5,27 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ptc1.PTC.quickly.alert_dialog">
+    tools:context=".alert_dialog">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="411dp"
         android:layout_height="729dp"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="1dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/etContraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:hint="Nueva contraseña"
             android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/etCorreo"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.095" />
 
         <TextView
             android:id="@+id/textView5"
@@ -31,22 +33,25 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="288dp"
             android:text="Seleccionar comité:"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerComite"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.197" />
 
         <Spinner
-            android:id="@+id/spinnerComite"
-            android:layout_width="219dp"
-            android:layout_height="43dp"
+            android:id="@+id/spCommite"
+            android:layout_width="362dp"
+            android:layout_height="50dp"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="509dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.083"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintVertical_bias="1.0" />
 
         <EditText
             android:id="@+id/etCorreo"
@@ -54,11 +59,12 @@
             android:layout_height="wrap_content"
             android:hint="Nuevo correo electrónico"
             android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContraseña" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.008" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -9,30 +9,41 @@
 
     <TableLayout
         android:id="@+id/tableExpediente"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="396dp"
+        android:layout_height="628dp"
         android:layout_margin="16dp"
         android:stretchColumns="*"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888">
 
         <TableRow
             android:background="#CCCCCC"
             android:padding="5dp">
-            <TextView
-                android:text="UUID Expediente"
-                android:textStyle="bold"/>
+
             <TextView
                 android:text="Nombre Evento"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:text="Horas Agregadas"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </TableRow>
-
-        <!-- Las filas se agregarán dinámicamente desde el código Kotlin -->
-
     </TableLayout>
+
+    <ImageView
+        android:id="@+id/btnAtrasa"
+        android:layout_width="44dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/atras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

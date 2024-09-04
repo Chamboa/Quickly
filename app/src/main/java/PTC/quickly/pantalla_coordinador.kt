@@ -33,12 +33,12 @@ class pantalla_coordinador : Fragment() {
         val btnEvnts = view.findViewById<ImageButton>(R.id.btnHistorial)
 
         btnEvnts.setOnClickListener {
-            val intent = Intent(requireContext(), Eventos::class.java)
+            val intent = Intent(activity, VerExpedienteAlumnos::class.java)
             startActivity(intent)
         }
 
         btnHrs.setOnClickListener {
-            val intent = Intent(requireContext(), Agregar_Horas::class.java)
+            val intent = Intent(requireContext(), MostrarEventos::class.java)
             startActivity(intent)
         }
 

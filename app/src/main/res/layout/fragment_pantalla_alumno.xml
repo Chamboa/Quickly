@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_extrabold"
-        android:text="Eventos"
+        android:text="Chat"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnEventos"
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toTopOf="@+id/btnHistorial" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rcvCupos"
         android:layout_width="372dp"
         android:layout_height="359dp"
         app:layout_constraintBottom_toBottomOf="parent"

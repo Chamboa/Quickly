@@ -1,5 +1,6 @@
 package PTC.quickly
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -67,24 +68,30 @@ class Pantalla_perfil : Fragment() {
         val txtNombre = view.findViewById<TextView>(R.id.Id_Nombre)
         val Cerrar = view.findViewById<Button>(R.id.btncerrarsesion)
 
-        //txtNombre.text = Login.nombre
-        //txtCorreo.text = Login.correo //Arreglar hoy mismo antes que se me olvide xd
+        txtNombre.text = Login.userName
+        txtCorreo.text = Login.userEmail //Arreglar hoy mismo antes que se me olvide xd
 
-        Cerrar.setOnClickListener{
+        Cerrar.setOnClickListener {
             cerrarSesion()
         }
     }
 
     private fun cerrarSesion() {
-        // Aquí puedes limpiar los datos de sesión, como SharedPreferences
-        val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", 0)
-        val editor = sharedPreferences.edit()
-        editor.clear()
-        editor.apply()
+        // Limpiar SharedPreferences
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
 
-        // Navegar de regreso a la pantalla de inicio de sesión
-        val intent = Intent(activity, Login::class.java)
+        // Limpiar variables de sesión en Login
+        Login.userUUID = ""
+        Login.userRoleId = null
+        Login.userEmail = null
+        Login.userName = null
+
+        // Navegar a la pantalla de login
+        val intent = Intent(requireActivity(), Login::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+        requireActivity().finish()
     }
 }

@@ -30,6 +30,10 @@ class Asistencia_Alumno : AppCompatActivity() {
 
         rcvAsistencia.layoutManager = LinearLayoutManager(this)
 
+        imgAtrasflecha.setOnClickListener {
+            finish()
+        }
+
 
 
 

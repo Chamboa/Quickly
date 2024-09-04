@@ -5,5 +5,11 @@ data class dcExpedientes(
     val UUID_Alumno: String,
     val nombreEvento: String,
     val horasAgregadas: Int,
-    val nombreUsuario: String
+    val nombreUsuario: String,
+    val grado: String,
+    val tipoRol: String,
+    val comite: String,
+    val lugarEvento: String,
+    val fechaEvento: String,
+    val horaEvento: String
 )

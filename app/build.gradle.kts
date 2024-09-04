@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
+    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 android {
@@ -74,6 +75,8 @@ dependencies {
     implementation(files("libs\\activation.jar"))
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.firebase.crashlytics)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,4 +1,5 @@
 package PTC.quickly
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -46,7 +47,7 @@ class Confirmar_Comite : AppCompatActivity() {
                     val query = """
                     UPDATE Usuario 
                     SET id_comite = (SELECT id_comite FROM Comite WHERE comite = ?) 
-                    WHERE UUID = ?
+                    WHERE UUID_Usuario = ?
                 """
                     statement = connection?.prepareStatement(query)
                     statement?.setString(1, comision)

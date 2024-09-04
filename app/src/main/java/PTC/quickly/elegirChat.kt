@@ -72,7 +72,7 @@ class elegirChat : AppCompatActivity() {
 
 
                 while (resultSet.next()) {
-                    val id_usuario = resultSet.getString("UUID")
+                    val id_usuario = resultSet.getString("UUID_Usuario")
                     val nombre = resultSet.getString("nombre")
                     val id_rol = resultSet.getInt("id_rol")
                     val id_comite = resultSet.getInt("id_comite")

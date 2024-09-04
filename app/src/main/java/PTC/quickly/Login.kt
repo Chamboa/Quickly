@@ -52,11 +52,6 @@ class Login : AppCompatActivity() {
             loginUser(savedEmail, savedPassword)
         }
 
-        fun hashSHA256(contraencriptada: String): String {
-            val bytes = MessageDigest.getInstance("SHA-256").digest(contraencriptada.toByteArray())
-            return bytes.joinToString("") { "%02x".format(it) }
-        }
-
         val txtcorreologin = findViewById<EditText>(R.id.txtcorreologin)
         val txtcontralogin = findViewById<EditText>(R.id.txtContralogin)
         val btniniciarsesion = findViewById<Button>(R.id.btniniciarsesion)
@@ -77,10 +72,10 @@ class Login : AppCompatActivity() {
                     InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
         }
+
         checkForAdminUser()
 
         btniniciarsesion.setOnClickListener {
-
 
             btniniciarsesion.isEnabled = false
 
@@ -126,13 +121,11 @@ class Login : AppCompatActivity() {
                 val resultado = validarusuario.executeQuery()
 
                 if (resultado.next()) {
-                    // Guardar los datos en las variables del companion object
                     userRoleId = resultado.getInt("id_rol")
                     userUUID = resultado.getString("UUID_Usuario")
                     userEmail = resultado.getString("correo_electronico")
                     userName = resultado.getString("nombre")
-
-
+                    val idComite = resultado.getString("id_comite")
 
                     // Guardar las credenciales y los datos del usuario en SharedPreferences
                     val sharedPref = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
@@ -146,9 +139,26 @@ class Login : AppCompatActivity() {
                     }
 
                     withContext(Dispatchers.Main) {
-                        val intent = Intent(this@Login, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
+                        when (userRoleId) {
+                            1 -> {
+                                if (idComite.isNullOrEmpty()) {
+                                    // Si id_rol es 1 y no tiene id_comite, redirigir a ElegirComite
+                                    val intent = Intent(this@Login, Unirse_Comite::class.java)
+                                    startActivity(intent)
+                                } else {
+                                    // Si id_rol es 1 y tiene id_comite, redirigir a MainActivity
+                                    val intent = Intent(this@Login, MainActivity::class.java)
+                                    startActivity(intent)
+                                }
+                            }
+                            2, 3 -> {
+                                // Redirigir directamente a MainActivity para id_rol 2 o 3
+                                val intent = Intent(this@Login, MainActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                startActivity(intent)
+                            }
+                        }
                         finish()
                     }
                 } else {
@@ -169,6 +179,7 @@ class Login : AppCompatActivity() {
             }
         }
     }
+
     @OptIn(DelicateCoroutinesApi::class)
     private fun checkForAdminUser() {
         GlobalScope.launch(Dispatchers.IO) {
@@ -193,11 +204,11 @@ class Login : AppCompatActivity() {
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@Login, "Error al verificar usuarios: ${e.message}", Toast.LENGTH_LONG).show()
+
                 }
             }
         }
     }
-
 
     private fun hashSHA256(contraencriptada: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(contraencriptada.toByteArray())

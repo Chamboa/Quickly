@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.pantalla_admin, R.id.calendario_b, R.id.navigation_home, R.id.navigation_notifications)
+            setOf(R.id.pantalla_admin, R.id.calendario_b, R.id.pantalla_perfil, R.id.pantalla_configuracion)
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             3 -> R.id.pantalla_admin
             2 -> R.id.pantalla_coordinador
             1 -> R.id.pantalla_alumno
-            else -> R.id.navigation_home
+            else -> R.id.pantalla_perfil
         }
         navController.navigate(initialDestination)
     }

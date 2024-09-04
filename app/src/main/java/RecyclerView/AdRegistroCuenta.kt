@@ -12,20 +12,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ptc1.modelo.tbUsuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
+import java.security.MessageDigest
 
 class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegistroCuenta>() {
 
     data class Comite(val idComite: Int, val nombre: String)
 
-    fun actualizarPantallaRegistroCuenta(uuid: String, nuevaContraseña: String, nuevoCorreo: String, nuevoIdComite: Int) {
+    // Función para calcular el hash SHA-512 de una contraseña
+    private fun hashPassword(password: String): String {
+        val md = MessageDigest.getInstance("SHA-512")
+        val hashedBytes = md.digest(password.toByteArray())
+        return hashedBytes.joinToString("") { "%02x".format(it) }
+    }
+
+    fun actualizarPantallaRegistroCuenta(uuid: String, nuevaContraseña: String?, nuevoCorreo: String, nuevoIdComite: Int) {
         val index = Datos.indexOfFirst { it.uuid == uuid }
         val listaDatos = Datos.toMutableList()
         listaDatos[index] = listaDatos[index].copy(
-            contraseña = nuevaContraseña,
+            contraseña = nuevaContraseña ?: listaDatos[index].contraseña, // Usar la contraseña anterior si es nula
             correoElectronico = nuevoCorreo,
             idComite = nuevoIdComite
         )
@@ -38,7 +45,16 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
         listaDatos.removeAt(position)
         CoroutineScope(Dispatchers.IO).launch {
             val objConexion = ClaseConexion().cadenaConexion()
-            val borrarRegistroCuenta = objConexion?.prepareStatement("DELETE FROM Usuario WHERE uuid = ?")!!
+            val borrarEvento = objConexion?.prepareStatement("DELETE FROM Eventos WHERE UUID_Usuario = ?")!!
+            borrarEvento.setString(1, uuid)
+            borrarEvento.executeUpdate()
+            val borrarReclamo = objConexion?.prepareStatement("DELETE FROM Reclamo WHERE UUID_Usuario = ?")!!
+            borrarReclamo.setString(1, uuid)
+            borrarReclamo.executeUpdate()
+            val borrarExpediente = objConexion?.prepareStatement("DELETE FROM Expediente WHERE UUID_Usuario = ?")!!
+            borrarExpediente.setString(1, uuid)
+            borrarExpediente.executeUpdate()
+            val borrarRegistroCuenta = objConexion?.prepareStatement("DELETE FROM Usuario WHERE UUID_Usuario = ?")!!
             borrarRegistroCuenta.setString(1, uuid)
             borrarRegistroCuenta.executeUpdate()
             val commit = objConexion.prepareStatement("COMMIT")!!
@@ -49,24 +65,31 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
         notifyDataSetChanged()
     }
 
-    fun editarRegistroUsuario(uuid: String, nuevaContraseña: String, nuevoCorreo: String, nuevoIdComite: Int) {
-        GlobalScope.launch(Dispatchers.IO) {
+    fun editarRegistroUsuario(uuid: String, nuevaContraseña: String?, nuevoCorreo: String, nuevoIdComite: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
             val objConexion = ClaseConexion().cadenaConexion()
 
+            // Si hay nueva contraseña, encriptarla
+            val hashedPassword = nuevaContraseña?.let { hashPassword(it) }
+
             val updateRegistroCuenta = objConexion?.prepareStatement(
-                "UPDATE Usuario SET contraseña = ?, correo_electronico = ?, id_comite = ? WHERE uuid = ?"
+                "UPDATE Usuario SET ${if (hashedPassword != null) "contraseña = ?, " else ""}correo_electronico = ?, id_comite = ? WHERE UUID_Usuario = ?"
             )!!
-            updateRegistroCuenta.setString(1, nuevaContraseña)
-            updateRegistroCuenta.setString(2, nuevoCorreo)
-            updateRegistroCuenta.setInt(3, nuevoIdComite)
-            updateRegistroCuenta.setString(4, uuid)
+
+            var paramIndex = 1
+            if (hashedPassword != null) {
+                updateRegistroCuenta.setString(paramIndex++, hashedPassword)
+            }
+            updateRegistroCuenta.setString(paramIndex++, nuevoCorreo)
+            updateRegistroCuenta.setInt(paramIndex++, nuevoIdComite)
+            updateRegistroCuenta.setString(paramIndex, uuid)
             updateRegistroCuenta.executeUpdate()
 
             val commit = objConexion.prepareStatement("COMMIT")
             commit.executeUpdate()
 
             withContext(Dispatchers.Main) {
-                actualizarPantallaRegistroCuenta(uuid, nuevaContraseña, nuevoCorreo, nuevoIdComite)
+                actualizarPantallaRegistroCuenta(uuid, hashedPassword, nuevoCorreo, nuevoIdComite)
             }
         }
     }
@@ -125,44 +148,51 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
 
             val etContraseña = dialogView.findViewById<EditText>(R.id.etContraseña)
             val etCorreo = dialogView.findViewById<EditText>(R.id.etCorreo)
-            val spinnerComite = dialogView.findViewById<Spinner>(R.id.spinnerComite)
+            val spinnerComite = dialogView.findViewById<Spinner>(R.id.spCommite)
 
-            // Obtener la lista de comités
-            val comites = obtenerComites()
-
-            // Configurar el spinner
-            val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, comites.map { it.nombre })
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinnerComite.adapter = adapter
-
-            // Establecer valores actuales
-            etContraseña.setText(item.contraseña)
+            // Dejar el campo de contraseña en blanco y establecer el correo
+            etContraseña.setText("")
             etCorreo.setText(item.correoElectronico)
-            val comiteIndex = comites.indexOfFirst { it.idComite == item.idComite }
-            if (comiteIndex != -1) {
-                spinnerComite.setSelection(comiteIndex)
-            }
 
-            builder.setView(dialogView)
+            // Obtener la lista de comités y establecerla en el Spinner
+            CoroutineScope(Dispatchers.IO).launch {
+                val comites = obtenerComites()
 
-            builder.setPositiveButton("Actualizar") { dialog, which ->
-                val nuevaContraseña = etContraseña.text.toString()
-                val nuevoCorreo = etCorreo.text.toString()
-                val nuevoIdComite = comites[spinnerComite.selectedItemPosition].idComite
+                withContext(Dispatchers.Main) {
+                    // Configurar el spinner
+                    val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, comites.map { it.nombre })
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    spinnerComite.adapter = adapter
 
-                if (nuevaContraseña.isNotEmpty() && nuevoCorreo.isNotEmpty()) {
-                    editarRegistroUsuario(item.uuid, nuevaContraseña, nuevoCorreo, nuevoIdComite)
-                } else {
-                    // Mostrar un mensaje de error si los campos están vacíos
-                    Toast.makeText(context, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
+                    // Establecer el comité actual
+                    val comiteIndex = comites.indexOfFirst { it.idComite == item.idComite }
+                    if (comiteIndex != -1) {
+                        spinnerComite.setSelection(comiteIndex)
+                    }
+
+                    // Establecer el diálogo de edición
+                    builder.setView(dialogView)
+
+                    builder.setPositiveButton("Actualizar") { dialog, which ->
+                        val nuevaContraseña = etContraseña.text.toString().takeIf { it.isNotEmpty() } // Solo encriptar si no está vacío
+                        val nuevoCorreo = etCorreo.text.toString()
+                        val nuevoIdComite = comites[spinnerComite.selectedItemPosition].idComite
+
+                        if (nuevoCorreo.isNotEmpty()) {
+                            editarRegistroUsuario(item.uuid, nuevaContraseña, nuevoCorreo, nuevoIdComite)
+                        } else {
+                            // Mostrar un mensaje de error si los campos están vacíos
+                            Toast.makeText(context, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    builder.setNegativeButton("Cancelar") { dialog, which ->
+                        dialog.dismiss()
+                    }
+
+                    builder.show()
                 }
             }
-
-            builder.setNegativeButton("Cancelar") { dialog, which ->
-                dialog.dismiss()
-            }
-
-            builder.show()
         }
     }
 }

@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintVertical_bias="0.907" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vwnotificaciones"
@@ -75,14 +75,12 @@
         android:id="@+id/vwidioma"
         android:layout_width="377dp"
         android:layout_height="106dp"
-        android:layout_marginBottom="28dp"
         android:background="@drawable/cuadroidioma"
         app:layout_constraintBottom_toTopOf="@+id/vwtema"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.89">
 
 
         <ImageView
@@ -128,14 +126,12 @@
         android:id="@+id/vwtema"
         android:layout_width="377dp"
         android:layout_height="106dp"
-        android:layout_marginBottom="312dp"
         android:background="@drawable/cuadrotema"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.528">
+        app:layout_constraintVertical_bias="0.577">
 
         <ImageView
             android:id="@+id/imageView18"
@@ -162,6 +158,18 @@
             app:layout_constraintHorizontal_bias="0.451"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.944"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.506" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

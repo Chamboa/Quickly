@@ -40,8 +40,10 @@ class RegistroCuenta : AppCompatActivity() {
 
     lateinit var imageView: ImageView
     private lateinit var miPath: String
+    private val READ_EXTERNAL_STORAGE_REQUEST = 1  // Add this line at the class level
 
-    var rolidentificador = 0  // Cambiado a var para que sea mutable
+
+    var rolidentificador = 0
     private val uuid = UUID.randomUUID().toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +64,7 @@ class RegistroCuenta : AppCompatActivity() {
         val btnSubirFoto = findViewById<Button>(R.id.btnSubirFoto)
         val spRoles = findViewById<Spinner>(R.id.spRoles)
         val btnAtrasAgregarU = findViewById<ImageView>(R.id.btnAtrasAgregarU)
-        val sp = findViewById<Spinner>(R.id.spGrado) // Este Spinner se usará para Grados o Comités
+        val sp = findViewById<Spinner>(R.id.spGrado)
 
         fun hashSHA256(contraseniaEscrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraseniaEscrita.toByteArray())
@@ -70,7 +72,6 @@ class RegistroCuenta : AppCompatActivity() {
         }
 
         btnCrearCuenta.setOnClickListener {
-            // Generar un UUID único para cada usuario antes de crear la cuenta
             val uuid = UUID.randomUUID().toString()
 
             CoroutineScope(Dispatchers.IO).launch {
@@ -95,20 +96,19 @@ class RegistroCuenta : AppCompatActivity() {
                             it.setInt(6, sp.selectedItemPosition + 1)
                             val rowsAffected = it.executeUpdate()
                             if (rowsAffected > 0) {
-                                connection.commit()  // Confirmación de la transacción
+                                connection.commit()
                                 withContext(Dispatchers.Main) {
                                     Toast.makeText(
                                         this@RegistroCuenta,
                                         "Usuario creado exitosamente",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    // Limpiar campos de entrada después de la confirmación exitosa
                                     txtNombreRegistro.setText("")
                                     txtCorreoRegistro.setText("")
                                     txtContraseñaRegistro.setText("")
                                 }
                             } else {
-                                connection.rollback()  // Deshacer la transacción en caso de error
+                                connection.rollback()
                                 withContext(Dispatchers.Main) {
                                     Toast.makeText(
                                         this@RegistroCuenta,
@@ -139,10 +139,9 @@ class RegistroCuenta : AppCompatActivity() {
             val adaptador = ArrayAdapter(this@RegistroCuenta, android.R.layout.simple_spinner_dropdown_item, roles)
             spRoles.adapter = adaptador
 
-            // Configura el listener para el Spinner de roles
             spRoles.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    if (position + 1 == 1) { // `position + 1` para coincidir con id_rol en la base de datos
+                    if (position + 1 == 1) {
                         CoroutineScope(Dispatchers.Main).launch {
                             val listaGrado = obtenerGrado()
                             val grados = listaGrado.map { it.grado }
@@ -150,26 +149,25 @@ class RegistroCuenta : AppCompatActivity() {
                             sp.adapter = adaptadorGrados
                             sp.visibility = View.VISIBLE
 
-                            rolidentificador = 1 // Se actualiza correctamente
+                            rolidentificador = 1
                         }
-                    } else if (position + 1 == 2) { // Si el id_rol es 2 (Coordinador), mostrar el Spinner de comités
+                    } else if (position + 1 == 2) {
                         CoroutineScope(Dispatchers.Main).launch {
                             val listaComites = obtenerComites()
                             val comites = listaComites.map { it.comite }
                             val adaptadorComites = ArrayAdapter(this@RegistroCuenta, android.R.layout.simple_spinner_dropdown_item, comites)
                             sp.adapter = adaptadorComites
-                            // sp.visibility = View.VISIBLE
 
-                            rolidentificador = 2 // Se actualiza correctamente
+                            rolidentificador = 2
                         }
                     } else {
                         sp.visibility = View.GONE
-                        rolidentificador = 0 // Reinicia el identificador si no se selecciona un rol válido
+                        rolidentificador = 0
                     }
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // No se necesita hacer nada aquí
+                    // No action needed
                 }
             }
         }
@@ -179,6 +177,7 @@ class RegistroCuenta : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 
     private suspend fun obtenerRoles(): List<dcRoles> {
         return withContext(Dispatchers.IO) {
@@ -244,17 +243,32 @@ class RegistroCuenta : AppCompatActivity() {
 
     private fun checkStoragePermission() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), storageRequestCode)
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                READ_EXTERNAL_STORAGE_REQUEST
+            )
         } else {
-            abrirGaleria()
+            openGallery()
         }
     }
-
-    private fun abrirGaleria() {
+    private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, codigoOpcionalGaleria)
     }
-
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            READ_EXTERNAL_STORAGE_REQUEST -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    openGallery()
+                } else {
+                    Toast.makeText(this, "Permiso denegado para acceder a la galería", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+        }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == codigoOpcionalGaleria && resultCode == Activity.RESULT_OK && data != null) {
