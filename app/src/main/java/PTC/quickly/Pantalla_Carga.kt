@@ -1,80 +1,91 @@
 package PTC.quickly
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import modelo.ClaseConexion
-import java.sql.Connection
-import java.sql.PreparedStatement
-import java.sql.ResultSet
-import java.sql.SQLException
+import java.security.MessageDigest
 
 class Pantalla_Carga : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pantalla_carga) // Usa el layout pantalla_de_carga
-
         enableEdgeToEdge()
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        setContentView(R.layout.activity_pantalla_carga)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            // Aquí se verifica si hay un comité en la base de datos
-            val hasComite = checkForComite()
-
-            val intent = if (hasComite) {
-                Intent(this, Unirse_Comite::class.java)
-            } else {
-                Intent(this, Login::class.java)
-            }
-            startActivity(intent)
-            finish()
-        }, 300) // 300 milisegundos de espera
+            checkLoginStatus()
+        }, 3000) // 3 segundos de retraso
     }
 
-    private fun checkForComite(): Boolean {
-        var connection: Connection? = null
-        var preparedStatement: PreparedStatement? = null
-        var resultSet: ResultSet? = null
-        var hasComite = false
+    private fun checkLoginStatus() {
+        val sharedPref = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+        val savedEmail = sharedPref.getString("userEmail", null)
+        val savedPassword = sharedPref.getString("userPassword", null)
 
-        try {
-            connection = ClaseConexion().cadenaConexion()
-            val query = "Select *from usuario where id_comite = ?"
-            if (connection != null) {
-                preparedStatement = connection.prepareStatement(query)
-            }
-            if (preparedStatement != null) {
-                resultSet = preparedStatement.executeQuery()
-            }
+        if (savedEmail != null && savedPassword != null) {
+            // Si hay credenciales guardadas, intentar iniciar sesión automáticamente
+            loginUser(savedEmail, savedPassword)
+        } else {
+            // Si no hay credenciales guardadas, ir a la pantalla de login
+            startActivity(Intent(this, Login::class.java))
+            finish()
+        }
+    }
 
-            if (resultSet != null) {
-                if (resultSet.next()) {
-                    val count = resultSet.getInt("count")
-                    hasComite = count > 0
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun loginUser(email: String, password: String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val objConexion = ClaseConexion().cadenaConexion()
+                val contraencriptada = hashSHA256(password)
+
+                val validarusuario = objConexion?.prepareStatement(
+                    "SELECT id_rol, UUID_Usuario, nombre, correo_electronico, id_comite FROM Usuario WHERE correo_electronico = ? AND contraseña = ?"
+                )!!
+                validarusuario.setString(1, email)
+                validarusuario.setString(2, contraencriptada)
+
+                val resultado = validarusuario.executeQuery()
+
+                if (resultado.next()) {
+                    Login.userRoleId = resultado.getInt("id_rol")
+                    Login.userUUID = resultado.getString("UUID_Usuario")
+                    Login.userEmail = resultado.getString("correo_electronico")
+                    Login.userName = resultado.getString("nombre")
+
+                    launch(Dispatchers.Main) {
+                        val intent = Intent(this@Pantalla_Carga, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
+                    }
+                } else {
+                    // Si las credenciales guardadas ya no son válidas, ir a la pantalla de login
+                    launch(Dispatchers.Main) {
+                        startActivity(Intent(this@Pantalla_Carga, Login::class.java))
+                        finish()
+                    }
+                }
+            } catch (e: Exception) {
+                // En caso de error, ir a la pantalla de login
+                launch(Dispatchers.Main) {
+                    startActivity(Intent(this@Pantalla_Carga, Login::class.java))
+                    finish()
                 }
             }
-        } catch (e: SQLException) {
-            e.printStackTrace()
-        } finally {
-            try {
-                resultSet?.close()
-                preparedStatement?.close()
-                connection?.close()
-            } catch (e: SQLException) {
-                e.printStackTrace()
-            }
         }
+    }
 
-        return hasComite
+    private fun hashSHA256(contraencriptada: String): String {
+        val bytes = MessageDigest.getInstance("SHA-256").digest(contraencriptada.toByteArray())
+        return bytes.joinToString("") { "%02x".format(it) }
     }
 }

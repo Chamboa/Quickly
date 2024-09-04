@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/cardview"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/txtAsistencia"
+            android:layout_width="156dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:text="Text"
+            android:textSize="34dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+<<<<<<< HEAD
+            app:layout_constraintEnd_toStartOf="@+id/btnCheck_si"
+=======
+            app:layout_constraintEnd_toStartOf="@+id/checkBox"
+>>>>>>> master
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgAgregarHoras"
+            android:layout_width="38dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:minWidth="5dp"
+            android:minHeight="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ac_agregahora" />
+
+        <CheckBox
+<<<<<<< HEAD
+            android:id="@+id/btnCheck_si"
+=======
+            android:id="@+id/checkBox"
+>>>>>>> master
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+<<<<<<< HEAD
+            app:layout_constraintEnd_toStartOf="@+id/btnCheck_no"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/btnCheck_no"
+=======
+            app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+>>>>>>> master
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="19dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgAgregarHoras"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
+<<<<<<< HEAD
+=======
+  
+>>>>>>> master
+

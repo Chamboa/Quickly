@@ -1,9 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PTC" parent="Theme.Material3.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Claro.Theme.PTC." parent="Theme.Material3.DayNight">
+
+    </style>
+    <style name="Oscuro.Theme.PTC" parent="Theme.MaterialComponents.DayNight">
+
     </style>
 
-    <style name="Theme.PTC" parent="Base.Theme.PTC" />
+    <style name="Theme.PTC" parent="Claro.Theme.PTC." />
 </resources>

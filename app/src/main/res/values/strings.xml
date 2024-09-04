@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">PTC</string>
-
+    <string name="edit_event">Editar evento</string>
+    <string name="delete_event">Eliminar evento</string>
+    <string name="admin_created">Usuario Administrador creado</string>
+    <string name="error_create_admin">Error al crear el usuario Admin</string>
+    <string name="error_check_users">Error al verificar la tabla de usuarios</string>
     <string name="txtfraseinicial">Convierte tu tiempo en acción.</string>
     <string name="title_activity_pantallaprincipaladmin">pantallaprincipaladmin</string>
     <string name="title_home">Home</string>
@@ -11,4 +15,5 @@
     <string name="title_activity_pantallaprincipalalumnos">pantallaprincipalalumnos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_coordinador">coordinador</string>
 </resources>

@@ -1,40 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".calendario_b">
+    >
+
+    <TextView
+        android:id="@+id/tvTituloCalendario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendario"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+<<<<<<< HEAD
 
 
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="396dp"
+        android:layout_height="313dp"
+        android:layout_marginTop="32dp"
+=======
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="371dp"
         android:layout_height="56dp"
         android:background="#EE4E64"
+>>>>>>> master
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHeight_percent="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011"
-        app:title="Calendario"
-        app:titleTextColor="#FFFFFF" />
+        app:layout_constraintVertical_bias="0.096" />
 
-    <GridLayout
-        android:id="@+id/calendarGrid"
-        android:layout_width="371dp"
-        android:layout_height="368dp"
-        android:columnCount="7"
-        android:rowCount="6"
+    <ImageButton
+        android:id="@+id/btnAgregarEvento"
+        android:layout_width="195dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/btnagregareventos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.173">
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        app:layout_constraintVertical_bias="0.04" />
 
-
+<<<<<<< HEAD
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEventos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="8dp"
+=======
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,21 +69,28 @@
             android:padding="8dp"
             android:text="1"
             android:textSize="16sp" />
-
-
     </GridLayout>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btnagregareventos"
         android:layout_width="96dp"
         android:layout_height="97dp"
+        android:scaleType="fitCenter"
+>>>>>>> master
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637"
-        app:srcCompat="@drawable/btnagregareventos" />
-
+<<<<<<< HEAD
+        app:layout_constraintTop_toBottomOf="@id/btnAgregarEvento"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+=======
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.637"
+        app:srcCompat="@drawable/btnagregareventos"
+        android:background="?attr/selectableItemBackgroundBorderless" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> master

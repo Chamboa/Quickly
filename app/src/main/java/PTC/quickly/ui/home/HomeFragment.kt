@@ -1,42 +1,49 @@
 package PTC.quickly.ui.home
 
+import PTC.quickly.Login
+import PTC.quickly.R
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import PTC.quickly.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+    ): View? {
+        val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val btnCerrarSesion = root.findViewById<Button>(R.id.btncerrarsesion)
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        btnCerrarSesion.setOnClickListener {
+            cerrarSesion()
         }
+
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun cerrarSesion() {
+        // Limpiar SharedPreferences
+        val sharedPreferences = requireActivity().getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+
+        // Limpiar variables de sesión en Login
+        Login.userUUID = ""
+        Login.userRoleId = null
+        Login.userEmail = null
+        Login.userName = null
+
+        // Navegar a la pantalla de login
+        val intent = Intent(requireActivity(), Login::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        requireActivity().finish()
     }
 }
