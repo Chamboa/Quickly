@@ -11,13 +11,20 @@
         android:id="@+id/txtHoraSalida"
         android:layout_width="256dp"
         android:layout_height="48dp"
+<<<<<<< HEAD
         android:layout_marginTop="16dp"
+=======
+        android:layout_marginTop="20dp"
+>>>>>>> master
         android:background="@drawable/style_text"
         android:ems="10"
         android:hint="    Hora salida"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.496"
+=======
+>>>>>>> master
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEntradaHoras" />
 
@@ -37,12 +44,22 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginTop="72dp"
+=======
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="68dp"
+>>>>>>> master
         android:fontFamily="@font/inter_extrabold"
         android:text="Agregar horas sociales"
         android:textColor="#050505"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
+=======
+        app:layout_constraintHorizontal_bias="0.0"
+>>>>>>> master
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +67,13 @@
         android:id="@+id/txtNomEvento"
         android:layout_width="253dp"
         android:layout_height="47dp"
+<<<<<<< HEAD
         android:layout_marginTop="36dp"
+=======
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="79dp"
+>>>>>>> master
         android:background="@drawable/style_text"
         android:ems="10"
         android:hint="  Nombre evento"
@@ -63,13 +86,23 @@
         android:id="@+id/txtFechaHoras"
         android:layout_width="255dp"
         android:layout_height="48dp"
+<<<<<<< HEAD
         android:layout_marginTop="16dp"
+=======
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+>>>>>>> master
         android:background="@drawable/style_text"
         android:ems="10"
         android:hint="   Fecha"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.493"
+=======
+        app:layout_constraintHorizontal_bias="0.0"
+>>>>>>> master
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNomEvento" />
 
@@ -77,13 +110,23 @@
         android:id="@+id/txtEntradaHoras"
         android:layout_width="253dp"
         android:layout_height="51dp"
+<<<<<<< HEAD
         android:layout_marginTop="16dp"
+=======
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="78dp"
+>>>>>>> master
         android:background="@drawable/style_text"
         android:ems="10"
         android:hint="   Entrada"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.493"
+=======
+        app:layout_constraintHorizontal_bias="1.0"
+>>>>>>> master
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFechaHoras" />
 
@@ -97,10 +140,17 @@
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.341"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHoraSalida"
         app:layout_constraintVertical_bias="0.119" />
+=======
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHoraSalida"
+        app:layout_constraintVertical_bias="0.109" />
+>>>>>>> master
 
     <Button
         android:id="@+id/btnCancelarHoras"
@@ -126,6 +176,7 @@
         app:layout_constraintStart_toEndOf="@+id/btnCancelarHoras"
         app:layout_constraintTop_toBottomOf="@+id/txtCantidadhoras" />
 
+<<<<<<< HEAD
     <ImageView
         android:id="@+id/imageView15"
         android:layout_width="108dp"
@@ -139,4 +190,6 @@
         app:layout_constraintVertical_bias="0.125"
         app:srcCompat="@drawable/imgreloj" />
 
+=======
+>>>>>>> master
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -128,27 +128,6 @@
         app:srcCompat="@drawable/eliplogdos" />
 
 
-<!--    <ImageView-->
-<!--        android:id="@+id/idvercontra"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-
-<!--        app:layout_constraintBottom_toBottomOf="@+id/txtcorreologin"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/txtcorreologin"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/txtcorreologin"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/txtcorreologin"-->
-<!--                app:layout_constraintVertical_bias="0.0"-->
-
-<!--        app:layout_constraintBottom_toBottomOf="@+id/txtContralogin"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/txtContralogin"-->
-<!--        app:layout_constraintHorizontal_bias="0.212"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/txtContralogin"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/txtContralogin"-->
-<!--        app:layout_constraintVertical_bias="0.0"-->
-
-<!--        app:srcCompat="@drawable/vercontrasena" />-->
-
     <ImageView
         android:id="@+id/idvercontra"
         android:layout_width="50dp"
@@ -173,8 +152,15 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/btniniciarsesion"
         app:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent" />
+=======
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+>>>>>>> master
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

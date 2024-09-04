@@ -7,29 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+<<<<<<< HEAD
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
+=======
+import android.widget.ImageButton
+>>>>>>> master
 import androidx.navigation.fragment.findNavController
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Pantalla_admin.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Pantalla_admin : Fragment() {
+<<<<<<< HEAD
     private var param1: String? = null
     private var param2: String? = null
+=======
+>>>>>>> master
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            // Puedes manejar los argumentos aquí si es necesario
         }
     }
 
@@ -38,6 +34,7 @@ class Pantalla_admin : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+<<<<<<< HEAD
         val view = inflater.inflate(R.layout.fragment_pantalla_admin, container, false)
 
         val btnAgregarUsuario = view.findViewById<ConstraintLayout>(R.id.btnpntagregarusuario)
@@ -80,5 +77,38 @@ class Pantalla_admin : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+=======
+        return inflater.inflate(R.layout.fragment_pantalla_admin, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val btnAgregarUsuario = view.findViewById<ImageButton>(R.id.btnAgregarUsuario)
+        val btnAsistenciaHorasSociales = view.findViewById<ImageButton>(R.id.btnAsistenciaHoras)
+        val btnGestionarUsuarios = view.findViewById<ImageButton>(R.id.btnGestionarUsuarios)
+        val btnHistorialHoras = view.findViewById<ImageButton>(R.id.btnHistorialHoras)
+
+        btnAgregarUsuario.setOnClickListener {
+            val intent = Intent(requireContext(), RegistroCuenta::class.java)
+            startActivity(intent)
+        }
+
+
+        btnAsistenciaHorasSociales.setOnClickListener {
+            val intent = Intent(requireContext(), AsistenciaActivity::class.java)
+            startActivity(intent)
+
+
+        }
+
+        btnGestionarUsuarios.setOnClickListener {
+
+        }
+
+        btnHistorialHoras.setOnClickListener {
+
+        }
+>>>>>>> master
     }
 }

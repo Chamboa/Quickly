@@ -72,11 +72,19 @@ class Recuperar_contrasena : AppCompatActivity() {
 
         btnsolicitarcorreo.setOnClickListener {
 
+            CoroutineScope(Dispatchers.Main).launch {
+                correoingresado=txtcorreocontraolvidada.text.toString()
+                startActivity(intent)
             val correo = txtcorreocontraolvidada.text.toString()
             var hayerrores = false
 
+<<<<<<< HEAD
             /*if(!correo.matches(Regex("[a-zA-Z0-9._-]+@ricaldone.edu.sv"))){
                 txtcorreocontraolvidada.error = "Ingresa el correo con el formato correspondiente"
+=======
+            if(!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))){
+                txtcorreocontraolvidada.error = "Ingresa lo datos que se te piden"
+>>>>>>> master
                 hayerrores = true
             }
             else{
@@ -87,6 +95,7 @@ class Recuperar_contrasena : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+<<<<<<< HEAD
             // Leví: metí la acción de la corrutine a un if else para que verifique si
             // cumple o no con la funcion de "verificarcorreoregistrado"
 
@@ -110,6 +119,13 @@ class Recuperar_contrasena : AppCompatActivity() {
                 }
             }
 
+=======
+                enviarCorreo(
+                    correoingresado,
+                    "Recuperación de contraseña",
+                    "¡Hola! aquí está tu código de recuperación $Codigorecuperacion"
+                )
+>>>>>>> master
         }
 
         imgregresar.setOnClickListener {

@@ -30,6 +30,7 @@ class Correoconfirmacion : AppCompatActivity() {
         val btnenviarcod = findViewById<Button>(R.id.btnenviarcod)
 
         btnenviarcod.setOnClickListener {
+<<<<<<< HEAD
 
             val codigoIngresado = etxtcodigoconfirmacion.text.toString().toIntOrNull()
 
@@ -41,6 +42,10 @@ class Correoconfirmacion : AppCompatActivity() {
             else {
                 Toast.makeText(this, "Código incorrecto. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show()
             }
+=======
+            val pantallanuevacontrasena = Intent (this, Nueva_Contrasena::class.java)
+            startActivity(pantallanuevacontrasena)
+>>>>>>> master
         }
 
         imgregresarrecuccontra.setOnClickListener {

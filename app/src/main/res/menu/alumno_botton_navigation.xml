@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:id="@+id/pantalla_admin"
+        android:id="@+id/pantalla_alumno"
         android:icon="@drawable/ic_principal"
-        android:title="" />
-
-
+        android:title="Alumno" />
     <item
-<<<<<<< HEAD
         android:id="@+id/calendario_b"
         android:icon="@drawable/ic_calendario"
-        android:title="" />
-
+        android:title="Calendario" />
     <item
-        android:id="@+id/navigation_home"
-=======
         android:id="@+id/pantalla_perfil"
->>>>>>> master
         android:icon="@drawable/ic_perf"
-        android:title="" />
-
+        android:title="Perfil" />
     <item
         android:id="@+id/pantalla_configuracion"
         android:icon="@drawable/ic_config"
-        android:title="" />
-
+        android:title="Configuración" />
 </menu>

@@ -2,6 +2,11 @@ package PTC.quickly
 
 import android.content.Intent
 import android.os.Bundle
+<<<<<<< HEAD
+=======
+import android.widget.Button
+import android.widget.ImageButton
+>>>>>>> master
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +14,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+<<<<<<< HEAD
 import com.example.ptc1.RecyclerViewRegistroCuenta.AdRegistroCuenta
+=======
+import com.example.ptc1.RecyclerViewRegistroCuenta.AdaptadorRegistroCuenta
+>>>>>>> master
 import com.example.ptc1.modelo.tbUsuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,7 +49,11 @@ class EditarCuenta : AppCompatActivity() {
             val objConexion = ClaseConexion().cadenaConexion()
 
             val statement = objConexion?.createStatement()
+<<<<<<< HEAD
             val resultSet = statement?.executeQuery("SELECT * FROM Usuario")!!
+=======
+            val resultSet = statement?.executeQuery("SELECT * FROM tbUsuario")!!
+>>>>>>> master
 
             val listaRegistroUsuario = mutableListOf<tbUsuario>()
 
@@ -50,7 +63,11 @@ class EditarCuenta : AppCompatActivity() {
                 val correo_electronico = resultSet.getString("correo_electronico")
                 val contraña = resultSet.getString("contraseña")
 
+<<<<<<< HEAD
                 val valoresJuntosRegistroCuenta = tbUsuario(uuid, nombre, contraña, correo_electronico, 0, 0, 0)
+=======
+                val valoresJuntosRegistroCuenta = tbUsuario(uuid, nombre, correo_electronico, contraña)
+>>>>>>> master
 
                 listaRegistroUsuario.add(valoresJuntosRegistroCuenta)
             }
@@ -60,7 +77,11 @@ class EditarCuenta : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val usuarioDB = obetenerRegistroCuenta()
             withContext(Dispatchers.Main){
+<<<<<<< HEAD
                 val adapter = AdRegistroCuenta(usuarioDB)
+=======
+                val adapter = AdaptadorRegistroCuenta(usuarioDB)
+>>>>>>> master
                 rcvRegistroCuenta.adapter = adapter
             }
         }

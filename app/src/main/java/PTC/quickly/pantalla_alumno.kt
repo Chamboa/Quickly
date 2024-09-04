@@ -9,25 +9,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [pantalla_alumno.newInstance] factory method to
- * create an instance of this fragment.
- */
 class pantalla_alumno : Fragment() {
+<<<<<<< HEAD
     private var param1: String? = null
     private var param2: String? = null
+=======
+>>>>>>> master
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -36,6 +29,7 @@ class pantalla_alumno : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+<<<<<<< HEAD
         val view = inflater.inflate(R.layout.fragment_pantalla_alumno, container, false)
 
         // Referencia al ConstraintLayout BtnChat después de inflar la vista
@@ -60,5 +54,10 @@ class pantalla_alumno : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+=======
+        val root = inflater.inflate(R.layout.fragment_pantalla_alumno, container, false)
+
+        return root
+>>>>>>> master
     }
 }

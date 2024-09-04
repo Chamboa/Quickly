@@ -1,11 +1,17 @@
 package PTC.quickly
 
 import android.app.DatePickerDialog
+<<<<<<< HEAD
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+=======
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+>>>>>>> master
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import modelo.ClaseConexion
+<<<<<<< HEAD
 import java.sql.PreparedStatement
 import java.util.Calendar
 import java.util.UUID
@@ -21,6 +28,9 @@ import android.widget.Toast
 import com.example.ptc1.RecyclerView.AdMostrarEvento
 import com.example.ptc1.RecyclerViewListAlumnos.AdaptadorAsistencia
 import oracle.net.aso.e
+=======
+import java.util.Calendar
+>>>>>>> master
 
 class Agregar_Horas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,13 +43,17 @@ class Agregar_Horas : AppCompatActivity() {
             insets
         }
 
+<<<<<<< HEAD
         val imgRegresar = findViewById<ImageView>(R.id.img_regresar)
+=======
+>>>>>>> master
         val txtnombre = findViewById<EditText>(R.id.txtNomEvento)
         val txtfecha = findViewById<EditText>(R.id.txtFechaHoras)
         val txtentrada = findViewById<EditText>(R.id.txtEntradaHoras)
         val txtsalida = findViewById<EditText>(R.id.txtHoraSalida)
         val txtcantidadhoras = findViewById<EditText>(R.id.txtCantidadhoras)
         val btnAgregarHora  = findViewById<Button>(R.id.btnAgregarHoras)
+<<<<<<< HEAD
 
 
         txtnombre.setText(AdMostrarEvento.selectedNombre)
@@ -121,6 +135,56 @@ class Agregar_Horas : AppCompatActivity() {
             }
         }
 
+=======
+        val btnCancelarHora = findViewById<Button>(R.id.btnCancelarHoras)
+
+
+        btnAgregarHora.setOnClickListener {
+            val nombre = txtnombre.text.toString()
+            val fecha = txtfecha.text.toString()
+            val entrada = txtentrada.text.toString()
+            val salida = txtsalida.text.toString()
+            val cantidad = txtcantidadhoras.text.toString()
+
+            var hayError = false
+
+            //valido
+            if (nombre.isEmpty()) {
+                txtnombre.error = "El nombre es obligatorio"
+                hayError = true
+            } else {
+                txtnombre.error = null
+            }
+            if (fecha.isEmpty()) {
+                txtfecha.error = "Agregar una fecha es obligatorio"
+                hayError = true
+            } else {
+                txtfecha.error = null
+            }
+            if (entrada.isEmpty()) {
+                txtentrada.error = "Agregue hora de entrada es obligatorio"
+                hayError = true
+            } else {
+                txtentrada.error = null
+            }
+            if (salida.isEmpty()) {
+                txtsalida.error = "Agregue hora de entrada es obligatoria"
+                hayError = true
+            } else {
+                txtsalida.error = null
+            }
+            if (cantidad.isEmpty()) {
+                txtcantidadhoras.error = "Agregue la cantidad de horas es obligatorio"
+                hayError = true
+            } else {
+                txtcantidadhoras.error = null
+            }
+
+        }
+
+        //////////////////////////////////////////////////////////////////
+
+>>>>>>> master
         txtfecha.setOnClickListener {
             val calendario = Calendar.getInstance()
             val anio = calendario.get(Calendar.YEAR)
@@ -147,6 +211,7 @@ class Agregar_Horas : AppCompatActivity() {
         txtentrada.setOnClickListener {
             showTimePickerDialog(txtentrada)
         }
+<<<<<<< HEAD
         txtsalida.setOnClickListener {
             showTimePickerDialog(txtsalida)
         }
@@ -166,6 +231,22 @@ class Agregar_Horas : AppCompatActivity() {
             hora, minuto, true
         )
         timePickerDialog.show()
+=======
+
+
+/////////////////////////////////////////////////////////////////////////
+        btnAgregarHora.setOnClickListener {
+            GlobalScope.launch(Dispatchers.IO) {
+                //Se agrega los datos
+                val objConexion = ClaseConexion().cadenaConexion()
+            }
+        }
+
+
+    }
+
+    private fun showTimePickerDialog(txtentrada: EditText?) {
+>>>>>>> master
 
     }
 

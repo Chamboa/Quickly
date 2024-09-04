@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+=======
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:ignore="SelectedPhotoAccess" />
+>>>>>>> master
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -10,6 +16,10 @@
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.INTERNET" />
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="android.permission.INTERNET" />
+>>>>>>> master
 
     <application
         android:allowBackup="true"
@@ -21,6 +31,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PTC"
         tools:targetApi="31">
+<<<<<<< HEAD
         <activity
             android:name=".VerExpediente"
             android:exported="false" />
@@ -66,12 +77,33 @@
         <activity
             android:name=".elegirChat"
             android:exported="true" />
+=======
+>>>>>>> master
         <activity
-            android:name=".Bandeja_chat"
+            android:name=".item_card_registro_cuenta"
+            android:exported="false" />
+        <activity
+            android:name=".EditarCuenta"
+            android:exported="false" />
+        <activity
+            android:name=".item_card_asistencia"
+            android:exported="false" />
+        <activity
+            android:name=".AsistenciaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Agregar_Horas"
             android:exported="false" />
         <activity
             android:name=".Eventos"
+<<<<<<< HEAD
             android:exported="true" />
+=======
+            android:exported="false" />
+        <activity
+            android:name=".Bandeja_chat"
+            android:exported="false" />
+>>>>>>> master
         <activity
             android:name=".Correoconfirmacion"
             android:exported="false" />
@@ -87,6 +119,18 @@
         <activity
             android:name=".Confirmar_Comite"
             android:exported="true" />
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".Pantalla_Carga"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+>>>>>>> master
         <activity
             android:name=".Contrasena_Reestablecida"
             android:exported="false" />
@@ -99,6 +143,7 @@
             android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
+<<<<<<< HEAD
             android:exported="false"
             android:label="@string/app_name" /> <!-- Actividad de carga -->
         <activity
@@ -110,6 +155,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+            android:exported="false" />
+>>>>>>> master
     </application>
 
 </manifest>
