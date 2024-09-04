@@ -81,9 +81,9 @@ class RegistroCuenta : AppCompatActivity() {
                         val contraseniaEncriptada = hashSHA256(txtContraseñaRegistro.text.toString())
                         val crearUsuario = connection.prepareStatement(
                             if (rolidentificador == 1) {
-                                "INSERT INTO Usuario(UUID, nombre, correo_electronico, contraseña, id_rol, id_grado) VALUES (?, ?, ?, ?, ?, ?)"
+                                "INSERT INTO Usuario(UUID_Usuario, nombre, correo_electronico, contraseña, id_rol, id_grado) VALUES (?, ?, ?, ?, ?, ?)"
                             } else {
-                                "INSERT INTO Usuario(UUID, nombre, correo_electronico, contraseña, id_rol, id_comite) VALUES (?, ?, ?, ?, ?, ?)"
+                                "INSERT INTO Usuario(UUID_Usuario, nombre, correo_electronico, contraseña, id_rol, id_comite) VALUES (?, ?, ?, ?, ?, ?)"
                             }
                         )
                         crearUsuario.use {
@@ -95,19 +95,20 @@ class RegistroCuenta : AppCompatActivity() {
                             it.setInt(6, sp.selectedItemPosition + 1)
                             val rowsAffected = it.executeUpdate()
                             if (rowsAffected > 0) {
-                                connection.commit()
+                                connection.commit()  // Confirmación de la transacción
                                 withContext(Dispatchers.Main) {
                                     Toast.makeText(
                                         this@RegistroCuenta,
-                                        "Usuario creado",
+                                        "Usuario creado exitosamente",
                                         Toast.LENGTH_SHORT
                                     ).show()
+                                    // Limpiar campos de entrada después de la confirmación exitosa
                                     txtNombreRegistro.setText("")
                                     txtCorreoRegistro.setText("")
                                     txtContraseñaRegistro.setText("")
                                 }
                             } else {
-                                connection.rollback()
+                                connection.rollback()  // Deshacer la transacción en caso de error
                                 withContext(Dispatchers.Main) {
                                     Toast.makeText(
                                         this@RegistroCuenta,

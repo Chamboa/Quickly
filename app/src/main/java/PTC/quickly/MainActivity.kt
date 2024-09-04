@@ -8,13 +8,19 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import PTC.quickly.databinding.ActivityMainBinding
+import android.view.Menu
+import androidx.navigation.NavController
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Cargar los datos del usuario desde SharedPreferences
+        loadUserData()
 
         supportActionBar?.hide()
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -22,38 +28,56 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        // Verificamos el rol del usuario y configuramos la navegación según el rol
-        when (Login.userRoleId) {
-            3 -> { // Rol de Administrador
-                val appBarConfiguration = AppBarConfiguration(
-                    setOf(R.id.pantalla_admin, R.id.navigation_home, R.id.navigation_notifications)
-                )
-                setupActionBarWithNavController(navController, appBarConfiguration)
-                navView.setupWithNavController(navController)
-                navController.navigate(R.id.pantalla_admin)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.pantalla_admin, R.id.calendario_b, R.id.navigation_home, R.id.navigation_notifications)
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+
+        // Configurar la visibilidad de los ítems del menú según el rol
+        Login.userRoleId?.let { configureNavigationForRole(it, navView.menu) }
+
+        // Navegar a la pantalla inicial según el rol
+        Login.userRoleId?.let { navigateToInitialScreen(it) }
+    }
+
+    private fun loadUserData() {
+        val sharedPref = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
+        Login.userUUID = sharedPref.getString("userUUID", "") ?: ""
+        Login.userRoleId = sharedPref.getInt("userRoleId", -1)
+        Login.userEmail = sharedPref.getString("userEmail", null)
+        Login.userName = sharedPref.getString("userName", null)
+    }
+
+    private fun configureNavigationForRole(roleId: Int, menu: Menu) {
+        when (roleId) {
+            3 -> { // Administrador
+                menu.findItem(R.id.pantalla_admin)?.isVisible = true
+                menu.findItem(R.id.calendario_b)?.isVisible = true
+                // Configurar otros ítems según sea necesario
             }
-            2 -> { // Rol de Coordinador
-                val appBarConfiguration = AppBarConfiguration(
-                    setOf(R.id.pantalla_coordinador, R.id.navigation_home, R.id.navigation_notifications)
-                )
-                setupActionBarWithNavController(navController, appBarConfiguration)
-                navView.setupWithNavController(navController)
-                navController.navigate(R.id.pantalla_coordinador)
+            2 -> { // Coordinador
+                menu.findItem(R.id.pantalla_coordinador)?.isVisible = true
+                menu.findItem(R.id.calendario_b)?.isVisible = true
+                // Configurar otros ítems según sea necesario
             }
-            1 -> { // Rol de Alumno
-                val appBarConfiguration = AppBarConfiguration(
-                    setOf(R.id.pantalla_alumno, R.id.navigation_home, R.id.navigation_notifications)
-                )
-                setupActionBarWithNavController(navController, appBarConfiguration)
-                navView.setupWithNavController(navController)
-                navController.navigate(R.id.pantalla_alumno)
-            }
-            else -> {
-                // Si el rol no es válido o no está definido
-                navController.navigate(R.id.navigation_home)
+            1 -> { // Alumno
+                menu.findItem(R.id.pantalla_alumno)?.isVisible = true
+                menu.findItem(R.id.calendario_b)?.isVisible = true
+                // Configurar otros ítems según sea necesario
             }
         }
+    }
+
+    private fun navigateToInitialScreen(roleId: Int) {
+        val initialDestination = when (roleId) {
+            3 -> R.id.pantalla_admin
+            2 -> R.id.pantalla_coordinador
+            1 -> R.id.pantalla_alumno
+            else -> R.id.navigation_home
+        }
+        navController.navigate(initialDestination)
     }
 }

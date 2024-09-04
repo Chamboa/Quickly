@@ -7,10 +7,14 @@
         android:title="" />
 
     <item
+        android:id="@+id/calendario_b"
+        android:icon="@drawable/ic_calendario"
+        android:title="" />
+
+    <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_perf"
         android:title=""/>
-
 
     <item
         android:id="@+id/navigation_notifications"
@@ -18,4 +22,3 @@
         android:title="" />
 
 </menu>
-

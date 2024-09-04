@@ -17,6 +17,9 @@ import modelo.ClaseConexion
 
 class elegirChat : AppCompatActivity() {
 
+    private var Id_rol = Login.userRoleId
+    private var UUID_usuario = Login.userUUID
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,28 +31,7 @@ class elegirChat : AppCompatActivity() {
         }
         val rcvChat = findViewById<RecyclerView>(R.id.rcvcargar)
 
-        rcvChat.layoutManager = LinearLayoutManager( this)
-
-        fun obtenerDatos(): List<dcUsuario> {
-            val objConexion = ClaseConexion().cadenaConexion()
-            val statement = objConexion?.createStatement()!!
-            val resultSet = statement.executeQuery("SELECT * FROM Usuario")
-            val lista = mutableListOf<dcUsuario>()
-
-            while (resultSet.next()) {
-                val id_usuario = resultSet.getString("UUID")
-                val nombre = resultSet.getString("nombre")
-                val id_rol = resultSet.getInt("id_rol")
-                val id_comite = resultSet.getInt("id_comite")
-
-                // Filtro para mostrar solo los usuarios con id_rol igual a 2 o 3
-                if (id_rol == 2 || id_rol == 3) {
-                    val valoresJuntos = dcUsuario(id_usuario, nombre, id_rol, id_comite)
-                    lista.add(valoresJuntos)
-                }
-            }
-            return lista
-        }
+        rcvChat.layoutManager = LinearLayoutManager(this)
 
         CoroutineScope(Dispatchers.IO).launch {
             val lista = obtenerDatos()
@@ -57,6 +39,49 @@ class elegirChat : AppCompatActivity() {
                 val adaptador = AdChat(lista)
                 rcvChat.adapter = adaptador
             }
+        }
+    }
+
+    private suspend fun obtenerDatos(): List<dcUsuario> {
+        return withContext(Dispatchers.IO) {
+            val lista = mutableListOf<dcUsuario>()
+            val objConexion = ClaseConexion().cadenaConexion()
+            objConexion?.use { connection ->
+                val query = when (Id_rol) {
+                    1 -> {
+                        // Para usuarios con id_rol 1, mostrar coordinadores y administradores
+                        "SELECT * FROM Usuario WHERE id_rol IN (2, 3)"
+                    }
+
+                    2, 3 -> {
+                        // Para coordinadores y administradores, mostrar usuarios que han enviado mensajes
+                        "SELECT * FROM Usuario WHERE id_rol IN (1)"
+                    }
+
+                    else -> return@withContext lista // Retorna lista vacía si el id_rol no es válido
+                }
+
+                val statement = connection.prepareStatement(query)
+
+
+                if (Id_rol == 2 || Id_rol == 3) {
+                    statement.setString(1, UUID_usuario)
+                }
+
+                val resultSet = statement.executeQuery()
+
+
+                while (resultSet.next()) {
+                    val id_usuario = resultSet.getString("UUID")
+                    val nombre = resultSet.getString("nombre")
+                    val id_rol = resultSet.getInt("id_rol")
+                    val id_comite = resultSet.getInt("id_comite")
+
+                    val usuario = dcUsuario(id_usuario, nombre, id_rol, id_comite)
+                    lista.add(usuario)
+                }
+            }
+            lista
         }
     }
 }

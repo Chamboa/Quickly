@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ptc1.modelo.dcChat
 
-class AdMensaje(var DatosMensaje: MutableList<dcChat>) : RecyclerView.Adapter<VHMensaje>() {
+class AdMensaje(private var DatosMensaje: MutableList<dcChat>) : RecyclerView.Adapter<VHMensaje>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHMensaje {
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_card_mensaje, parent, false)
@@ -35,5 +35,12 @@ class AdMensaje(var DatosMensaje: MutableList<dcChat>) : RecyclerView.Adapter<VH
     fun agregarMensaje(nuevoMensaje: dcChat) {
         DatosMensaje.add(nuevoMensaje)
         notifyItemInserted(DatosMensaje.size - 1)
+    }
+
+    // Método para actualizar toda la lista de mensajes
+    fun actualizarMensajes(nuevosMensajes: List<dcChat>) {
+        DatosMensaje.clear()
+        DatosMensaje.addAll(nuevosMensajes)
+        notifyDataSetChanged()
     }
 }

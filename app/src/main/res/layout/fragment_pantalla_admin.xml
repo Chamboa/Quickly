@@ -139,6 +139,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnGestionarUsuario"
         android:layout_width="150dp"
         android:layout_height="180dp"
         android:background="@drawable/btnvrlistus"
@@ -178,7 +179,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/btnAsistencia"
         android:layout_width="150dp"
         android:layout_height="180dp"
         android:background="@drawable/btnasishoras"
@@ -218,7 +219,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
+        android:id="@+id/btnHistorial"
         android:layout_width="150dp"
         android:layout_height="180dp"
         android:background="@drawable/btnvrhistorial"
@@ -256,6 +257,20 @@
             app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="110dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/btnHistorial" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
