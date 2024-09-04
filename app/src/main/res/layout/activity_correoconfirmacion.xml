@@ -13,22 +13,21 @@
         android:layout_height="89dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="96dp"
         android:fontFamily="@font/inter_extrabold"
         android:gravity="center_horizontal|top"
         android:text="Ingresa el código que has recibido"
         android:textColor="#000000"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612" />
+        app:layout_constraintVertical_bias="0.14" />
 
     <Button
         android:id="@+id/btnenviarcod"
         android:layout_width="375dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="308dp"
         android:backgroundTint="#C2DCF8"
         android:fontFamily="@font/inter_bold"
         android:text="Enviar"
@@ -37,7 +36,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.527" />
 
     <View
         android:id="@+id/vwcodigorecu"
@@ -45,14 +46,13 @@
         android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="260dp"
         android:background="#E7E5E5"
-        app:layout_constraintBottom_toTopOf="@+id/btnenviarcod"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <EditText
         android:id="@+id/etxtcodigoconfirmacion"
@@ -61,15 +61,16 @@
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/inter_semibold"
-        android:hint="XXXXX-X"
+        android:hint="XXXXXX"
         android:inputType="text"
-        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/vwcodigorecu"
         app:layout_constraintEnd_toEndOf="@+id/vwcodigorecu"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="@+id/vwcodigorecu"
         app:layout_constraintTop_toTopOf="@+id/vwcodigorecu"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.578" />
 
     <ImageView
         android:id="@+id/imageView6"

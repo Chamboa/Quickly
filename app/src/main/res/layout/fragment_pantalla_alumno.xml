@@ -56,8 +56,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.049" />
 
+<<<<<<< HEAD
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnChat"
+=======
     <ImageButton
         android:id="@+id/btnEventos"
+>>>>>>> master
         android:layout_width="170dp"
         android:layout_height="54dp"
         android:background="@drawable/barradospntalum"
@@ -69,6 +74,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.425" />
 
+<<<<<<< HEAD
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_extrabold"
+            android:text="Chat"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+=======
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
@@ -81,6 +101,7 @@
         app:layout_constraintEnd_toEndOf="@+id/btnEventos"
         app:layout_constraintStart_toStartOf="@+id/btnEventos"
         app:layout_constraintTop_toTopOf="@+id/btnEventos" />
+>>>>>>> master
 
     <ImageButton
         android:id="@+id/btnHistorial"

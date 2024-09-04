@@ -20,6 +20,10 @@ class Asistencia_Alumno : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_asistencia_alumno)
+<<<<<<< HEAD
+=======
+        
+>>>>>>> master
 
 
         val imgAtrasflecha = findViewById<ImageView>(R.id.imgAtrasflecha)
@@ -27,7 +31,11 @@ class Asistencia_Alumno : AppCompatActivity() {
         val imgBuscar = findViewById<ImageView>(R.id.imgBuscar)
         val rcvAsistencia = findViewById<RecyclerView>(R.id.rcvAsistencia)
 
+<<<<<<< HEAD
 rcvAsistencia.layoutManager = LinearLayoutManager(this)
+=======
+        rcvAsistencia.layoutManager = LinearLayoutManager(this)
+>>>>>>> master
 
 
 
@@ -54,7 +62,12 @@ rcvAsistencia.layoutManager = LinearLayoutManager(this)
             while (resultSet.next()) {
                 val nombre = resultSet.getString("nombre")
                 val id_comite = resultSet.getInt("id_comite")
+<<<<<<< HEAD
                 listaUsuarios.add(tbAsistencia(nombre, id_comite))
+=======
+                val UUIDxd = resultSet.getString("UUID_Usuario")
+                listaUsuarios.add(tbAsistencia(nombre, id_comite, UUIDxd))
+>>>>>>> master
 
 
             }
@@ -76,4 +89,8 @@ rcvAsistencia.layoutManager = LinearLayoutManager(this)
     }
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

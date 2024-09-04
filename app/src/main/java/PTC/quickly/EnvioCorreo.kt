@@ -1,4 +1,4 @@
-package com.example.ptc1.PTC.quickly
+package PTC.quickly
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -14,16 +14,22 @@ import javax.mail.internet.MimeMessage
 suspend fun enviarCorreo(receptor: String, asunto: String, mensaje: String) = withContext(Dispatchers. IO) {
 
     val props = Properties() .apply {
+
+        //put ("mail.smtp.auth", "true")
+        //put ("mail.smtp.port", "587")
+        //put ("mail.smtp.starttls.enable","true")
+
+
         put ("mail. smtp.host", "smtp.gmail.com")
-        put ("mail.smtp.socketFactory-port", "465")
-        put ("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
+        put ("mail.smtp.socketFactory.port", "465")
+        put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
         put ("mail.smtp.auth", "true")
         put ("mail.smtp.port", "465")
     }
 
     val session = Session.getInstance(props, object : javax.mail.Authenticator() {
         override fun getPasswordAuthentication(): PasswordAuthentication {
-        return PasswordAuthentication ("quicklyptc2024@gmail.com", "t r a t w o i t p f q j n y z v")
+        return PasswordAuthentication ("quicklyptc2024@gmail.com", "jxew fdjq dxxr qjjr")
         }
     })
 
