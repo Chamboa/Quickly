@@ -1,5 +1,4 @@
 package PTC.quickly
-
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -8,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.view.LayoutInflater
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.util.UUID
 import android.app.AlertDialog
-import android.view.LayoutInflater
 
 class Eventos : AppCompatActivity() {
 
@@ -47,13 +46,8 @@ class Eventos : AppCompatActivity() {
 
         // Programar el botón de agregar evento
         btnAgregarEvento.setOnClickListener {
-<<<<<<< HEAD
             if (validarCampos(txtNombreEventos, txtDescripcion, txtLugar, txtHora)) {
                 agregarEvento(txtNombreEventos, txtDescripcion, txtLugar, txtHora)
-=======
-            if (validarCampos(txtNombreEventos, txtDescripcion, txtLugar, txtHora, txtFecha)) {
-                agregarEvento(txtNombreEventos, txtDescripcion, txtLugar, txtHora, txtFecha)
->>>>>>> master
             }
         }
 
@@ -79,7 +73,6 @@ class Eventos : AppCompatActivity() {
         txtNombreEventos: EditText,
         txtDescripcion: EditText,
         txtLugar: EditText,
-<<<<<<< HEAD
         txtHora: EditText
     ) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -110,32 +103,6 @@ class Eventos : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     mostrarDialogoError(e.message ?: "Error desconocido")
                 }
-=======
-        txtHora: EditText,
-        txtFecha: EditText
-    ) {
-        CoroutineScope(Dispatchers.IO).launch {
-            // Crear un objeto de la clase conexión
-            val objConexion = ClaseConexion().cadenaConexion()
-            // Crear una variable que tenga un prepare statement
-            val addEvento = objConexion?.prepareStatement(
-                "INSERT INTO Eventos (UUID, UUID_Usuario, lugar, descripcion, nombre, fecha, hora) VALUES (?, ?, ?, ?, ?, ?, ?)"
-            )!!
-
-            addEvento.setString(1, UUID.randomUUID().toString())
-            addEvento.setString(2, Login.UUID)
-            addEvento.setString(3, txtLugar.text.toString())
-            addEvento.setString(4, txtDescripcion.text.toString())
-            addEvento.setString(5, txtNombreEventos.text.toString())
-            addEvento.setString(6, txtFecha.text.toString())
-            addEvento.setString(7, txtHora.text.toString())
-
-            addEvento.executeUpdate()
-
-            // Mostrar el AlertDialog en el hilo principal
-            withContext(Dispatchers.Main) {
-                mostrarDialogoExito()
->>>>>>> master
             }
         }
     }

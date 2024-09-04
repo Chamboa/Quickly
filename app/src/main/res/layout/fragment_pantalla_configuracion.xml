@@ -80,13 +80,10 @@
         app:layout_constraintBottom_toTopOf="@+id/vwtema"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
-<<<<<<< HEAD:app/src/main/res/layout/fragment_notifications.xml
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
-=======
-        app:layout_constraintStart_toStartOf="parent">
->>>>>>> master:app/src/main/res/layout/fragment_pantalla_configuracion.xml
+
 
         <ImageView
             android:id="@+id/imageView17"
@@ -131,10 +128,7 @@
         android:id="@+id/vwtema"
         android:layout_width="377dp"
         android:layout_height="106dp"
-<<<<<<< HEAD:app/src/main/res/layout/fragment_notifications.xml
-=======
         android:layout_marginBottom="312dp"
->>>>>>> master:app/src/main/res/layout/fragment_pantalla_configuracion.xml
         android:background="@drawable/cuadrotema"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

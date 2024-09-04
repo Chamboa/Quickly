@@ -1,5 +1,4 @@
 package PTC.quickly
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -20,44 +19,33 @@ class Correoconfirmacion : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_correoconfirmacion)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+            val imgregresarrecuccontra = findViewById<ImageView>(R.id.imgregresarrecucontra)
+            val etxtcodigoconfirmacion = findViewById<EditText>(R.id.etxtcodigoconfirmacion)
+            val btnenviarcod = findViewById<Button>(R.id.btnenviarcod)
 
-        val imgregresarrecuccontra = findViewById<ImageView>(R.id.imgregresarrecucontra)
-        val etxtcodigoconfirmacion = findViewById<EditText>(R.id.etxtcodigoconfirmacion)
-        val btnenviarcod = findViewById<Button>(R.id.btnenviarcod)
+            btnenviarcod.setOnClickListener {
 
-        btnenviarcod.setOnClickListener {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
+                val codigoIngresado = etxtcodigoconfirmacion.text.toString().toIntOrNull()
 
-            val codigoIngresado = etxtcodigoconfirmacion.text.toString().toIntOrNull()
+                if (codigoIngresado != null && codigoIngresado == Recuperar_contrasena.varialesglobales.Codigorecuperacion) {
+                    val pantallanuevacontrasena = Intent(this, Nueva_Contrasena::class.java)
+                    startActivity(pantallanuevacontrasena)
+                }
 
-            if (codigoIngresado != null && codigoIngresado == Recuperar_contrasena.varialesglobales.Codigorecuperacion) {
-                val pantallanuevacontrasena = Intent(this, Nueva_Contrasena::class.java)
-                startActivity(pantallanuevacontrasena)
+                else {
+                    Toast.makeText(this, "Código incorrecto. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show()
+                }
             }
 
-            else {
-                Toast.makeText(this, "Código incorrecto. Inténtalo de nuevo.", Toast.LENGTH_SHORT).show()
+            imgregresarrecuccontra.setOnClickListener {
+                val pantallarecuperarcontrasena = Intent (this, Recuperar_contrasena::class.java)
+                startActivity(pantallarecuperarcontrasena)
             }
-<<<<<<< HEAD
-=======
-=======
-            val pantallanuevacontrasena = Intent (this, Nueva_Contrasena::class.java)
-            startActivity(pantallanuevacontrasena)
->>>>>>> master
->>>>>>> master
         }
 
-        imgregresarrecuccontra.setOnClickListener {
-            val pantallarecuperarcontrasena = Intent (this, Recuperar_contrasena::class.java)
-            startActivity(pantallarecuperarcontrasena)
-        }
     }
-
-}

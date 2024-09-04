@@ -6,16 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 
 
 class pantalla_alumno : Fragment() {
-<<<<<<< HEAD
     private var param1: String? = null
     private var param2: String? = null
-=======
->>>>>>> master
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +25,10 @@ class pantalla_alumno : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-<<<<<<< HEAD
         val view = inflater.inflate(R.layout.fragment_pantalla_alumno, container, false)
 
         // Referencia al ConstraintLayout BtnChat después de inflar la vista
-        val btnChat = view.findViewById<ConstraintLayout>(R.id.btnChat)
+        val btnChat = view.findViewById<ConstraintLayout>(R.id.btnEventos)
 
         // Configurar el OnClickListener
         btnChat?.setOnClickListener {
@@ -50,14 +45,9 @@ class pantalla_alumno : Fragment() {
         fun newInstance(param1: String, param2: String) =
             pantalla_alumno().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    //putString(ARG_PARAM1, param1)
+                    //putString(ARG_PARAM2, param2)
                 }
             }
-=======
-        val root = inflater.inflate(R.layout.fragment_pantalla_alumno, container, false)
-
-        return root
->>>>>>> master
     }
 }

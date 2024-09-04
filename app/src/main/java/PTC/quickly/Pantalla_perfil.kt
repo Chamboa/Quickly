@@ -67,8 +67,8 @@ class Pantalla_perfil : Fragment() {
         val txtNombre = view.findViewById<TextView>(R.id.Id_Nombre)
         val Cerrar = view.findViewById<Button>(R.id.btncerrarsesion)
 
-        txtNombre.text = Login.nombre
-        txtCorreo.text = Login.correo
+        //txtNombre.text = Login.nombre
+        //txtCorreo.text = Login.correo //Arreglar hoy mismo antes que se me olvide xd
 
         Cerrar.setOnClickListener{
             cerrarSesion()

@@ -1,15 +1,11 @@
 package PTC.quickly
 
-<<<<<<< HEAD
 import EventosAdapter
-=======
->>>>>>> master
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-<<<<<<< HEAD
 import android.widget.CalendarView
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
@@ -21,9 +17,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
-=======
-import android.widget.ImageButton
->>>>>>> master
 
 class calendario_b : Fragment() {
 
@@ -37,7 +30,6 @@ class calendario_b : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-<<<<<<< HEAD
         val view = inflater.inflate(R.layout.fragment_calendario_b, container, false)
         calendarView = view.findViewById(R.id.calendarView)
         rvEventos = view.findViewById(R.id.rvEventos)
@@ -67,10 +59,6 @@ class calendario_b : Fragment() {
         }
 
         return view
-=======
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendario_b, container, false)
->>>>>>> master
     }
 
     private fun loadEventsForDate(date: String) {
@@ -117,24 +105,7 @@ class calendario_b : Fragment() {
                     lista.add(evento)
                 }
             }
-<<<<<<< HEAD
             lista
         }
-=======
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val btnEvnts = view.findViewById<ImageButton>(R.id.btnagregareventos)
-        val idrol = Login.rol
-
-        if (idrol != 2) {
-            btnEvnts.visibility = View.GONE
-        } else {
-            btnEvnts.setOnClickListener {
-                val intent = Intent(requireContext(), Eventos::class.java)
-                startActivity(intent)
-            }
-        }
-
->>>>>>> master
     }
 }
