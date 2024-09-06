@@ -9,6 +9,8 @@ class ClaseConexion {
 
         try {
 
+            ///aosdaojdo
+
             val ipLevi = "jdbc:oracle:thin@192.168.1.19:1521:xe"
             val ipGamboa = "jdbc:oracle:thin:@ 10.10.2.61:1521:xe"
             val ipRuth = "jdbc:oracle:thin@ 192.168.3.8:1521:xe"
