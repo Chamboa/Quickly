@@ -51,18 +51,38 @@ class AgregarComite : AppCompatActivity() {
             val descripcion = editDescripcionComite.text.toString().trim()
             val cupos = editCuposComite.text.toString().trim().toIntOrNull()
 
-            if (nombre.isNotEmpty() && descripcion.isNotEmpty() && cupos != null) {
-                CoroutineScope(Dispatchers.Main).launch {
-                    val resultado = agregarNuevoComite(nombre, descripcion, cupos)
-                    if (resultado) {
-                        Toast.makeText(this@AgregarComite, "Comité agregado con éxito", Toast.LENGTH_SHORT).show()
-                        finish() // Cierra la actividad y vuelve a la anterior
-                    } else {
-                        Toast.makeText(this@AgregarComite, "Error al agregar el comité", Toast.LENGTH_SHORT).show()
+            // Validaciones
+            when {
+                nombre.isEmpty() -> {
+                    showToast("El nombre del comité no puede estar vacío.")
+                }
+                nombre.length > 30 -> {
+                    showToast("El nombre del comité no puede tener más de 30 caracteres.")
+                }
+                descripcion.isEmpty() -> {
+                    showToast("La descripción del comité no puede estar vacía.")
+                }
+                descripcion.length > 100 -> {
+                    showToast("La descripción no puede tener más de 100 caracteres.")
+                }
+                cupos == null -> {
+                    showToast("Los cupos deben ser un número válido.")
+                }
+                cupos <= 0 -> {
+                    showToast("Los cupos deben ser un número mayor a 0.")
+                }
+                else -> {
+                    // Si todas las validaciones son correctas, procede a insertar
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val resultado = agregarNuevoComite(nombre, descripcion, cupos)
+                        if (resultado) {
+                            showToast("Comité agregado con éxito")
+                            finish()
+                        } else {
+                            showToast("Error al agregar el comité")
+                        }
                     }
                 }
-            } else {
-                Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -110,5 +130,9 @@ class AgregarComite : AppCompatActivity() {
             }
             nextId
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this@AgregarComite, message, Toast.LENGTH_SHORT).show()
     }
 }

@@ -20,7 +20,8 @@ import java.util.UUID
 import android.widget.Toast
 import com.example.ptc1.RecyclerView.AdMostrarEvento
 import com.example.ptc1.RecyclerViewListAlumnos.AdaptadorAsistencia
-import oracle.net.aso.e
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class Agregar_Horas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +42,6 @@ class Agregar_Horas : AppCompatActivity() {
         val txtcantidadhoras = findViewById<EditText>(R.id.txtCantidadhoras)
         val btnAgregarHora  = findViewById<Button>(R.id.btnAgregarHoras)
 
-
         txtnombre.setText(AdMostrarEvento.selectedNombre)
 
         val calendario = Calendar.getInstance()
@@ -50,7 +50,6 @@ class Agregar_Horas : AppCompatActivity() {
         val dia = calendario.get(Calendar.DAY_OF_MONTH)
 
         val fechaActual = "$dia/$mes/$anio"
-
         txtfecha.setText(fechaActual)
 
         imgRegresar.setOnClickListener {
@@ -58,18 +57,50 @@ class Agregar_Horas : AppCompatActivity() {
         }
 
         btnAgregarHora.setOnClickListener {
+            val nombreEvento = txtnombre.text.toString().trim()
+            val fecha = txtfecha.text.toString().trim()
+            val entrada = txtentrada.text.toString().trim()
+            val salida = txtsalida.text.toString().trim()
+            val cantidadHoras = txtcantidadhoras.text.toString().trim().toIntOrNull()
 
-            val cantidad = txtcantidadhoras.text.toString().toInt()
+            // Validaciones
+            if (nombreEvento.isEmpty()) {
+                showToast("Por favor, ingresa el nombre del evento.")
+                return@setOnClickListener
+            }
+            if (fecha.isEmpty()) {
+                showToast("Por favor, selecciona la fecha.")
+                return@setOnClickListener
+            }
+            if (entrada.isEmpty()) {
+                showToast("Por favor, selecciona la hora de entrada.")
+                return@setOnClickListener
+            }
+            if (salida.isEmpty()) {
+                showToast("Por favor, selecciona la hora de salida.")
+                return@setOnClickListener
+            }
+            if (cantidadHoras == null || cantidadHoras <= 0) {
+                showToast("La cantidad de horas debe ser un número positivo.")
+                return@setOnClickListener
+            }
 
+            // Validar que la hora de entrada sea anterior a la hora de salida
+            val formatoHora = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val horaEntrada = formatoHora.parse(entrada)
+            val horaSalida = formatoHora.parse(salida)
 
-
+            if (horaEntrada != null && horaSalida != null && horaEntrada >= horaSalida) {
+                showToast("La hora de entrada debe ser anterior a la hora de salida.")
+                return@setOnClickListener
+            }
 
             val UUIDevento = AdMostrarEvento.selectedUUID
-            GlobalScope.launch (Dispatchers.IO){
-                val objConexion  = ClaseConexion().cadenaConexion()
-                var statement: PreparedStatement? = null
-                var nombreEvento: String? = null
 
+            // Insertar en la base de datos
+            GlobalScope.launch(Dispatchers.IO) {
+                val objConexion = ClaseConexion().cadenaConexion()
+                var statement: PreparedStatement? = null
                 try {
                     // Consultar el nombre del evento usando el UUID_evento
                     val sqlConsulta = "SELECT nombre FROM Eventos WHERE UUID_Evento = ?"
@@ -77,42 +108,43 @@ class Agregar_Horas : AppCompatActivity() {
                     statement?.setString(1, UUIDevento.toString())
                     val resultSet = statement?.executeQuery()
 
+                    var nombreEventoBD: String? = null
                     if (resultSet?.next() == true) {
-                        nombreEvento = resultSet.getString("nombre")
+                        nombreEventoBD = resultSet.getString("nombre")
                     }
 
                     resultSet?.close()
                     statement?.close()
 
-                    if (nombreEvento != null) {
+                    if (nombreEventoBD != null) {
                         // Insertar los datos en la tabla Expediente
                         val uuidExpediente = UUID.randomUUID().toString()
                         val sqlInsercion = """
-                    INSERT INTO Expediente (UUID_expediente, UUID_usuario, nombre_evento, horas_agregadas)
-                    VALUES (?, ?, ?, ?)
-                """.trimIndent()
+                            INSERT INTO Expediente (UUID_expediente, UUID_usuario, nombre_evento, horas_agregadas)
+                            VALUES (?, ?, ?, ?)
+                        """.trimIndent()
 
                         statement = objConexion?.prepareStatement(sqlInsercion)
                         statement?.setString(1, uuidExpediente)
                         statement?.setString(2, AdaptadorAsistencia.selectedUUIDA)
-                        statement?.setString(3, nombreEvento)
-                        statement?.setInt(4, cantidad)
+                        statement?.setString(3, nombreEventoBD)
+                        statement?.setInt(4, cantidadHoras)
 
                         statement?.executeUpdate()
 
                         runOnUiThread {
-                            Toast.makeText(this@Agregar_Horas, "Horas agregadas correctamente", Toast.LENGTH_SHORT).show()
+                            showToast("Horas agregadas correctamente")
                         }
                     } else {
                         runOnUiThread {
-                            Toast.makeText(this@Agregar_Horas, "Error: no se encontró el evento", Toast.LENGTH_SHORT).show()
+                            showToast("Error: no se encontró el evento")
                         }
                     }
 
                 } catch (e: Exception) {
                     e.printStackTrace()
                     runOnUiThread {
-                        Toast.makeText(this@Agregar_Horas, "Error al agregar horas", Toast.LENGTH_SHORT).show()
+                        showToast("Error al agregar horas")
                     }
                 } finally {
                     statement?.close()
@@ -121,6 +153,7 @@ class Agregar_Horas : AppCompatActivity() {
             }
         }
 
+        // Selector de fecha
         txtfecha.setOnClickListener {
             val calendario = Calendar.getInstance()
             val anio = calendario.get(Calendar.YEAR)
@@ -132,21 +165,22 @@ class Agregar_Horas : AppCompatActivity() {
 
             val datePickerDialog = DatePickerDialog(
                 this,
-                { view, anioSeleccionado, mesSeleccionado, diaSeleccionado ->
+                { _, anioSeleccionado, mesSeleccionado, diaSeleccionado ->
                     val fechaSeleccionada = "$diaSeleccionado/${mesSeleccionado + 1}/$anioSeleccionado"
                     txtfecha.setText(fechaSeleccionada)
                 },
                 anio, mes, dia
             )
-
             datePickerDialog.datePicker.maxDate = fechaMaxima.timeInMillis
-
             datePickerDialog.show()
         }
 
+        // Selector de hora de entrada
         txtentrada.setOnClickListener {
             showTimePickerDialog(txtentrada)
         }
+
+        // Selector de hora de salida
         txtsalida.setOnClickListener {
             showTimePickerDialog(txtsalida)
         }
@@ -166,8 +200,9 @@ class Agregar_Horas : AppCompatActivity() {
             hora, minuto, true
         )
         timePickerDialog.show()
-
     }
 
-
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 }
