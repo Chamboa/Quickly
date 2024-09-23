@@ -1,4 +1,17 @@
-///////// TABLA ASISTENCIA
+/*BASE DE DATOS DEL SISTEMA DE GESTIONAMIENTO DE HORAS SOCIALES "Quickly"*/
+
+//CREACIÓN DEL USUARIO DE PREFERENCIA PARA EJECUTAR LA BASE
+
+/*
+ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
+
+CREATE USER Quickly IDENTIFIED BY "QUICKLY";
+
+GRANT "CONNECT" TO Quickly
+*/
+
+///////// TABLA ASISTENCIA, EN ESTA TABLA SE GUARDARÁN LOS DATOS RELACIONADOS A LA TOMA DE ASISTENCIA Y TODO LO QUE ES NECESARIO PARA
+///////// RECOPILAR LA INFORMACIÓN NECESARIA
 
 CREATE TABLE Asistencia (
     UUID_asistencia VARCHAR2 (50) PRIMARY KEY,
@@ -6,7 +19,7 @@ CREATE TABLE Asistencia (
     hora_de_salida VARCHAR2 (6) NOT NULL,
     asistencia_total INT NOT NULL,
     UUID_Evento VARCHAR2 (50) NOT NULL,
-    FOREIGN KEY (UUID_Evento) REFERENCES Eventos (UUID_Evento)
+    FOREIGN KEY (UUID_Evento) REFERENCES Eventos (UUID_Evento) //LLAVE FORANEA RELACIONADA CON LA TABLA Eventos
 );
 
 SELECT * FROM Asistencia;
@@ -15,7 +28,8 @@ DROP TABLE Asistencia
 INSERT INTO Asistencia (UUID_asistencia, hora_de_entrada, hora_de_salida, asistencia_total, UUID_Evento) VALUES (1, '4:30', '5:40', 1, 1);
 INSERT INTO Asistencia (UUID_asistencia, hora_de_entrada, hora_de_salida, asistencia_total, UUID_Evento) VALUES (2, '3:40', '5:50', 1, 2);
 
-///////// TABLA EVENTOS
+///////// TABLA EVENTOS, EN ESTA TABLA SE GUARDARÁN LOS DATOS RELACIONADOS AL REGISTRO DE NUEVOS EVENTOS
+///////// RECOPILANDO LA INFORMACIÓN NECESARIA PARA QUE LOS ESTUDIANTES PUEDAN ASISTIR AL EVENTO DESARROLLADO POR DIFERENTE COMISIÓN O COMITÉ
 
 CREATE TABLE Eventos (
     UUID_Evento VARCHAR2 (50) PRIMARY KEY,
@@ -23,43 +37,49 @@ CREATE TABLE Eventos (
     lugar VARCHAR2 (100) NOT NULL,
     descripcion VARCHAR2 (100) NOT NULL,
     nombre VARCHAR2 (30) NOT NULL,
-    fecha VARCHAR2 (50) NOT NULL,
+    fecha DATE NOT NULL,
     hora VARCHAR2 (50) NOT NULL,
-    FOREIGN KEY (UUID_Usuario) REFERENCES Usuario (UUID_Usuario)
+    FOREIGN KEY (UUID_Usuario) REFERENCES Usuario (UUID_Usuario) //LLAVE FORANEA RELACIONADA CON LA TABLA Usuario
 );
 
 SELECT * FROM Eventos;
 DROP TABLE Eventos
 
-INSERT INTO Eventos (UUID_Evento, UUID_Usuario, lugar, descripcion, nombre, fecha, hora)  VALUES (1, 1, 'Auditorio', 'Conferencia sobre educación', 'Conferencia Educativa', '2024-07-01', '12:00');
-INSERT INTO Eventos (UUID_Evento, UUID_Usuario, lugar, descripcion, nombre, fecha, hora)  VALUES (2, 2, 'Cancha de deportes', 'Torneo de fútbol intergrados', 'Torneo de Fútbol', '2024-07-05', '14:00');
-INSERT INTO Eventos (UUID_Evento, UUID_Usuario, lugar, descripcion, nombre, fecha, hora)  VALUES (3, 3, 'SUM', 'Torneo de Ping Pong', 'Ping Pong Salesiano', '2024-07-05', '14:00');
+INSERT INTO Eventos (UUID_Evento, UUID_Usuario, lugar, descripcion, nombre, fecha, hora)  
+VALUES (1, 1, 'Auditorio', 'Conferencia sobre educación', 'Conferencia Educativa', '2024-07-01', '12:00');
+INSERT INTO Eventos (UUID_Evento, UUID_Usuario, lugar, descripcion, nombre, fecha, hora)  
+VALUES (2, 2, 'Cancha de deportes', 'Torneo de fútbol intergrados', 'Torneo de Fútbol', '2024-07-05', '14:00');
+INSERT INTO Eventos (UUID_Evento, UUID_Usuario, lugar, descripcion, nombre, fecha, hora)  
+VALUES (3, 3, 'SUM', 'Torneo de Ping Pong', 'Ping Pong Salesiano', '2024-07-05', '14:00');
 
 
-///////// TABLA USUARIO
+///////// TABLA USUARIO, EN ESTA TABLA SE GUARDARÁN LOS DATOS NECESARIOS PARA GUARDAR UN USUARIO NUEVO
 
 CREATE TABLE Usuario (
     UUID_Usuario VARCHAR2 (50) PRIMARY KEY,
     nombre VARCHAR2 (100) NOT NULL,
-    id_grado INT NOT NULL,
+    id_grado INT,
     id_rol INT NOT NULL,
-    id_comite INT NOT NULL,
-    contraseña VARCHAR2 (30) NOT NULL,
+    id_comite INT,
+    contraseña VARCHAR2 (64) NOT NULL,
     correo_electronico VARCHAR2 (100) NOT NULL,
-    FOREIGN KEY (id_grado) REFERENCES Grado (id_grado),
-    FOREIGN KEY (id_rol) REFERENCES Rol (id_rol),
-    FOREIGN KEY (id_comite) REFERENCES Comite (id_comite)
+    FOREIGN KEY (id_grado) REFERENCES Grado (id_grado),        //LLAVE FORANEA RELACIONADA CON LA TABLA Grado
+    FOREIGN KEY (id_rol) REFERENCES Rol (id_rol),              //LLAVE FORANEA RELACIONADA CON LA TABLA Rol
+    FOREIGN KEY (id_comite) REFERENCES Comite (id_comite)      //LLAVE FORANEA RELACIONADA CON LA TABLA Comite
 );
 
 SELECT * FROM Usuario;
 DROP TABLE Usuario
 
-INSERT INTO Usuario (UUID_Usuario, nombre, id_grado, id_rol, id_comite, contraseña, correo_electronico) VALUES (1, 'Juan Pérez', 1, 1, 1, '123', 'juan.perez@ricaldone.edu.sv');
-INSERT INTO Usuario (UUID_Usuario, nombre, id_grado, id_rol, id_comite, contraseña, correo_electronico) VALUES (2, 'María López', 2, 1, 2, '123', 'maria.lopez@ricaldone.edu.sv');
-INSERT INTO Usuario (UUID_Usuario, nombre, id_grado, id_rol, id_comite, contraseña, correo_electronico) VALUES (3, 'Manuel Saravia', 1, 1, 3, '777', 'manuel@ricaldone.edu.sv');
+INSERT INTO Usuario (UUID_Usuario, nombre, id_grado, id_rol, id_comite, contraseña, correo_electronico) 
+VALUES (1, 'Juan Pérez', 1, 1, 1, '123', 'juan.perez@ricaldone.edu.sv');
+INSERT INTO Usuario (UUID_Usuario, nombre, id_grado, id_rol, id_comite, contraseña, correo_electronico) 
+VALUES (2, 'María López', 2, 1, 2, '123', 'maria.lopez@ricaldone.edu.sv');
+INSERT INTO Usuario (UUID_Usuario, nombre, id_grado, id_rol, id_comite, contraseña, correo_electronico) 
+VALUES (3, 'Manuel Saravia', 1, 1, 3, '777', 'manuel@ricaldone.edu.sv');
 
 
-///////// TABLA GRADO
+///////// TABLA GRADO, PERMITE TENER EL REGISTRO DE LOS GRADOS A LOS QUE CORRESPONDE CADA ESTUDIANTE
 
 CREATE TABLE Grado (
     id_grado INT PRIMARY KEY,
@@ -72,7 +92,8 @@ DROP TABLE Grado
 INSERT INTO Grado (id_grado, grado) VALUES (1, 'Primer año');
 INSERT INTO Grado (id_grado, grado) VALUES (2, 'Segundo año');
 
-///////// TABLA ROL
+///////// TABLA ROL, LOS 3 ROLES DE USUARIO ESTARÁN REGISTRADOS EN ESTA TABLA, TODO CON EL FIN DE PODER LLEVAR UN ORDEN Y QUE 
+///////// CADA NIVÉL DE USUARIO TENGA SUS PRIVILEGIOS, SIENDO EL ADMIN EL QUE TIENE ACCESO A TODOS
 
 CREATE TABLE Rol (
     id_rol INT PRIMARY KEY,
@@ -86,7 +107,8 @@ INSERT INTO Rol (id_rol, tipo_rol) VALUES (1, 'Estudiante');
 INSERT INTO Rol (id_rol, tipo_rol) VALUES (2, 'Coordinador');
 INSERT INTO Rol (id_rol, tipo_rol) VALUES (3, 'Administrador');
 
-///////// TABLA COMITE
+///////// TABLA COMITE, EN ESTA TABLA ESTAN REGISTRADOS LOS DIFERENTES COMITES LOS CUÁLES REALIZAN DIFERENTES EVENTOS PARA QUE CADA ESTUDIANTE 
+///////// PUEDA REALIZAR SU SERVICIO SOCIAL SEGÚN EL COMITÉ QUE ELIGIÓ
 
 CREATE TABLE Comite (
     id_comite INT PRIMARY KEY,
@@ -98,23 +120,32 @@ CREATE TABLE Comite (
 SELECT * FROM Comite;
 DROP TABLE Comite
 
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (1, 'Seguridad y emergencia', 'Encargado de la seguridad del instituto, primeros auxilios y control en situaciones de riesgo', 10);
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (2, 'Deportivo', 'Organizadores de los eventos deportivos del instituto', 8);
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (3, 'Logistica', 'Organizadores de los eventos deportivos del instituto', 35);
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (4, 'Comunicaciones', 'Organizadores de los eventos deportivos del instituto', 23);
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (5, 'Social y protocolo', 'Organizadores de los eventos deportivos del instituto', 10);
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (6, 'Tecnico Cientifico', 'Organizadores de los eventos deportivos del instituto', 35);
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (7, 'Medio Ambiente', 'Organizadores de los eventos deportivos del instituto', 22);
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (8, 'Vida Comunitaria', 'Organizadores de los eventos deportivos del instituto', 20);
-INSERT INTO Comite (id_comite, comite, descripcion, cupos) VALUES (9, 'Cultural', 'Organizadores de los eventos deportivos del instituto', 15);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos) 
+VALUES (1, 'Seguridad y emergencia', 'Encargado de la seguridad del instituto, primeros auxilios y control en situaciones de riesgo', 10);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos) 
+VALUES (2, 'Deportivo', 'Organizadores de los eventos deportivos del instituto', 8);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos) 
+VALUES (3, 'Logistica', 'Organizadores de los eventos deportivos del instituto', 35);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos) 
+VALUES (4, 'Comunicaciones', 'Organizadores de los eventos deportivos del instituto', 23);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos)
+VALUES (5, 'Social y protocolo', 'Organizadores de los eventos deportivos del instituto', 10);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos) 
+VALUES (6, 'Tecnico Cientifico', 'Organizadores de los eventos deportivos del instituto', 35);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos) 
+VALUES (7, 'Medio Ambiente', 'Organizadores de los eventos deportivos del instituto', 22);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos) 
+VALUES (8, 'Vida Comunitaria', 'Organizadores de los eventos deportivos del instituto', 20);
+INSERT INTO Comite (id_comite, comite, descripcion, cupos) 
+VALUES (9, 'Cultural', 'Organizadores de los eventos deportivos del instituto', 15);
 
-///////// TABLA RECLAMO
+///////// TABLA RECLAMO, ESTA TABLA REGISTRA Y ADMINISTRA LOS MENSAJES QUE PERMITIRÁN LA INTERACCIÓN ENTRE USUARIOS POR MEDIO DE TEXTO
 
 CREATE TABLE Reclamo (
     id_mensaje INT PRIMARY KEY,
     UUID_Usuario VARCHAR2 (50) NOT NULL,
     mensaje VARCHAR2 (300) NOT NULL,
-    FOREIGN KEY (UUID_Usuario) REFERENCES Usuario (UUID_Usuario)
+    FOREIGN KEY (UUID_Usuario) REFERENCES Usuario (UUID_Usuario) //LLAVE FORANEA RELACIONADA CON LA TABLA Usuario
 ); 
 
 SELECT * FROM Reclamo;
@@ -124,20 +155,22 @@ INSERT INTO Reclamo (id_mensaje, UUID_Usuario, mensaje) VALUES (1, 1, 'Tengo un 
 INSERT INTO Reclamo (id_mensaje, UUID_Usuario, mensaje) VALUES (2, 2, 'Falta de coordinacion en mis horas sociales');
 
 
-///////// TABLA EXPEDIENTE
+///////// TABLA EXPEDIENTE, ESTA TABLA LLEVA EL REGISTRO DE LAS HORAS SOCIALES DE CADA ESTUDIANTE SEGÚN SU ID, PARA PODER VER EL 
+///////// HISTORIAL DE LAS HORAS SOCIALES QUE LLEVA
 
 CREATE TABLE Expediente (
     UUID_expediente VARCHAR2(50) PRIMARY KEY,
-    UUID_Evento VARCHAR2(50) NOT NULL,
+    UUID_Usuario Varchar2(50) NOT NULL,
     nombre_evento VARCHAR2(100) NOT NULL,
     horas_agregadas INT NOT NULL,
-    FOREIGN KEY (UUID_Evento) REFERENCES Eventos(UUID_Evento)
+    FOREIGN KEY (UUID_Usuario) REFERENCES Usuario (UUID_Usuario)  //LLAVE FORANEA RELACIONADA CON LA TABLA Usuario
 );
 
 SELECT * FROM Expediente;
 DROP TABLE Expediente
 
-///////// TABLA AUDITORIA
+///////// TABLA AUDITORIA, ESTA TABLA CUMPLE LA NECESIDAD DE LLEVAR EL REGISTRO DE CADA ACCIÓN REALIZADA EN LAS TABLAS 
+///////// LAS CUÁLES REQUIEREN DE ACCIONES COMO INSERTAR Y ELIMINAR, ADEMÁS DE REGISTRAR CUANDO Y QUIÉN REALIZÓ LA ACCIÓN
 
 CREATE TABLE Auditoria(
 usuario VARCHAR2 (50) NOT NULL,
@@ -150,9 +183,12 @@ SELECT * FROM Auditoria;
 DROP TABLE Auditoria
     
 
-///////// SECUENCIA Y TRIGGER Expediente
+///////// SECUENCIA Expediente PARA QUE EL UUID_expediente INCREMENTE DESDE 1 EN ADELANTE
 
 CREATE SEQUENCE secExpediente START WITH 1 INCREMENT BY 1;
+
+///////// TRIGGER Expediente, PERMITE UTILIZAR LA SECUENCIA QUE CREAMOS ANTERIORMENTE Y DANDOLE UNA SINTAXIS PARA QUE NO SEA TAN SIMPLE
+//////// SINÓ PONIENDOLE EL TEXTO "Expediente- HORA Y FECHA - secExpediente PARA LLEVAR ORDEN DE CADA EXPEDIENTE"
 
 CREATE OR REPLACE TRIGGER trigExpediente
 BEFORE INSERT ON Expediente
@@ -161,7 +197,25 @@ BEGIN
     :NEW.UUID_expediente := 'Expediente-' || SYSDATE || '-' || LPAD(secExpediente.NEXTVAL, 4, '0');
 END;
 
-///////// TRIGGERS INSERT Y DELETE Usuario
+///////// SECUENCIA ID_COMITES, INDICARÁ QUE EL NÚMERO DE ID INCREMENTE DE 1 EN 1, EMPEZANDO DESDE 1
+
+CREATE SEQUENCE comite_seq
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+///////// TRIGGER ID_COMITES, PERMITE QUE LA SECUENCIA CREADA ANTERIORMENTE SEA UTILIZADA EN EL "id_comite"
+
+CREATE OR REPLACE TRIGGER comite_bir
+BEFORE INSERT ON Comite
+FOR EACH ROW
+BEGIN
+  :new.id_comite := comite_seq.NEXTVAL;
+END;
+
+
+///////// TRIGGER INSERT Usuario, ESTE TRIGGER PERMITE QUE SE REGISTRE LA ACCIÓN DE INSERTAR DATOS EN LA TABLA "Usuario", QUE GUARDE CUANDO 
+///////// Y QUIÉN REALIZÓ LA INSERCIÓN EN LA TABLA AUDITORIA PERMITIENDO LLEVAR ASÍ REGISTRO DE LA ACCIÓN QUE SE HA LLEVADO A CABO
 
 CREATE OR REPLACE TRIGGER tingresoUsuario
 BEFORE INSERT ON Usuario
@@ -170,6 +224,9 @@ BEGIN
 INSERT INTO Auditoria VALUES (user, 'Insert', 'Usuarios', sysdate);
 END tingresoUsuario;
 
+///////// TRIGGER DELETE Usuario, ESTE TRIGGER PERMITE QUE SE REGISTRE LA ACCIÓN DE ELIMINIAR DATOS EN LA TABLA "Usuario",QUE GUARDE CUANDO 
+///////// Y QUIÉN ELIMINÓ EN LA TABLA AUDITORIA PERMITIENDO LLEVAR ASÍ REGISTRO DE LA ACCIÓN QUE SE HA LLEVADO A CABO
+
 CREATE OR REPLACE TRIGGER teliminarUsuario
 BEFORE DELETE ON Usuario
 FOR EACH ROW
@@ -177,7 +234,8 @@ BEGIN
 INSERT INTO Auditoria VALUES (user, 'Delete', 'Usuario', sysdate);
 END teliminarUsuario;
 
-///////// TRIGGERS INSERT Y DELETE Usuario
+///////// TRIGGER INSERT Eventos, ESTE TRIGGER PERMITE QUE SE REGISTRE LA ACCIÓN DE INSERTAR DATOS EN LA TABLA "Eventos", QUE GUARDE CUANDO 
+///////// Y QUIÉN REALIZÓ LA INSERCIÓN EN LA TABLA AUDITORIA PERMITIENDO LLEVAR ASÍ REGISTRO DE LA ACCIÓN QUE SE HA LLEVADO A CABO
 
 CREATE OR REPLACE TRIGGER tingresoEvento
 BEFORE INSERT ON Eventos
@@ -186,6 +244,9 @@ BEGIN
 INSERT INTO Auditoria VALUES (user, 'Insert', 'Eventos', sysdate);
 END tingresoEvento;
 
+///////// TRIGGER DELETE Eventos, ESTE TRIGGER PERMITE QUE SE REGISTRE LA ACCIÓN DE ELIMINIAR DATOS EN LA TABLA "Eventos",QUE GUARDE CUANDO 
+///////// Y QUIÉN ELIMINÓ EN LA TABLA AUDITORIA PERMITIENDO LLEVAR ASÍ REGISTRO DE LA ACCIÓN QUE SE HA LLEVADO A CABO
+
 CREATE OR REPLACE TRIGGER teliminarEvento
 BEFORE DELETE ON Eventos
 FOR EACH ROW
@@ -193,7 +254,8 @@ BEGIN
 INSERT INTO Auditoria VALUES (user, 'Delete', 'Eventos', sysdate);
 END teliminarEvento;
     
-///////// PROCEDIMIENTO ACTUALIZAR USUARIO
+///////// PROCEDIMIENTO ACTUALIZAR USUARIO, ESTE PROCEDIMIENTO PERMITE QUE A LA HORA DE QUE UN USUARIO CAMBIA DE GRADO O DE ROL
+///////// SEGÚN DECIDA EL ADMINISTRADOR, LE PERMITIRÁ ACTUALIZAR LOS DATOS NECESARIOS DEL USUARIO
 
 CREATE OR REPLACE PROCEDURE ACTUALIZAR_USUARIO(
 u_UUID_Usuario IN Usuario.UUID_Usuario%TYPE,
@@ -225,7 +287,7 @@ SELECT * FROM Usuario;
 COMMIT;
 
 
-///////// INNER JOIN
+///////// INNER JOIN PARA REUNIR LOS DATOS MÁS RELEVANTES DE CADA TABLA Y ASÍ PODER TENER INFORMACIÓN GENERAL DE TODAS LAS TABLAS
 
 SELECT 
     u.nombre AS Usuario,
@@ -237,5 +299,3 @@ FROM
     LEFT JOIN Grado g ON u.id_grado = g.id_grado
     LEFT JOIN Rol r ON u.id_rol = r.id_rol
     LEFT JOIN Comite c ON u.id_comite = c.id_comite
-
-            
