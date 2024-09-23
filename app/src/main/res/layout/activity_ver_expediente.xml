@@ -9,16 +9,15 @@
 
     <TableLayout
         android:id="@+id/tableExpediente"
-        android:layout_width="396dp"
-        android:layout_height="628dp"
+        android:layout_width="403dp"
+        android:layout_height="569dp"
         android:layout_margin="16dp"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:background="#CCCCCC"
@@ -35,6 +34,30 @@
     </TableLayout>
 
     <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="139dp"
+        android:layout_height="139dp"
+        android:src="@drawable/circulosadmin3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="168dp"
+        android:layout_height="181dp"
+        android:src="@drawable/circulosadmin4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
         android:id="@+id/btnAtrasa"
         android:layout_width="44dp"
         android:layout_height="40dp"
@@ -45,5 +68,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/atras" />
+
+    <ImageView
+        android:id="@+id/btnEditarExpediente"
+        android:layout_width="59dp"
+        android:layout_height="47dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954"
+        app:srcCompat="@drawable/baseline_edit_square_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

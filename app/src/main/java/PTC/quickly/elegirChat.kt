@@ -47,6 +47,7 @@ class elegirChat : AppCompatActivity() {
             val lista = mutableListOf<dcUsuario>()
             val objConexion = ClaseConexion().cadenaConexion()
             objConexion?.use { connection ->
+                // Consulta dependiendo del rol
                 val query = when (Id_rol) {
                     1 -> {
                         // Para usuarios con id_rol 1, mostrar coordinadores y administradores
@@ -54,8 +55,8 @@ class elegirChat : AppCompatActivity() {
                     }
 
                     2, 3 -> {
-                        // Para coordinadores y administradores, mostrar usuarios que han enviado mensajes
-                        "SELECT * FROM Usuario WHERE id_rol IN (1)"
+                        // Para coordinadores y administradores, mostrar usuarios con id_rol 1
+                        "SELECT * FROM Usuario WHERE id_rol = 1"
                     }
 
                     else -> return@withContext lista // Retorna lista vacía si el id_rol no es válido
@@ -63,14 +64,9 @@ class elegirChat : AppCompatActivity() {
 
                 val statement = connection.prepareStatement(query)
 
-
-                if (Id_rol == 2 || Id_rol == 3) {
-                    statement.setString(1, UUID_usuario)
-                }
-
                 val resultSet = statement.executeQuery()
 
-
+                // Procesar los resultados
                 while (resultSet.next()) {
                     val id_usuario = resultSet.getString("UUID_Usuario")
                     val nombre = resultSet.getString("nombre")

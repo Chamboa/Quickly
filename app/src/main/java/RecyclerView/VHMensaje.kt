@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class VHMensaje(vista: View) : RecyclerView.ViewHolder(vista){
-    val tvMensaje: TextView = vista.findViewById(R.id.textMensaje)
-    val tvHora: TextView = vista.findViewById(R.id.horaMensaje)
+    val tvMensaje: TextView = vista.findViewById(R.id.tvMensaje)
+    val tvHora: TextView = vista.findViewById(R.id.tvFecha)
 
 }

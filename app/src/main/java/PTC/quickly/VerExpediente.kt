@@ -20,9 +20,10 @@ class VerExpediente : AppCompatActivity() {
 
     companion object {
         var UUID_USUARIO: String = ""
+        var UUID_Expediente_Seleccionado: String = ""
     }
-    private var UUID_Alumno = AdVerExpedienteAlumnos.UUID_alumno
 
+    private var UUID_Alumno = AdVerExpedienteAlumnos.UUID_alumno
     var UUID_Login = Login.userUUID
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +36,7 @@ class VerExpediente : AppCompatActivity() {
         btnAtras.setOnClickListener {
             finish()
         }
+
         Log.d("VerExpediente", "UUID_USUARIO: $UUID_USUARIO")
 
         lifecycleScope.launch {
@@ -60,7 +62,6 @@ class VerExpediente : AppCompatActivity() {
             try {
                 val objConexion = ClaseConexion().cadenaConexion()
                 objConexion?.use { connection ->
-                    // Primero obtenemos el id_rol del usuario usando el UUID_Login
                     val queryRol = "SELECT id_rol FROM Usuario WHERE UUID_Usuario = ?"
                     val statementRol = connection.prepareStatement(queryRol)
                     statementRol.setString(1, UUID_Login)
@@ -68,30 +69,21 @@ class VerExpediente : AppCompatActivity() {
 
                     if (resultSetRol.next()) {
                         val idRol = resultSetRol.getInt("id_rol")
-
-                        // Consulta según el rol del usuario
                         val queryExpedientes = when (idRol) {
-                            1 -> "SELECT nombre_evento, horas_agregadas FROM Expediente WHERE UUID_Usuario = ?"
-                            2 -> "SELECT nombre_evento, horas_agregadas FROM Expediente WHERE UUID_Usuario IN (SELECT UUID_Usuario FROM Usuario WHERE UUID_Usuario = ?)"
-                            3 -> "SELECT nombre_evento, horas_agregadas FROM Expediente WHERE UUID_Usuario IN (SELECT UUID_Usuario FROM Usuario WHERE UUID_Usuario = ?)"
+                            1 -> "SELECT nombre_evento, horas_agregadas, UUID_Expediente FROM Expediente WHERE UUID_Usuario = ?"
+                            2, 3 -> "SELECT nombre_evento, horas_agregadas, UUID_Expediente FROM Expediente WHERE UUID_Usuario IN (SELECT UUID_Usuario FROM Usuario WHERE UUID_Usuario = ?)"
                             else -> throw Exception("Rol no autorizado para ver expedientes")
                         }
 
                         val statementExpedientes = connection.prepareStatement(queryExpedientes)
-                        if (idRol == 1) {
-                            statementExpedientes.setString(1, UUID_Login)
-                        }
-                        if (idRol == 2 || idRol == 3) {
-                            statementExpedientes.setString(1, UUID_Alumno)
-                        }
-
-
+                        statementExpedientes.setString(1, if (idRol == 1) UUID_Login else UUID_Alumno)
                         val resultSetExpedientes = statementExpedientes.executeQuery()
 
                         while (resultSetExpedientes.next()) {
                             val expediente = Expediente(
                                 resultSetExpedientes.getString("nombre_evento"),
-                                resultSetExpedientes.getInt("horas_agregadas")
+                                resultSetExpedientes.getInt("horas_agregadas"),
+                                resultSetExpedientes.getString("UUID_Expediente")
                             )
                             lista.add(expediente)
                         }
@@ -109,11 +101,10 @@ class VerExpediente : AppCompatActivity() {
 
     private fun mostrarExpedientes(expedientes: List<Expediente>, tableLayout: TableLayout) {
         runOnUiThread {
-            tableLayout.removeAllViews() // Limpia la tabla antes de agregar nuevas filas
+            tableLayout.removeAllViews()
 
-            // Agrega la fila de encabezado
             val headerRow = TableRow(this)
-            listOf("Nombre Evento", "Horas Agregadas").forEach { headerText ->
+            listOf("Nombre Evento", "Horas Agregadas", "Acciones").forEach { headerText ->
                 headerRow.addView(TextView(this).apply {
                     text = headerText
                     setPadding(5, 5, 5, 5)
@@ -136,6 +127,21 @@ class VerExpediente : AppCompatActivity() {
                     })
                 }
 
+                val editButton = ImageView(this).apply {
+                    setImageResource(android.R.drawable.ic_menu_edit)
+                    setPadding(5, 5, 5, 5)
+                    setOnClickListener {
+                        UUID_Expediente_Seleccionado = expediente.uuidExpediente  // Guardar el UUID del expediente seleccionado
+                        val intent = Intent(this@VerExpediente, editarExpedientes::class.java).apply {
+                            putExtra("uuidExpediente", expediente.uuidExpediente)
+                            putExtra("nombreEvento", expediente.nombreEvento)
+                            putExtra("horasAgregadas", expediente.horasAgregadas)
+                        }
+                        startActivity(intent)  // Iniciar la actividad de edición
+                    }
+                }
+                tableRow.addView(editButton)
+
                 tableLayout.addView(tableRow)
             }
         }
@@ -155,6 +161,7 @@ class VerExpediente : AppCompatActivity() {
 
     data class Expediente(
         val nombreEvento: String,
-        val horasAgregadas: Int
+        val horasAgregadas: Int,
+        val uuidExpediente: String = ""
     )
 }

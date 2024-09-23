@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/mensaje_recibido"/> <!-- Cambia esto por el color que prefieras -->
+    <corners android:radius="8dp"/>
+</shape>

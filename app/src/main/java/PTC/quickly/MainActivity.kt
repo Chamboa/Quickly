@@ -1,5 +1,10 @@
 package PTC.quickly
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import PTC.quickly.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatDelegate
 import android.view.Menu
 import androidx.navigation.NavController
 
@@ -18,6 +24,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Crear el canal de notificación
+        createNotificationChannel()
+
+        // Cargar el tema de acuerdo a las preferencias
+        loadTheme()
 
         // Cargar los datos del usuario desde SharedPreferences
         loadUserData()
@@ -43,6 +55,24 @@ class MainActivity : AppCompatActivity() {
         Login.userRoleId?.let { navigateToInitialScreen(it) }
     }
 
+    // Crear el canal de notificación para Android 8.0 (Oreo) y versiones superiores
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "event_channel"
+            val channelName = "Eventos"
+            val channelDescription = "Notificaciones sobre eventos agregados"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+
+            val channel = NotificationChannel(channelId, channelName, importance).apply {
+                description = channelDescription
+            }
+
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
     private fun loadUserData() {
         val sharedPref = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
         Login.userUUID = sharedPref.getString("userUUID", "") ?: ""
@@ -56,17 +86,14 @@ class MainActivity : AppCompatActivity() {
             3 -> { // Administrador
                 menu.findItem(R.id.pantalla_admin)?.isVisible = true
                 menu.findItem(R.id.calendario_b)?.isVisible = true
-                // Configurar otros ítems según sea necesario
             }
             2 -> { // Coordinador
                 menu.findItem(R.id.pantalla_coordinador)?.isVisible = true
                 menu.findItem(R.id.calendario_b)?.isVisible = true
-                // Configurar otros ítems según sea necesario
             }
             1 -> { // Alumno
                 menu.findItem(R.id.pantalla_alumno)?.isVisible = true
                 menu.findItem(R.id.calendario_b)?.isVisible = true
-                // Configurar otros ítems según sea necesario
             }
         }
     }
@@ -79,5 +106,16 @@ class MainActivity : AppCompatActivity() {
             else -> R.id.pantalla_perfil
         }
         navController.navigate(initialDestination)
+    }
+
+    // Cargar el tema guardado
+    private fun loadTheme() {
+        val sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val isNightMode = sharedPreferences.getBoolean("NightMode", false)
+        if (isNightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 }

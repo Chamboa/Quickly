@@ -38,16 +38,18 @@ class Bandeja_chat : AppCompatActivity() {
             insets
         }
 
-        var ID_Rol = Login.userRoleId
-        UUID_remitente = Login.userUUID
-        UUID_destinatario = AdChat.UUID
+        // Obtener el UUID del remitente y del destinatario
+        UUID_remitente = Login.userUUID  // Usuario que inició sesión
+        UUID_destinatario = AdChat.UUID   // Usuario seleccionado en el chat
 
         rcvChat = findViewById(R.id.rcvMensajes)
         txtmensaje = findViewById(R.id.editTextText)
         btnenviar = findViewById(R.id.button)
 
         rcvChat.layoutManager = LinearLayoutManager(this)
-        adapter = AdMensaje(mutableListOf())
+
+        // Pasar el UUID_remitente al adaptador
+        adapter = AdMensaje(mutableListOf(), UUID_remitente!!)
         rcvChat.adapter = adapter
 
         // Iniciar la actualización periódica de mensajes
@@ -57,6 +59,7 @@ class Bandeja_chat : AppCompatActivity() {
             val mensaje = txtmensaje.text.toString().trim()
             if (mensaje.isNotEmpty()) {
                 enviarMensaje(mensaje)
+                println("Mensaje enviado: $mensaje")
             } else {
                 Toast.makeText(this, "El mensaje no puede estar vacío", Toast.LENGTH_SHORT).show()
             }
@@ -116,11 +119,13 @@ class Bandeja_chat : AppCompatActivity() {
             return
         }
 
+        // Obtener la hora de envío
         val horaEnvio = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
 
         coroutineScope.launch(Dispatchers.IO) {
             val objConexion = ClaseConexion().cadenaConexion()
             objConexion?.use { conexion ->
+                // Obtener el próximo id para el mensaje
                 val stmt = conexion.createStatement()
                 val resultSet = stmt.executeQuery("SELECT secuencia_mensaje_id.NEXTVAL FROM dual")
                 var id_mensaje = 0
@@ -128,14 +133,17 @@ class Bandeja_chat : AppCompatActivity() {
                     id_mensaje = resultSet.getInt(1)
                 }
 
+                // Insertar el nuevo mensaje en la base de datos
                 val insertarMensaje = conexion.prepareStatement(
                     "INSERT INTO Reclamo (id_mensaje, UUID_remitente, UUID_destinatario, mensaje, fecha) VALUES (?, ?, ?, ?, TO_DATE(?, 'HH24:MI:SS'))"
                 )
-
                 insertarMensaje.setInt(1, id_mensaje)
+                println("UUID_remitente: $UUID_remitente")
                 insertarMensaje.setString(2, UUID_remitente)
+                println("UUID_destinatario: $UUID_destinatario")
                 insertarMensaje.setString(3, UUID_destinatario)
                 insertarMensaje.setString(4, mensaje)
+                println("Hora de envío: $horaEnvio")
                 insertarMensaje.setString(5, horaEnvio)
 
                 insertarMensaje.executeUpdate()
