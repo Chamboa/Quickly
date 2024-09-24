@@ -2,7 +2,6 @@ package com.example.ptc1.RecyclerView
 
 import PTC.quickly.Login
 import PTC.quickly.R
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,11 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ptc1.modelo.dcChat
+import android.view.Gravity
 
 class AdMensaje(
     private var listaMensajes: MutableList<dcChat>,
-    private val UUID_usuarioLogueado: String // El UUID del usuario que inició sesión
+    val UUID_usuarioLogueado: String = ""
 ) : RecyclerView.Adapter<AdMensaje.MensajeViewHolder>() {
 
     class MensajeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -35,26 +35,36 @@ class AdMensaje(
         holder.tvMensaje.text = mensaje.mensaje
         holder.tvFecha.text = mensaje.fecha
 
-        val layoutParams = holder.cardMensaje.layoutParams as ViewGroup.MarginLayoutParams
+        // Obtén el UUID del remitente de este mensaje
+        val UUID_remitenteMensaje = mensaje.UUID_remitente
 
-        // Verificamos si el mensaje fue enviado por el usuario logueado
-        if (mensaje.UUID_remitente == UUID_usuarioLogueado) {
-            // Mensaje enviado por el usuario (alinear a la derecha)
+        println("UUID del remitente del mensaje: $UUID_remitenteMensaje")
+        println("UUID del usuario logueado: $UUID_usuarioLogueado")
+
+        // Ajuste de márgenes y alineación de la CardView completa
+        val layoutParams = holder.cardMensaje.layoutParams as RecyclerView.LayoutParams
+
+        if (UUID_remitenteMensaje == UUID_usuarioLogueado) {
+            // Mensaje enviado por el usuario (alinear CardView a la derecha)
             holder.containerMensaje.gravity = Gravity.END
             layoutParams.marginEnd = 16 // Margen a la derecha
-            layoutParams.marginStart = 10 // Pequeño margen a la izquierda
+            layoutParams.marginStart = 850 // Margen a la izquierda
             holder.cardMensaje.layoutParams = layoutParams
+
+            // Cambiar el color de fondo para los mensajes enviados
             holder.cardMensaje.setCardBackgroundColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.mensaje_enviado)
+                ContextCompat.getColor(holder.itemView.context, R.color.light_gren)
             )
         } else {
-            // Mensaje recibido (alinear a la izquierda)
+            // Mensaje recibido (alinear CardView a la izquierda)
             holder.containerMensaje.gravity = Gravity.START
             layoutParams.marginStart = 16 // Margen a la izquierda
-            layoutParams.marginEnd = 10 // Pequeño margen a la derecha
+            layoutParams.marginEnd = 500 // Margen a la derecha
             holder.cardMensaje.layoutParams = layoutParams
+
+            // Cambiar el color de fondo para los mensajes recibidos
             holder.cardMensaje.setCardBackgroundColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.mensaje_recibido)
+                ContextCompat.getColor(holder.itemView.context, R.color.light_blue)
             )
         }
     }

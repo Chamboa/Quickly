@@ -28,6 +28,11 @@ class Bandeja_chat : AppCompatActivity() {
     private var UUID_destinatario: String? = null
     private val coroutineScope = CoroutineScope(Dispatchers.Main + Job())
 
+    companion object {
+        var UUIDa: String? = null
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -94,7 +99,9 @@ class Bandeja_chat : AppCompatActivity() {
             val objConexion = ClaseConexion().cadenaConexion()
             objConexion?.use { conexion ->
                 val statement = conexion.prepareStatement(
-                    "SELECT * FROM Reclamo WHERE (UUID_Remitente = ? AND UUID_Destinatario = ?) OR (UUID_Remitente = ? AND UUID_Destinatario = ?) ORDER BY fecha"
+                    "SELECT id_mensaje, mensaje, fecha, UUID_Remitente FROM Reclamo " +
+                            "WHERE (UUID_Remitente = ? AND UUID_Destinatario = ?) OR " +
+                            "(UUID_Remitente = ? AND UUID_Destinatario = ?) ORDER BY fecha"
                 )
                 statement.setString(1, UUID_remitente)
                 statement.setString(2, UUID_destinatario)
@@ -106,7 +113,17 @@ class Bandeja_chat : AppCompatActivity() {
                     val id_mensaje = resultSet.getInt("id_mensaje")
                     val mensaje = resultSet.getString("mensaje")
                     val fecha = resultSet.getString("fecha")
-                    lista.add(dcChat(id_mensaje, mensaje, fecha))
+                    val UUID_remitenteMensaje = resultSet.getString("UUID_Remitente") // Asegúrate de usar el nombre correcto de la columna
+
+                    // Comprobar si el UUID_remitenteMensaje es null
+                    if (UUID_remitenteMensaje == null) {
+                        println("Error: UUID_remitente es nulo para el mensaje con id: $id_mensaje")
+                    } else {
+                        println("UUID del remitente del mensaje: $UUID_remitenteMensaje")
+                    }
+
+                    // Añadir el mensaje a la lista con el UUID remitente
+                    lista.add(dcChat(id_mensaje, mensaje, fecha, UUID_remitenteMensaje ?: ""))
                 }
             }
             lista
