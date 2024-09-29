@@ -1,10 +1,14 @@
 package com.example.ptc1.RecyclerViewRegistroCuenta
 
+import PTC.quickly.ActualizarFotodePerfil
 import PTC.quickly.R
+import android.content.Intent
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -21,11 +25,22 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
 
     data class Comite(val idComite: Int, val nombre: String)
 
-    // Función para calcular el hash SHA-512 de una contraseña
+    // Función para calcular el hash SHA-256 de una contraseña
     private fun hashPassword(password: String): String {
-        val md = MessageDigest.getInstance("SHA-512")
+        val md = MessageDigest.getInstance("SHA-256")
         val hashedBytes = md.digest(password.toByteArray())
         return hashedBytes.joinToString("") { "%02x".format(it) }
+    }
+
+    // Función para validar la contraseña
+    private fun validarContraseña(contraseña: String): Boolean {
+        return contraseña.length >= 8 && contraseña.any { it.isDigit() } && contraseña.any { it.isLetter() } && contraseña.any { !it.isLetterOrDigit() }
+    }
+
+    // Función para validar el correo electrónico con el dominio @ricaldone.edu.sv
+    private fun validarCorreo(correo: String): Boolean {
+        val dominioValido = "@ricaldone.edu.sv"
+        return correo.endsWith(dominioValido) && Patterns.EMAIL_ADDRESS.matcher(correo).matches()
     }
 
     fun actualizarPantallaRegistroCuenta(uuid: String, nuevaContraseña: String?, nuevoCorreo: String, nuevoIdComite: Int) {
@@ -45,39 +60,39 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
             val listaDatos = Datos.toMutableList()
             val objConexion = ClaseConexion().cadenaConexion()
 
-                // Eliminar las relaciones en la base de datos
-                val borrarAsistencia = objConexion?.prepareStatement("DELETE FROM Asistencia WHERE UUID_Evento IN (SELECT UUID_Evento FROM Eventos WHERE UUID_Usuario = ?)")
-                borrarAsistencia?.setString(1, uuid)
-                borrarAsistencia?.executeUpdate()
+            // Eliminar las relaciones en la base de datos
+            val borrarAsistencia = objConexion?.prepareStatement("DELETE FROM Asistencia WHERE UUID_Evento IN (SELECT UUID_Evento FROM Eventos WHERE UUID_Usuario = ?)")
+            borrarAsistencia?.setString(1, uuid)
+            borrarAsistencia?.executeUpdate()
 
-                val borrarEvento = objConexion?.prepareStatement("DELETE FROM Eventos WHERE UUID_Usuario = ?")
-                borrarEvento?.setString(1, uuid)
-                borrarEvento?.executeUpdate()
+            val borrarEvento = objConexion?.prepareStatement("DELETE FROM Eventos WHERE UUID_Usuario = ?")
+            borrarEvento?.setString(1, uuid)
+            borrarEvento?.executeUpdate()
 
-                val borrarReclamo = objConexion?.prepareStatement("DELETE FROM Reclamo WHERE UUID_Remitente = ? OR UUID_Destinatario = ?")
-                borrarReclamo?.setString(1, uuid)
-                borrarReclamo?.setString(2, uuid)
-                borrarReclamo?.executeUpdate()
+            val borrarReclamo = objConexion?.prepareStatement("DELETE FROM Reclamo WHERE UUID_Remitente = ? OR UUID_Destinatario = ?")
+            borrarReclamo?.setString(1, uuid)
+            borrarReclamo?.setString(2, uuid)
+            borrarReclamo?.executeUpdate()
 
-                val borrarExpediente = objConexion?.prepareStatement("DELETE FROM Expediente WHERE UUID_Usuario = ?")
-                borrarExpediente?.setString(1, uuid)
-                borrarExpediente?.executeUpdate()
+            val borrarExpediente = objConexion?.prepareStatement("DELETE FROM Expediente WHERE UUID_Usuario = ?")
+            borrarExpediente?.setString(1, uuid)
+            borrarExpediente?.executeUpdate()
 
-                val borrarUsuario = objConexion?.prepareStatement("DELETE FROM Usuario WHERE UUID_Usuario = ?")
-                borrarUsuario?.setString(1, uuid)
-                borrarUsuario?.executeUpdate()
+            val borrarUsuario = objConexion?.prepareStatement("DELETE FROM Usuario WHERE UUID_Usuario = ?")
+            borrarUsuario?.setString(1, uuid)
+            borrarUsuario?.executeUpdate()
 
-                val commit = objConexion?.prepareStatement("COMMIT")
-                commit?.executeUpdate()
+            val commit = objConexion?.prepareStatement("COMMIT")
+            commit?.executeUpdate()
 
-                // Actualizar la lista en la aplicación después de eliminar
-                listaDatos.removeAt(position)
+            // Actualizar la lista en la aplicación después de eliminar
+            listaDatos.removeAt(position)
 
-                withContext(Dispatchers.Main) {
-                    Datos = listaDatos
-                    notifyItemRemoved(position)
-                    notifyDataSetChanged()
-                }
+            withContext(Dispatchers.Main) {
+                Datos = listaDatos
+                notifyItemRemoved(position)
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -161,6 +176,13 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
             val etContraseña = dialogView.findViewById<EditText>(R.id.etContraseña)
             val etCorreo = dialogView.findViewById<EditText>(R.id.etCorreo)
             val spinnerComite = dialogView.findViewById<Spinner>(R.id.spCommite)
+            val btnActualizarIMG = dialogView.findViewById<ImageButton>(R.id.imgActualizarIMG)
+
+            btnActualizarIMG.setOnClickListener {
+                val intent = Intent(context, ActualizarFotodePerfil::class.java)
+                intent.putExtra("uuid", item.uuid)
+                context.startActivity(intent)
+            }
 
             etContraseña.setText("")
             etCorreo.setText(item.correoElectronico)
@@ -185,10 +207,15 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
                         val nuevoCorreo = etCorreo.text.toString()
                         val nuevoIdComite = comites[spinnerComite.selectedItemPosition].idComite
 
-                        if (nuevoCorreo.isNotEmpty()) {
-                            editarRegistroUsuario(item.uuid, nuevaContraseña, nuevoCorreo, nuevoIdComite)
+                        // Validaciones antes de actualizar
+                        if (nuevoCorreo.isNotEmpty() && validarCorreo(nuevoCorreo)) {
+                            if (nuevaContraseña == null || validarContraseña(nuevaContraseña)) {
+                                editarRegistroUsuario(item.uuid, nuevaContraseña, nuevoCorreo, nuevoIdComite)
+                            } else {
+                                Toast.makeText(context, "La contraseña debe tener al menos 8 caracteres, incluir letras, números y caracteres especiales", Toast.LENGTH_SHORT).show()
+                            }
                         } else {
-                            Toast.makeText(context, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Por favor, introduce un correo válido que termine en @ricaldone.edu.sv", Toast.LENGTH_SHORT).show()
                         }
                     }
 

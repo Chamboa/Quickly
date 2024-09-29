@@ -21,6 +21,8 @@ class MostrarEventos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mostrar_eventos)
+        supportActionBar?.hide()
+
 
         // Configurar el padding para el sistema de barras de la pantalla
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

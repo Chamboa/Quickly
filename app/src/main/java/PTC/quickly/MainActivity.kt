@@ -3,7 +3,6 @@ package PTC.quickly
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -16,6 +15,7 @@ import PTC.quickly.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatDelegate
 import android.view.Menu
 import androidx.navigation.NavController
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,23 +23,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        loadTheme()
         super.onCreate(savedInstanceState)
 
-        // Crear el canal de notificación
         createNotificationChannel()
-
-        // Cargar el tema de acuerdo a las preferencias
-        loadTheme()
-
-        // Cargar los datos del usuario desde SharedPreferences
         loadUserData()
-
         supportActionBar?.hide()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-
         navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         val appBarConfiguration = AppBarConfiguration(
@@ -48,20 +41,26 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // Configurar la visibilidad de los ítems del menú según el rol
         Login.userRoleId?.let { configureNavigationForRole(it, navView.menu) }
-
-        // Navegar a la pantalla inicial según el rol
         Login.userRoleId?.let { navigateToInitialScreen(it) }
+
+        // Suscribirse al tema global "all" para recibir notificaciones push globales
+        FirebaseMessaging.getInstance().subscribeToTopic("all")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    println("Suscrito al tema 'all' para recibir notificaciones globales")
+                } else {
+                    println("Error al suscribirse al tema 'all'")
+                }
+            }
     }
 
-    // Crear el canal de notificación para Android 8.0 (Oreo) y versiones superiores
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = "event_channel"
-            val channelName = "Eventos"
-            val channelDescription = "Notificaciones sobre eventos agregados"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channelId = "global_notifications"
+            val channelName = "Global Notifications"
+            val channelDescription = "Notificaciones globales para eventos"
+            val importance = NotificationManager.IMPORTANCE_HIGH
 
             val channel = NotificationChannel(channelId, channelName, importance).apply {
                 description = channelDescription
@@ -83,15 +82,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun configureNavigationForRole(roleId: Int, menu: Menu) {
         when (roleId) {
-            3 -> { // Administrador
+            3 -> {
                 menu.findItem(R.id.pantalla_admin)?.isVisible = true
                 menu.findItem(R.id.calendario_b)?.isVisible = true
             }
-            2 -> { // Coordinador
+            2 -> {
                 menu.findItem(R.id.pantalla_coordinador)?.isVisible = true
                 menu.findItem(R.id.calendario_b)?.isVisible = true
             }
-            1 -> { // Alumno
+            1 -> {
                 menu.findItem(R.id.pantalla_alumno)?.isVisible = true
                 menu.findItem(R.id.calendario_b)?.isVisible = true
             }
@@ -108,7 +107,6 @@ class MainActivity : AppCompatActivity() {
         navController.navigate(initialDestination)
     }
 
-    // Cargar el tema guardado
     private fun loadTheme() {
         val sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
         val isNightMode = sharedPreferences.getBoolean("NightMode", false)

@@ -23,12 +23,15 @@ class VerExpediente : AppCompatActivity() {
         var UUID_Expediente_Seleccionado: String = ""
     }
 
+    val id_rol = Login.userRoleId  // Rol del usuario que inició sesión
+
     private var UUID_Alumno = AdVerExpedienteAlumnos.UUID_alumno
     var UUID_Login = Login.userUUID
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_expediente)
+        supportActionBar?.hide()
 
         val tableLayout = findViewById<TableLayout>(R.id.tableExpediente)
         val btnAtras = findViewById<ImageView>(R.id.btnAtrasa)
@@ -127,20 +130,23 @@ class VerExpediente : AppCompatActivity() {
                     })
                 }
 
-                val editButton = ImageView(this).apply {
-                    setImageResource(android.R.drawable.ic_menu_edit)
-                    setPadding(5, 5, 5, 5)
-                    setOnClickListener {
-                        UUID_Expediente_Seleccionado = expediente.uuidExpediente  // Guardar el UUID del expediente seleccionado
-                        val intent = Intent(this@VerExpediente, editarExpedientes::class.java).apply {
-                            putExtra("uuidExpediente", expediente.uuidExpediente)
-                            putExtra("nombreEvento", expediente.nombreEvento)
-                            putExtra("horasAgregadas", expediente.horasAgregadas)
+                // Verificación para mostrar el botón de edición solo si el id_rol es 2 o 3
+                if (id_rol == 2 || id_rol == 3) {
+                    val editButton = ImageView(this).apply {
+                        setImageResource(android.R.drawable.ic_menu_edit)
+                        setPadding(5, 5, 5, 5)
+                        setOnClickListener {
+                            UUID_Expediente_Seleccionado = expediente.uuidExpediente  // Guardar el UUID del expediente seleccionado
+                            val intent = Intent(this@VerExpediente, editarExpedientes::class.java).apply {
+                                putExtra("uuidExpediente", expediente.uuidExpediente)
+                                putExtra("nombreEvento", expediente.nombreEvento)
+                                putExtra("horasAgregadas", expediente.horasAgregadas)
+                            }
+                            startActivity(intent)  // Iniciar la actividad de edición
                         }
-                        startActivity(intent)  // Iniciar la actividad de edición
                     }
+                    tableRow.addView(editButton)
                 }
-                tableRow.addView(editButton)
 
                 tableLayout.addView(tableRow)
             }

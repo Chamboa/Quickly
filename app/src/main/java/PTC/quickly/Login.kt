@@ -35,6 +35,8 @@ class Login : AppCompatActivity() {
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_login)
+        supportActionBar?.hide()
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -83,15 +85,16 @@ class Login : AppCompatActivity() {
             val Contrasena = txtcontralogin.text.toString()
             var hayErrores = false
 
-            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.]+[a-z]+"))) {
-                txtcorreologin.error = "Ingresa los datos que se te piden"
+            // Aquí cambiamos la validación para que el correo termine en @ricaldone.edu.sv
+            if (!Correo.endsWith("@ricaldone.edu.sv")) {
+                txtcorreologin.error = "Tu correo debe terminar en @ricaldone.edu.sv"
                 hayErrores = true
             } else {
                 txtcorreologin.error = null
             }
 
             if (Contrasena.length <= 7) {
-                txtcontralogin.error = "Ingresa los datos que se te piden"
+                txtcontralogin.error = "La contraseña debe tener más de 7 caracteres"
                 hayErrores = true
             } else {
                 txtcontralogin.error = null

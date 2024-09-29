@@ -17,6 +17,8 @@ class Confirmar_Comite : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirmar_comite)
+        supportActionBar?.hide()
+
 
         val btnCancel = findViewById<Button>(R.id.buttonCancel)
         val lblComite = findViewById<TextView>(R.id.lblComite)

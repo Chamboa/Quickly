@@ -1,6 +1,5 @@
 package com.example.ptc1.RecyclerView
 
-import PTC.quickly.Login
 import PTC.quickly.R
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ptc1.modelo.dcChat
 import android.view.Gravity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AdMensaje(
     private var listaMensajes: MutableList<dcChat>,
@@ -38,9 +39,6 @@ class AdMensaje(
         // Obtén el UUID del remitente de este mensaje
         val UUID_remitenteMensaje = mensaje.UUID_remitente
 
-        println("UUID del remitente del mensaje: $UUID_remitenteMensaje")
-        println("UUID del usuario logueado: $UUID_usuarioLogueado")
-
         // Ajuste de márgenes y alineación de la CardView completa
         val layoutParams = holder.cardMensaje.layoutParams as RecyclerView.LayoutParams
 
@@ -48,7 +46,7 @@ class AdMensaje(
             // Mensaje enviado por el usuario (alinear CardView a la derecha)
             holder.containerMensaje.gravity = Gravity.END
             layoutParams.marginEnd = 16 // Margen a la derecha
-            layoutParams.marginStart = 850 // Margen a la izquierda
+            layoutParams.marginStart = 740 // Margen a la izquierda
             holder.cardMensaje.layoutParams = layoutParams
 
             // Cambiar el color de fondo para los mensajes enviados
@@ -59,7 +57,7 @@ class AdMensaje(
             // Mensaje recibido (alinear CardView a la izquierda)
             holder.containerMensaje.gravity = Gravity.START
             layoutParams.marginStart = 16 // Margen a la izquierda
-            layoutParams.marginEnd = 500 // Margen a la derecha
+            layoutParams.marginEnd = 320 // Margen a la derecha
             holder.cardMensaje.layoutParams = layoutParams
 
             // Cambiar el color de fondo para los mensajes recibidos
@@ -76,11 +74,21 @@ class AdMensaje(
     fun actualizarMensajes(nuevaLista: List<dcChat>) {
         listaMensajes.clear()
         listaMensajes.addAll(nuevaLista)
+
+        // Ordenar los mensajes por fecha
+        listaMensajes.sortBy { SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(it.fecha) }
+
         notifyDataSetChanged()
     }
 
     fun agregarMensaje(mensaje: dcChat) {
+        // Insertar el nuevo mensaje en la lista
         listaMensajes.add(mensaje)
-        notifyItemInserted(listaMensajes.size - 1)
+
+        // Ordenar los mensajes por fecha
+        listaMensajes.sortBy { SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(it.fecha) }
+
+        // Notificar al adaptador que se ha agregado un nuevo mensaje
+        notifyDataSetChanged()
     }
 }

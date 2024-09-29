@@ -1,5 +1,7 @@
 package PTC.quickly
 
+import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -18,6 +20,8 @@ class alert_dialog : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alert_dialog)
+        supportActionBar?.hide()
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -26,6 +30,9 @@ class alert_dialog : AppCompatActivity() {
         }
 
 
+
+
     }
+
 
 }

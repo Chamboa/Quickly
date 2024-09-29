@@ -27,6 +27,7 @@ class Recuperar_contrasena : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_recuperar_contrasena)
+
         enableEdgeToEdge()
         setContentView(R.layout.activity_recuperar_contrasena)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

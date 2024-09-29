@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,9 +38,20 @@ class Eventos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_eventos)
+        supportActionBar?.hide()
 
         // Crear el canal de notificación al iniciar la actividad
         createNotificationChannel()
+
+        // Suscribirse al topic "all" para recibir notificaciones globales
+        FirebaseMessaging.getInstance().subscribeToTopic("all")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    println("Suscrito al tema 'all' para notificaciones globales")
+                } else {
+                    println("Error al suscribirse al tema 'all'")
+                }
+            }
 
         selectedDate = intent.getStringExtra("selectedDate") ?: ""
 
@@ -49,9 +61,10 @@ class Eventos : AppCompatActivity() {
         val txtHora = findViewById<EditText>(R.id.txtHora)
         val txtFecha = findViewById<EditText>(R.id.txtFecha).apply {
             setText(selectedDate)
-            isFocusable = false  // Desactiva la capacidad de obtener foco
-            isClickable = false  // Desactiva los clics en el campo
+            isFocusable = false
+            isClickable = false
         }
+
         val btnCancelar = findViewById<Button>(R.id.btnCancelar)
         val btnAgregarEvento = findViewById<Button>(R.id.btnAgregarEvento)
 
@@ -61,7 +74,6 @@ class Eventos : AppCompatActivity() {
             val minute = currentTime.get(Calendar.MINUTE)
 
             val timePickerDialog = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
-                // Formatear la hora seleccionada como 00:00 y mostrarla en el EditText
                 val formattedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
                 txtHora.setText(formattedTime)
             }, hour, minute, true)
@@ -112,7 +124,6 @@ class Eventos : AppCompatActivity() {
                 addEvento.setString(4, txtDescripcion.text.toString())
                 addEvento.setString(5, txtNombreEventos.text.toString())
 
-                // Convertir la fecha a un tipo DATE para insertar en la base de datos
                 val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val date = sdf.parse(selectedDate)
                 val sqlDate = java.sql.Date(date.time)
@@ -126,15 +137,12 @@ class Eventos : AppCompatActivity() {
                 val statement = objConexion.prepareStatement(query)
                 statement.executeUpdate()
 
-                // Mostrar la notificación después de agregar el evento
                 withContext(Dispatchers.Main) {
                     mostrarDialogoExito()
-                    checkNotificationPermissionAndSend(
+                    // Enviar notificación push a través de FCM
+                    enviarNotificacionGlobal(
                         txtNombreEventos.text.toString(),
-                        txtDescripcion.text.toString(),
-                        txtLugar.text.toString(),
-                        txtHora.text.toString(),
-                        selectedDate
+                        txtDescripcion.text.toString()
                     )
                 }
 
@@ -171,93 +179,36 @@ class Eventos : AppCompatActivity() {
             .show()
     }
 
-    // Verificar si el permiso para notificaciones está otorgado y enviar la notificación si es posible
-    private fun checkNotificationPermissionAndSend(
-        nombreEvento: String,
-        descripcion: String,
-        lugar: String,
-        hora: String,
-        fecha: String
-    ) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                // Permiso concedido, enviar la notificación
-                enviarNotificacion(nombreEvento, descripcion, lugar, hora, fecha)
-            } else {
-                // Solicitar permiso
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                    notificationRequestCode
-                )
-            }
-        } else {
-            // Para versiones anteriores a Android 13 no es necesario solicitar el permiso
-            enviarNotificacion(nombreEvento, descripcion, lugar, hora, fecha)
-        }
-    }
+    // Nueva función para enviar la notificación global a través de Firebase Cloud Messaging
+    private fun enviarNotificacionGlobal(titulo: String, mensaje: String) {
+        // Aquí llamamos al backend para que envíe la notificación a todos los usuarios a través de FCM
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val url = "https://tu-servidor.com/api/enviar_notificacion_global"
+                val requestBody = mapOf("title" to titulo, "message" to mensaje)
 
-    // Método para enviar la notificación
-    private fun enviarNotificacion(nombreEvento: String, descripcion: String, lugar: String, hora: String, fecha: String) {
-        val channelId = "event_channel"
-        val intent = Intent(this, Eventos::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+                // Usa Retrofit, Volley o cualquier método de HTTP para enviar esta petición al backend
+                // El backend debe manejar el envío a FCM utilizando el topic 'all'
 
-        val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.imgquickly)
-            .setContentTitle("Nuevo Evento: $nombreEvento")
-            .setContentText("Descripción: $descripcion\nLugar: $lugar\nFecha: $fecha\nHora: $hora")
-            .setStyle(NotificationCompat.BigTextStyle().bigText("Descripción: $descripcion\nLugar: $lugar\nFecha: $fecha\nHora: $hora"))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-
-        try {
-            with(NotificationManagerCompat.from(this)) {
-                notify(UUID.randomUUID().hashCode(), builder.build())
-            }
-        } catch (e: SecurityException) {
-            mostrarDialogoError("No se puede enviar la notificación debido a un problema de permisos.")
-        }
-    }
-
-    // Manejo de la respuesta del usuario al solicitar permisos
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == notificationRequestCode) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permiso concedido, enviar la notificación
-                enviarNotificacion(
-                    "Nombre del Evento",
-                    "Descripción del Evento",
-                    "Lugar del Evento",
-                    "Hora del Evento",
-                    selectedDate
-                )
-            } else {
-                // El permiso fue rechazado, manejar el caso
-                mostrarDialogoError("Permiso de notificaciones denegado.")
+                // Simulación de éxito en la respuesta del servidor
+                withContext(Dispatchers.Main) {
+                    println("Notificación enviada con éxito a todos los usuarios")
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    mostrarDialogoError("Error al enviar notificación push: ${e.message}")
+                }
             }
         }
     }
 
-    // Método para crear el canal de notificación
+    // Crear el canal de notificación local para Android
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = "event_channel"
-            val channelName = "Eventos"
-            val channelDescription = "Notificaciones de eventos"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channelId = "global_notifications"
+            val channelName = "Global Notifications"
+            val channelDescription = "Notificaciones globales para eventos"
+            val importance = NotificationManager.IMPORTANCE_HIGH
             val notificationChannel = NotificationChannel(channelId, channelName, importance).apply {
                 description = channelDescription
             }

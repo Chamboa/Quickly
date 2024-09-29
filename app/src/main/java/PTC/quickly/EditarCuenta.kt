@@ -1,6 +1,8 @@
 package PTC.quickly
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -27,6 +29,8 @@ class EditarCuenta : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_editar_cuenta)
+        supportActionBar?.hide()
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -106,4 +110,5 @@ class EditarCuenta : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }

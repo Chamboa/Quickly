@@ -19,6 +19,8 @@ class Pantalla_Carga : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pantalla_carga)
+        supportActionBar?.hide()
+
 
         Handler(Looper.getMainLooper()).postDelayed({
             checkLoginStatus()

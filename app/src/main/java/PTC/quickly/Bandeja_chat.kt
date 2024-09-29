@@ -3,6 +3,7 @@ package PTC.quickly
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +33,6 @@ class Bandeja_chat : AppCompatActivity() {
         var UUIDa: String? = null
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -42,6 +42,7 @@ class Bandeja_chat : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        supportActionBar?.hide()
 
         // Obtener el UUID del remitente y del destinatario
         UUID_remitente = Login.userUUID  // Usuario que inició sesión
@@ -50,6 +51,12 @@ class Bandeja_chat : AppCompatActivity() {
         rcvChat = findViewById(R.id.rcvMensajes)
         txtmensaje = findViewById(R.id.editTextText)
         btnenviar = findViewById(R.id.button)
+
+        val btnVolver = findViewById<ImageView>(R.id.imageView6)
+
+        btnVolver.setOnClickListener {
+            finish()
+        }
 
         rcvChat.layoutManager = LinearLayoutManager(this)
 
@@ -101,8 +108,10 @@ class Bandeja_chat : AppCompatActivity() {
                 val statement = conexion.prepareStatement(
                     "SELECT id_mensaje, mensaje, fecha, UUID_Remitente FROM Reclamo " +
                             "WHERE (UUID_Remitente = ? AND UUID_Destinatario = ?) OR " +
-                            "(UUID_Remitente = ? AND UUID_Destinatario = ?) ORDER BY fecha"
+                            "(UUID_Remitente = ? AND UUID_Destinatario = ?) " +
+                            "ORDER BY fecha ASC"
                 )
+
                 statement.setString(1, UUID_remitente)
                 statement.setString(2, UUID_destinatario)
                 statement.setString(3, UUID_destinatario)
@@ -113,16 +122,8 @@ class Bandeja_chat : AppCompatActivity() {
                     val id_mensaje = resultSet.getInt("id_mensaje")
                     val mensaje = resultSet.getString("mensaje")
                     val fecha = resultSet.getString("fecha")
-                    val UUID_remitenteMensaje = resultSet.getString("UUID_Remitente") // Asegúrate de usar el nombre correcto de la columna
+                    val UUID_remitenteMensaje = resultSet.getString("UUID_Remitente")
 
-                    // Comprobar si el UUID_remitenteMensaje es null
-                    if (UUID_remitenteMensaje == null) {
-                        println("Error: UUID_remitente es nulo para el mensaje con id: $id_mensaje")
-                    } else {
-                        println("UUID del remitente del mensaje: $UUID_remitenteMensaje")
-                    }
-
-                    // Añadir el mensaje a la lista con el UUID remitente
                     lista.add(dcChat(id_mensaje, mensaje, fecha, UUID_remitenteMensaje ?: ""))
                 }
             }
@@ -137,7 +138,7 @@ class Bandeja_chat : AppCompatActivity() {
         }
 
         // Obtener la hora de envío
-        val horaEnvio = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+        val horaEnvio = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
         coroutineScope.launch(Dispatchers.IO) {
             val objConexion = ClaseConexion().cadenaConexion()
@@ -152,15 +153,12 @@ class Bandeja_chat : AppCompatActivity() {
 
                 // Insertar el nuevo mensaje en la base de datos
                 val insertarMensaje = conexion.prepareStatement(
-                    "INSERT INTO Reclamo (id_mensaje, UUID_remitente, UUID_destinatario, mensaje, fecha) VALUES (?, ?, ?, ?, TO_DATE(?, 'HH24:MI:SS'))"
+                    "INSERT INTO Reclamo (id_mensaje, UUID_remitente, UUID_destinatario, mensaje, fecha) VALUES (?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'))"
                 )
                 insertarMensaje.setInt(1, id_mensaje)
-                println("UUID_remitente: $UUID_remitente")
                 insertarMensaje.setString(2, UUID_remitente)
-                println("UUID_destinatario: $UUID_destinatario")
                 insertarMensaje.setString(3, UUID_destinatario)
                 insertarMensaje.setString(4, mensaje)
-                println("Hora de envío: $horaEnvio")
                 insertarMensaje.setString(5, horaEnvio)
 
                 insertarMensaje.executeUpdate()

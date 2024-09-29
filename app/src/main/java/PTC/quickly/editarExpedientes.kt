@@ -25,6 +25,8 @@ class editarExpedientes : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_expedientes)
+        supportActionBar?.hide()
+
 
         horasAgregadasTextView = findViewById(R.id.horasAgregadas)
         val btnGuardar = findViewById<TextView>(R.id.btnGuardar)

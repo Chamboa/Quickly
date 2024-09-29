@@ -9,12 +9,13 @@
     tools:context=".elegirChat">
 
     <!-- Flecha de regreso -->
+
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/atras"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,31 +45,21 @@
         app:layout_constraintVertical_bias="0.94" />
 
     <!-- Título "Soporte técnico" -->
+
+    <!-- Subtítulo -->
+
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Soporte técnico"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/ivBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Subtítulo -->
-    <TextView
-        android:id="@+id/tvSubtitulo"
-        android:layout_width="361dp"
-        android:layout_height="39dp"
         android:layout_marginTop="8dp"
-        android:text="¡Comunícate con el administrador y encargados de la comisión a la que perteneces!"
-        android:textColor="#666666"
-        android:textSize="14sp"
+        android:text="Elegir Chat"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/ivBack" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvcargar"

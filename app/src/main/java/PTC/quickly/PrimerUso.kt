@@ -30,6 +30,8 @@ class PrimerUso : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_primer_uso)
+        supportActionBar?.hide()
+
 
         setupWindowInsets()
         initializeViews()

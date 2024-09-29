@@ -38,6 +38,8 @@ class Unirse_Comite : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_unirse_comite)
+        supportActionBar?.hide()
+
 
         txtLogistica = findViewById(R.id.txtLogistica)
         txtSocialyProtocolo = findViewById(R.id.txtSocialYProtocolo)

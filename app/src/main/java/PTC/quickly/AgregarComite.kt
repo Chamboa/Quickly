@@ -26,6 +26,8 @@ class AgregarComite : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_comite)
+        supportActionBar?.hide()
+
 
         // Vinculación de vistas
         editNombreComite = findViewById(R.id.editNombreComite)
