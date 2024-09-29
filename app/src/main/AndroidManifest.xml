@@ -4,34 +4,92 @@
 
     <uses-permission
         android:name="android.permission.READ_MEDIA_IMAGES"
-        tools:ignore="SelectedPhotoAccess" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
+        tools:targetApi="33" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_quickly"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_quickly"
         android:supportsRtl="true"
         android:theme="@style/Theme.PTC"
         tools:targetApi="31">
         <activity
-            android:name=".item_card_asistencia"
+            android:name=".ActualizarFotodePerfil"
             android:exported="false" />
         <activity
-            android:name=".AsistenciaActivity"
+            android:name=".editarExpedientes"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarComite"
+            android:exported="false" />
+        <activity
+            android:name=".dialog_editar_comite"
+            android:exported="false" />
+        <activity
+            android:name=".activity_item_card_actualizar_cupos_comite"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarCuposComite"
+            android:exported="false" />
+        <activity
+            android:name=".dialog_editar_evento"
+            android:exported="false" />
+        <activity
+            android:name=".VerExpediente"
+            android:exported="false" />
+        <activity
+            android:name=".PrimerUso"
+            android:exported="false" />
+        <activity
+            android:name=".activity_card_verExpedienteAlumnos"
+            android:exported="false" />
+        <activity
+            android:name=".VerExpedienteAlumnos"
+            android:exported="false" />
+        <activity
+            android:name=".item_card_mostrarevento"
+            android:exported="false" />
+        <activity
+            android:name=".MostrarEventos"
+            android:exported="false" />
+        <activity
+            android:name=".Asistencia_Alumno"
+            android:exported="false" />
+        <activity
+            android:name=".item_card_asistencia"
             android:exported="false" />
         <activity
             android:name=".Agregar_Horas"
             android:exported="false" />
+        <activity
+            android:name=".item_card_evento"
+            android:exported="false" />
+        <activity
+            android:name=".EditarCuenta"
+            android:exported="false" />
+        <activity
+            android:name=".item_card_registro_cuenta"
+            android:exported="false" />
+        <activity
+            android:name=".card_Mensaje"
+            android:exported="false" />
+        <activity
+            android:name=".cardChat"
+            android:exported="false" />
+        <activity
+            android:name=".elegirChat"
+            android:exported="true" />
         <activity
             android:name=".Eventos"
             android:exported="false" />
@@ -52,16 +110,7 @@
             android:exported="false" />
         <activity
             android:name=".Confirmar_Comite"
-            android:exported="true" />
-        <activity
-            android:name=".Pantalla_Carga"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Contrasena_Reestablecida"
             android:exported="false" />
@@ -74,7 +123,17 @@
             android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/app_name" /> <!-- Actividad de carga -->
+        <activity
+            android:name=".Pantalla_Carga"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

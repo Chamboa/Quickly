@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class pantalla_coordinador : Fragment() {
 
@@ -29,16 +30,22 @@ class pantalla_coordinador : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnHrs = view.findViewById<ImageButton>(R.id.btnAsisHoras)
-        val btnEvnts = view.findViewById<ImageButton>(R.id.btnHistorial)
+        val btnHrs = view.findViewById<ConstraintLayout>(R.id.btnAsistenciac)
+        val btnEvnts = view.findViewById<ConstraintLayout>(R.id.btnHistorialc)
+        val chat = view.findViewById<ConstraintLayout>(R.id.btnChatc)
+
+        chat.setOnClickListener {
+            val intent = Intent(activity, elegirChat::class.java)
+            startActivity(intent)
+        }
 
         btnEvnts.setOnClickListener {
-            val intent = Intent(requireContext(), Eventos::class.java)
+            val intent = Intent(activity, VerExpedienteAlumnos::class.java)
             startActivity(intent)
         }
 
         btnHrs.setOnClickListener {
-            val intent = Intent(requireContext(), Agregar_Horas::class.java)
+            val intent = Intent(requireContext(), MostrarEventos::class.java)
             startActivity(intent)
         }
 

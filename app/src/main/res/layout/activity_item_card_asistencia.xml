@@ -26,7 +26,7 @@
             android:text="Text"
             android:textSize="34dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox"
+            app:layout_constraintEnd_toStartOf="@+id/btnCheck_si"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,17 +45,17 @@
             app:srcCompat="@drawable/ac_agregahora" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/btnCheck_si"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+            app:layout_constraintEnd_toStartOf="@+id/btnCheck_no"
             app:layout_constraintTop_toTopOf="parent" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/btnCheck_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -68,5 +68,3 @@
 
 
 </androidx.cardview.widget.CardView>
-  
-

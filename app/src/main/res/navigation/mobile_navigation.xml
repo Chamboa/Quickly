@@ -3,17 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/pantalla_alumno">
-
-
+    app:startDestination="@+id/pantalla_admin">
 
     <fragment
         android:id="@+id/calendario_b"
         android:name="PTC.quickly.calendario_b"
         android:label="fragment_calendario_b"
         tools:layout="@layout/fragment_calendario_b" />
-
-
     <fragment
         android:id="@+id/pantalla_admin"
         android:name="PTC.quickly.Pantalla_admin"
@@ -29,8 +25,6 @@
         android:name="PTC.quickly.pantalla_alumno"
         android:label="Pantalla alumno"
         tools:layout="@layout/fragment_pantalla_alumno" />
-
-
     <fragment
         android:id="@+id/pantalla_perfil"
         android:name="PTC.quickly.Pantalla_perfil"

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <item
         android:id="@+id/pantalla_admin"
         android:icon="@drawable/ic_principal"
         android:title="" />
 
+    <item
+        android:id="@+id/calendario_b"
+        android:icon="@drawable/ic_calendario"
+        android:title="" />
 
     <item
         android:id="@+id/pantalla_perfil"
         android:icon="@drawable/ic_perf"
-        android:title="" />
-
+        android:title=""/>
 
     <item
         android:id="@+id/pantalla_configuracion"
@@ -19,4 +22,3 @@
         android:title="" />
 
 </menu>
-

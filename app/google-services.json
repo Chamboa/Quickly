@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "871588250819",
+    "project_id": "quickly-fc808",
+    "storage_bucket": "quickly-fc808.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871588250819:android:3f82500e19e600d030ce76",
+        "android_client_info": {
+          "package_name": "PTC.quickly.equipo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuM_qV5vcLnlcq4ta04AMO1daUW8THb6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

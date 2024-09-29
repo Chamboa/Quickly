@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_green">#DCE8B9</color>
+    <color name="mensaje_recibido">#D9D9D9</color>
+    <color name="mensaje_enviado">#D8EE98</color>
+    <color name="light_gren">#A5D6A7</color>
+    <color name="light_blue">#90CAF9</color>
+
+
+
+
 </resources>
+
+
