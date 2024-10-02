@@ -1,26 +1,59 @@
 <!-- dialog_editar_comite.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editNombre"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre del Comité" />
+        android:layout_height="254dp"
+        android:background="#FFFFFF">
 
-    <EditText
-        android:id="@+id/editDescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Descripción" />
+        <EditText
+            android:id="@+id/editNombre"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Nombre del Comité"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editCupos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Cupos"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/editDescripcion"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Descripción"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editNombre" />
+
+        <EditText
+            android:id="@+id/editCupos"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Cupos"
+            android:inputType="number"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editDescripcion"
+            app:layout_constraintVertical_bias="0.543" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

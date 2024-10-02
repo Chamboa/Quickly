@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".ui.home.HomeFragment">
 
     <ImageView
         android:id="@+id/imageView14"
-        android:layout_width="125dp"
-        android:layout_height="136dp"
+        android:layout_width="144dp"
+        android:layout_height="156dp"
         android:src="@drawable/icfotoperfil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.076" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vwperfil"
@@ -30,11 +32,12 @@
 
         <Button
             android:id="@+id/btncerrarsesion"
-            android:layout_width="241dp"
-            android:layout_height="57dp"
-            android:backgroundTint="#ED3535"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#EE4E64"
             android:fontFamily="@font/inter_bold"
             android:text="Cerrar sesión"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,9 +73,10 @@
             android:id="@+id/textView17"
             android:layout_width="191dp"
             android:layout_height="31dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Correo Electronico"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,9 +87,10 @@
             android:id="@+id/textView18"
             android:layout_width="140dp"
             android:layout_height="29dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Nombre"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

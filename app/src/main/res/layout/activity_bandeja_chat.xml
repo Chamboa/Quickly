@@ -94,6 +94,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icregresar" />
+        app:srcCompat="@drawable/baseline_keyboard_backspace_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

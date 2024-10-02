@@ -12,28 +12,72 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Spinner
-            android:id="@+id/spEventosxd"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="697dp"
+            android:background="#FFFFFF">
 
-        <EditText
-            android:id="@+id/horasAgregadas"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/style_text"
-            android:fontFamily="@font/inter_semibold"
-            android:hint="Horas Agregadas"
-            android:inputType="number"
-            android:textSize="14sp" />
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="195dp"
+                android:layout_height="62dp"
+                android:backgroundTint="#7AC882"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Guardar"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.683" />
 
-        <Button
-            android:id="@+id/btnGuardar"
-            android:layout_width="239dp"
-            android:layout_height="wrap_content"
-            android:text="Guardar" />
+            <EditText
+                android:id="@+id/horasAgregadas"
+                android:layout_width="330dp"
+                android:layout_height="62dp"
+                android:background="@drawable/style_text"
+                android:fontFamily="@font/inter_semibold"
+                android:hint="Horas Agregadas"
+                android:inputType="number"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.481" />
+
+            <Spinner
+                android:id="@+id/spEventosxd"
+                android:layout_width="330dp"
+                android:layout_height="62dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.337" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="Evento"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.078"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.245" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

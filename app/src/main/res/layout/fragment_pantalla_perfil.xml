@@ -32,8 +32,8 @@
 
         <Button
             android:id="@+id/btncerrarsesion"
-            android:layout_width="249dp"
-            android:layout_height="71dp"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
             android:backgroundTint="#EE4E64"
             android:fontFamily="@font/inter_bold"
             android:text="Cerrar sesión"
