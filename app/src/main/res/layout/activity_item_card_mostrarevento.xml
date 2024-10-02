@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#EE4E64"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -22,10 +23,13 @@
                 android:id="@+id/txtNombreMostrarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Nombre del Evento"
-                android:textColor="#212121"
-                android:textSize="18sp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Eventos"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

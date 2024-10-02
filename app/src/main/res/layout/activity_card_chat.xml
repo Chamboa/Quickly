@@ -16,15 +16,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="73dp"
+            android:layout_height="101dp"
             android:animationCache="false"
-            android:background="#D9D9D9">
+            android:background="#C4F0F6">
 
             <TextView
                 android:id="@+id/txtLlenado"
-                android:layout_width="209dp"
-                android:layout_height="48dp"
+                android:layout_width="196dp"
+                android:layout_height="32dp"
+                android:fontFamily="@font/inter_bold"
                 android:text="TextView"
+                android:textColor="#2196F3"
+                android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +44,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.478"
-                app:srcCompat="@drawable/chat" />
+                app:srcCompat="@drawable/imgchat" />
 
             <ImageView
                 android:id="@+id/imgFotoPerfil"
@@ -53,7 +56,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.428"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@drawable/icfotoperfil" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

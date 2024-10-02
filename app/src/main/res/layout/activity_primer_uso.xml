@@ -5,58 +5,123 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".PrimerUso">
 
     <!-- Campo para el nombre del usuario -->
-    <EditText
-        android:id="@+id/editTextNombre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Nombre"
-        android:inputType="textPersonName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:padding="8dp"/>
 
     <!-- Campo para el correo electrónico -->
-    <EditText
-        android:id="@+id/editTextCorreo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Correo electrónico"
-        android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@id/editTextNombre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="8dp"/>
 
     <!-- Campo para la contraseña -->
-    <EditText
-        android:id="@+id/editTextContraseña"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/editTextCorreo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="8dp"/>
 
     <!-- Botón para crear el usuario -->
+
+    <EditText
+        android:id="@+id/editTextContraseña"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="244dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543" />
+
+    <EditText
+        android:id="@+id/editTextNombre"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:padding="8dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.467" />
+
+    <EditText
+        android:id="@+id/editTextCorreo"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Correo electrónico"
+        android:inputType="textEmailAddress"
+        android:padding="8dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578" />
+
     <Button
         android:id="@+id/btnCrearUsuario"
+        android:layout_width="141dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="264dp"
+        android:backgroundTint="#63A86A"
+        android:fontFamily="@font/inter_bold"
+        android:padding="12dp"
+        android:text="Crear Usuario"
+        android:textSize="15.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.785" />
+
+    <TextView
+        android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crear Usuario"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/editTextContraseña"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/inter_extrabold"
+        android:text="Primer Usuario"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="12dp"/>
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
+
+    <ImageView
+        android:id="@+id/imgprimerusuario"
+        android:layout_width="156dp"
+        android:layout_height="161dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.189"
+        app:srcCompat="@drawable/icfotoperfil" />
+
+    <ImageView
+        android:id="@+id/btnSubirfoto"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.668"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.331"
+        app:srcCompat="@drawable/imgfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

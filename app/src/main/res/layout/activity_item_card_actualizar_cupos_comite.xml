@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="130dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
@@ -13,55 +13,66 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         tools:context=".activity_item_card_actualizar_cupos_comite">
 
         <!-- Aquí puedes agregar tus elementos de interfaz de usuario -->
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="38dp"
-            android:layout_height="27dp"
+            android:layout_width="41dp"
+            android:layout_height="55dp"
+            android:background="@drawable/ic_eliminar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.953"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/baseline_delete_24" />
-
-        <TextView
-            android:id="@+id/txtCupos"
-            android:layout_width="141dp"
-            android:layout_height="26dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.601"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.381" />
 
         <TextView
             android:id="@+id/txtNombreCard"
             android:layout_width="143dp"
             android:layout_height="27dp"
+            android:fontFamily="@font/inter_extrabold"
+            android:text="Comité"
+            android:textAlignment="center"
+            android:textColor="#00BCD4"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.008"
+            app:layout_constraintHorizontal_bias="0.112"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.192" />
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="39dp"
-            android:layout_height="26dp"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:background="@drawable/ic_editar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.845"
+            app:layout_constraintHorizontal_bias="0.756"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/baseline_edit_square_24" />
+            app:layout_constraintVertical_bias="0.450" />
+
+        <TextView
+            android:id="@+id/txtCupos"
+            android:layout_width="141dp"
+            android:layout_height="26dp"
+            android:fontFamily="@font/inter_extrabold"
+            android:text="Cupos"
+            android:textAlignment="center"
+            android:textColor="#494949"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.112"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.700" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

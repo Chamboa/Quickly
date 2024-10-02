@@ -5,14 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".RegistroCuenta">
 
     <Button
         android:id="@+id/btnCrearCuenta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="171dp"
+        android:layout_height="67dp"
         android:backgroundTint="#6DBB6B"
-        android:fontFamily="@font/inter_semibold"
+        android:fontFamily="@font/inter_bold"
         android:text="Agregar usuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,8 +26,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inter_bold"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/inter_extrabold"
         android:text="Agregar usuario"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -94,18 +95,17 @@
 
     <ImageView
         android:id="@+id/imgPerfil"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
+        android:layout_width="102dp"
+        android:layout_height="141dp"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.192"
-        tools:srcCompat="@tools:sample/avatars" />
-
+        app:layout_constraintVertical_bias="0.188"
+        tools:srcCompat="@drawable/icfotoperfil" />
 
     <Button
         android:id="@+id/btnSubirFoto"
@@ -116,37 +116,22 @@
         android:text="Subir foto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.874"
+        app:layout_constraintHorizontal_bias="0.768"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_bold"
-        android:text="Foto del usuario"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
+        app:layout_constraintVertical_bias="0.228" />
 
     <EditText
         android:id="@+id/txtNombreRegistro"
-        android:layout_width="244dp"
-        android:layout_height="65dp"
+        android:layout_width="361dp"
+        android:layout_height="62dp"
         android:layout_marginBottom="128dp"
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/inter_semibold"
         android:hint="Nombre"
         android:inputType="text"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/vwnombre"
         app:layout_constraintHorizontal_bias="0.025"
@@ -156,14 +141,14 @@
 
     <EditText
         android:id="@+id/txtCorreoRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="358dp"
+        android:layout_height="54dp"
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/inter_semibold"
         android:hint="Correo"
         android:inputType="text"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@+id/vwcorreo"
         app:layout_constraintEnd_toEndOf="@+id/vwcorreo"
         app:layout_constraintHorizontal_bias="0.0"
@@ -173,14 +158,14 @@
 
     <EditText
         android:id="@+id/txtContraseñaRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="361dp"
+        android:layout_height="57dp"
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/inter_semibold"
         android:hint="Contraseña"
         android:inputType="text"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@+id/vwcontraseña"
         app:layout_constraintEnd_toEndOf="@+id/vwcontraseña"
         app:layout_constraintHorizontal_bias="0.0"
@@ -192,6 +177,7 @@
         android:id="@+id/spRoles"
         android:layout_width="177dp"
         android:layout_height="59dp"
+        android:background="@drawable/style_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.106"
@@ -201,14 +187,14 @@
 
     <ImageView
         android:id="@+id/btnAtrasAgregarU"
-        android:layout_width="49dp"
-        android:layout_height="41dp"
+        android:layout_width="55dp"
+        android:layout_height="39dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.05"
         app:srcCompat="@drawable/atras" />
 
     <Spinner
@@ -216,11 +202,12 @@
         android:layout_width="160dp"
         android:layout_height="57dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/style_text"
         app:layout_constraintBottom_toTopOf="@+id/btnCrearCuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.97" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

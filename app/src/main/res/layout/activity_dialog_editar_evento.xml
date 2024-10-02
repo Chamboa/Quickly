@@ -1,44 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="410dp"
+    android:layout_height="300dp"
     android:orientation="vertical"
     android:padding="16dp">
 
     <EditText
         android:id="@+id/etNombreEvento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="375dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Nombre del Evento"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/etDescripcionEvento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="375dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Descripción"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/etFechaEvento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha"
+        android:layout_width="375dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
+        android:clickable="true"
         android:focusable="false"
-        android:clickable="true" />
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Fecha"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/etHoraEvento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Hora"
+        android:layout_width="375dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
+        android:clickable="true"
         android:focusable="false"
-        android:clickable="true" />
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Hora"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/etLugarEvento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="375dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Lugar"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textSize="15sp" />
 </LinearLayout>

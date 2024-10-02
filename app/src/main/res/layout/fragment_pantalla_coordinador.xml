@@ -5,7 +5,8 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pantalla_coordinador" >
+    android:background="#FFFFFF"
+    tools:context=".pantalla_coordinador">
 
     <TextView
         android:id="@+id/textView8"
@@ -20,6 +21,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.049" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="147dp"
+        android:layout_height="144dp"
+        android:src="@drawable/circulosadmin2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185" />
 
     <ImageView
         android:id="@+id/imageView19"
@@ -38,7 +51,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter_bold"
         android:text="¿Qué deseas hacer hoy?"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView19"
         app:layout_constraintEnd_toEndOf="@+id/imageView19"
@@ -47,67 +60,41 @@
         app:layout_constraintTop_toTopOf="@+id/imageView19"
         app:layout_constraintVertical_bias="0.468" />
 
+
     <ImageView
         android:id="@+id/imageView20"
         android:layout_width="176dp"
         android:layout_height="160dp"
+        android:layout_marginStart="264dp"
         android:src="@drawable/circulosadmin1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357" />
-
-    <ImageView
-        android:id="@+id/imageView21"
-        android:layout_width="147dp"
-        android:layout_height="144dp"
-        android:src="@drawable/circulosadmin2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.992"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.882" />
 
     <ImageView
         android:id="@+id/imageView22"
         android:layout_width="139dp"
         android:layout_height="139dp"
+        android:layout_marginEnd="308dp"
         android:src="@drawable/circulosadmin3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
-
-    <ImageView
-        android:id="@+id/imageView23"
-        android:layout_width="168dp"
-        android:layout_height="181dp"
-        android:src="@drawable/circulosadmin4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.687"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94" />
-
+        app:layout_constraintVertical_bias="0.538" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/btnAsistenciac"
         android:layout_width="150dp"
         android:layout_height="180dp"
-        android:background="@drawable/btnasishoras"
+        android:background="@drawable/rectanglesearch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333">
+        app:layout_constraintVertical_bias="0.304">
 
         <ImageView
             android:id="@+id/imgcirculosconfig"
@@ -127,7 +114,7 @@
             android:layout_height="44dp"
             android:fontFamily="@font/inter_extrabold"
             android:text="Asistencia y agregar horas"
-            android:textColor="#0BA89F"
+            android:textColor="#329FF8"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -141,21 +128,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/btnChatc"
-        android:layout_width="150dp"
-        android:layout_height="180dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:background="@drawable/btnchat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintHorizontal_bias="0.822"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.711">
+        app:layout_constraintVertical_bias="0.637">
 
         <ImageView
             android:id="@+id/imgChat"
             android:layout_width="91dp"
             android:layout_height="93dp"
-            android:src="@drawable/imgbtnasishoras"
+            android:src="@drawable/imgchat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.728"
@@ -169,14 +156,14 @@
             android:layout_height="33dp"
             android:fontFamily="@font/inter_extrabold"
             android:text="Chat"
-            android:textColor="#1F3E28"
-            android:textSize="15sp"
+            android:textColor="#4A6E8A"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.149"
+            app:layout_constraintHorizontal_bias="0.371"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.823" />
+            app:layout_constraintVertical_bias="0.85" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -186,13 +173,13 @@
         android:id="@+id/btnHistorialc"
         android:layout_width="150dp"
         android:layout_height="180dp"
-        android:background="@drawable/btnvrhistorial"
+        android:background="@drawable/btnagus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.835"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421">
+        app:layout_constraintVertical_bias="0.333">
 
         <TextView
             android:id="@+id/textView6"
@@ -200,7 +187,7 @@
             android:layout_height="43dp"
             android:fontFamily="@font/inter_extrabold"
             android:text="Ver historial horas sociales"
-            android:textColor="#2CA038"
+            android:textColor="#7043BF"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

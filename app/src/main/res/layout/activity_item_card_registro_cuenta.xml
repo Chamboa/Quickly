@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="125dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="4dp"
     app:cardCornerRadius="20dp"
@@ -10,29 +10,31 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtNombreCard"
             android:layout_width="230dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
             android:text="Text"
-            android:textSize="34sp" />
+            android:textColor="#7556AD"
+            android:textSize="42.5sp" />
 
         <ImageView
             android:id="@+id/btnEditarCuentaRegistro"
-            android:layout_width="127dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            app:srcCompat="@drawable/ic_editar" />
 
         <ImageView
             android:id="@+id/btnBorrarCuentaRegistro"
-            android:layout_width="127dp"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="57dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_delete" />
+            app:srcCompat="@drawable/ic_eliminar" />
 
     </LinearLayout>
 

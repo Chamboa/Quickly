@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
 
@@ -23,9 +24,11 @@
         android:id="@+id/txtfraseini"
         android:layout_width="370dp"
         android:layout_height="55dp"
+        android:fontFamily="@font/inter_extrabold"
         android:gravity="center_horizontal|top"
         android:text="@string/txtfraseinicial"
         android:textAppearance="@style/txtfraseini"
+        android:textColor="#FF6F70"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.609"

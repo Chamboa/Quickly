@@ -5,137 +5,144 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Agregar_Horas">
 
         <EditText
             android:id="@+id/txtHoraSalida"
-            android:layout_width="256dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="270dp"
+            android:layout_height="55dp"
             android:background="@drawable/style_text"
             android:ems="10"
+            android:fontFamily="@font/inter_semibold"
             android:hint="    Hora salida"
             android:inputType="text"
+            android:textColor="#000000"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEntradaHoras" />
+            tools:layout_editor_absoluteY="381dp" />
 
         <ImageView
             android:id="@+id/img_regresar"
             android:layout_width="65dp"
             android:layout_height="49dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="320dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.043"
             app:srcCompat="@drawable/icregresar" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_width="239dp"
+            android:layout_height="70dp"
             android:fontFamily="@font/inter_extrabold"
             android:text="Agregar horas sociales"
+            android:textAlignment="center"
             android:textColor="#050505"
-            android:textSize="24sp"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.046" />
 
         <EditText
             android:id="@+id/txtNomEvento"
-            android:layout_width="253dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="36dp"
+            android:layout_width="270dp"
+            android:layout_height="55dp"
             android:background="@drawable/style_text"
             android:ems="10"
+            android:fontFamily="@font/inter_semibold"
             android:hint="  Nombre evento"
             android:inputType="text"
+            android:textColor="#000000"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            tools:layout_editor_absoluteY="142dp" />
 
         <EditText
             android:id="@+id/txtFechaHoras"
-            android:layout_width="255dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="270dp"
+            android:layout_height="55dp"
             android:background="@drawable/style_text"
             android:ems="10"
+            android:fontFamily="@font/inter_semibold"
             android:hint="   Fecha"
             android:inputType="text"
+            android:textColor="#000000"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNomEvento" />
+            tools:layout_editor_absoluteY="222dp" />
 
         <EditText
             android:id="@+id/txtEntradaHoras"
-            android:layout_width="253dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="270dp"
+            android:layout_height="55dp"
             android:background="@drawable/style_text"
             android:ems="10"
+            android:fontFamily="@font/inter_semibold"
             android:hint="   Entrada"
             android:inputType="text"
+            android:textColor="#000000"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtFechaHoras" />
+            tools:layout_editor_absoluteY="301dp" />
 
         <EditText
             android:id="@+id/txtCantidadhoras"
-            android:layout_width="180dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="147dp"
+            android:layout_height="55dp"
+            android:background="@drawable/style_text"
             android:ems="10"
-            android:hint="Cantidad de horas"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Cant horas"
             android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.341"
+            app:layout_constraintHorizontal_bias="0.257"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtHoraSalida"
-            app:layout_constraintVertical_bias="0.119" />
+            tools:layout_editor_absoluteY="480dp" />
 
         <Button
             android:id="@+id/btnCancelarHoras"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="84dp"
-            android:backgroundTint="#D73939"
+            android:layout_width="165dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="76dp"
+            android:backgroundTint="#EE4E64"
+            android:fontFamily="@font/inter_bold"
             android:text="Cancelar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCantidadhoras" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btnAgregarHoras"
-            android:layout_width="143dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginEnd="68dp"
-            android:backgroundTint="#5BCC57"
+            android:layout_width="165dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="76dp"
+            android:backgroundTint="#7AC882"
+            android:fontFamily="@font/inter_bold"
             android:text="Agregar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
-            app:layout_constraintStart_toEndOf="@+id/btnCancelarHoras"
-            app:layout_constraintTop_toBottomOf="@+id/txtCantidadhoras" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnCancelarHoras" />
 
         <ImageView
-            android:id="@+id/imageView15"
-            android:layout_width="108dp"
-            android:layout_height="102dp"
-            android:layout_marginTop="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnAgregarHoras"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.887"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtHoraSalida"
-            app:layout_constraintVertical_bias="0.125" />
+            android:id="@+id/imageView26"
+            android:layout_width="139dp"
+            android:layout_height="130dp"
+            app:srcCompat="@drawable/imgagregarhours"
+            tools:layout_editor_absoluteX="229dp"
+            tools:layout_editor_absoluteY="448dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

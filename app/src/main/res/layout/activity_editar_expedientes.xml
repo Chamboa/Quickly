@@ -6,9 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".editarExpedientes">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -20,13 +22,16 @@
         <EditText
             android:id="@+id/horasAgregadas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Horas Agregadas"
             android:inputType="number"
-            android:hint="Horas Agregadas" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnGuardar"
-            android:layout_width="match_parent"
+            android:layout_width="239dp"
             android:layout_height="wrap_content"
             android:text="Guardar" />
 

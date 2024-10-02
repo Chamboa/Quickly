@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#FFFFFF"
+    android:background="#FFFFFF"
     tools:context=".Login">
 
 
@@ -75,8 +75,8 @@
 
     <EditText
         android:id="@+id/txtcorreologin"
-        android:layout_width="351dp"
-        android:layout_height="50dp"
+        android:layout_width="371dp"
+        android:layout_height="76dp"
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/inter_semibold"
@@ -91,8 +91,8 @@
 
     <EditText
         android:id="@+id/txtContralogin"
-        android:layout_width="351dp"
-        android:layout_height="50dp"
+        android:layout_width="368dp"
+        android:layout_height="71dp"
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/inter_semibold"
@@ -134,12 +134,11 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="@+id/txtContralogin"
         app:layout_constraintEnd_toEndOf="@+id/txtContralogin"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="@+id/txtContralogin"
         app:layout_constraintTop_toTopOf="@+id/txtContralogin"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/vercontrasena" />
-
 
     <TextView
         android:id="@+id/txtcuentaolvidada"
@@ -156,7 +155,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

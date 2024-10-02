@@ -5,63 +5,105 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".AgregarComite">
 
     <EditText
         android:id="@+id/editNombreComite"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:layout_marginTop="52dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Nombre del Comité"
+        android:textColor="#000000"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editDescripcionComite"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="52dp"
-        android:hint="Descripción"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editNombreComite" />
-
-    <Button
-        android:id="@+id/btnAgregarComite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Agregar Comité"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editCuposComite" />
+        tools:layout_editor_absoluteY="322dp" />
 
     <EditText
         android:id="@+id/editCuposComite"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:layout_marginTop="56dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Cupos"
         android:inputType="number"
+        android:textColor="#000000"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editDescripcionComite" />
+        tools:layout_editor_absoluteY="500dp" />
+
+    <EditText
+        android:id="@+id/editDescripcionComite"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Descripción"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="414dp" />
+
+    <Button
+        android:id="@+id/btnAgregarComite"
+        android:layout_width="165dp"
+        android:layout_height="65dp"
+        android:backgroundTint="#6DBB6B"
+        android:fontFamily="@font/inter_bold"
+        android:text="Agregar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.905" />
 
     <Button
         android:id="@+id/btnAtrassadl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Atras"
+        android:layout_width="165dp"
+        android:layout_height="65dp"
+        android:backgroundTint="#EE4E64"
+        android:fontFamily="@font/inter_bold"
+        android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.146"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintVertical_bias="0.905" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="278dp"
+        android:layout_height="228dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.159"
+        app:srcCompat="@drawable/imgagregarcomites" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_extrabold"
+        android:text="Agregar Comité"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Confirmar_Comite">
 
     <TextView
@@ -12,30 +13,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/inter_extrabold"
         android:text="Verifica tu información"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="290dp"
-        android:layout_height="213dp"
+        android:layout_width="360dp"
+        android:layout_height="334dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
+        android:background="#45D9D9D9"
         android:elevation="4dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@id/buttonLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewTitle"
-        app:layout_constraintVertical_bias="0.247">
+        app:layout_constraintVertical_bias="0.2">
 
         <TextView
             android:id="@+id/textView2"
@@ -43,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="4dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Has elegido:"
             android:textColor="#000000"
             android:textSize="20sp" />
@@ -53,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Comunicaciones"
             android:textColor="#9C27B0"
             android:textSize="20sp" />
@@ -62,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Estudiante : "
             android:textColor="#000000"
             android:textSize="18sp" />
@@ -71,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Correo: "
             android:textColor="#000000"
             android:textSize="18sp" />
@@ -88,42 +94,46 @@
         android:id="@+id/buttonLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp">
+        app:layout_constraintStart_toStartOf="parent">
 
     </LinearLayout>
 
     <Button
         android:id="@+id/buttonCancel"
-        android:layout_width="125dp"
-        android:layout_height="57dp"
+        android:layout_width="168dp"
+        android:layout_height="70dp"
         android:layout_weight="1"
-        android:backgroundTint="#FF5252"
+        android:backgroundTint="#EE4E64"
+        android:fontFamily="@font/inter_bold"
         android:text="Cancelar"
         android:textColor="#FFFFFF"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintVertical_bias="0.868" />
 
     <Button
         android:id="@+id/buttonAccept"
-        android:layout_width="136dp"
-        android:layout_height="56dp"
+        android:layout_width="168dp"
+        android:layout_height="70dp"
         android:layout_weight="1"
-        android:backgroundTint="#4CAF50"
+        android:backgroundTint="#7AC882"
+        android:fontFamily="@font/inter_bold"
         android:text="Aceptar"
         android:textColor="#FFFFFF"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.868" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
