@@ -8,6 +8,52 @@
     android:background="#FFFFFF"
     tools:context=".pantalla_coordinador">
 
+    <ImageView
+        android:id="@+id/imageView40"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/barraverde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.330"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.872" />
+
+    <ImageView
+        android:id="@+id/imageView40"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/barraverde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.857" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="161dp"
+        android:layout_height="168dp"
+        android:layout_marginStart="256dp"
+        android:src="@drawable/circulosadmin3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.731" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="145dp"
+        android:layout_height="141dp"
+        android:layout_marginEnd="300dp"
+        android:src="@drawable/circulosadmin1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.264" />
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="391dp"
@@ -61,28 +107,6 @@
         app:layout_constraintVertical_bias="0.468" />
 
 
-    <ImageView
-        android:id="@+id/imageView20"
-        android:layout_width="176dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="264dp"
-        android:src="@drawable/circulosadmin1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882" />
-
-    <ImageView
-        android:id="@+id/imageView22"
-        android:layout_width="139dp"
-        android:layout_height="139dp"
-        android:layout_marginEnd="308dp"
-        android:src="@drawable/circulosadmin3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:id="@+id/btnAsistenciac"
@@ -133,10 +157,10 @@
         android:background="@drawable/btnchat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637">
+        app:layout_constraintVertical_bias="0.607">
 
         <ImageView
             android:id="@+id/imgChat"
@@ -208,6 +232,51 @@
             app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="110dp"
+        android:layout_height="126dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97"
+        app:lottie_100p="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/snail">
+
+    </com.airbnb.lottie.LottieAnimationView>
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="238dp"
+        android:layout_height="67dp"
+        android:background="@drawable/barraverde"
+        android:fontFamily="@font/inter_bold"
+        android:text="¡Recuerda que el tiempo en buenas manos, es una herramienta poderosa!"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.787" />
+
+    <ImageView
+        android:id="@+id/imageView40"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/barraverde"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.835" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
