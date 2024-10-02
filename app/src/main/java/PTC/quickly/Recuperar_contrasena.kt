@@ -121,6 +121,7 @@ class Recuperar_contrasena : AppCompatActivity() {
                     if (hayerrores) {
                         return@setOnClickListener
                     }
+
                     // Leví: metí la acción de la corrutine a un if else para que verifique si
                     // cumple o no con la funcion de "verificarcorreoregistrado"
 

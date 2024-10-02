@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Recuperar_contrasena">
 
     <Button
@@ -40,8 +41,8 @@
 
     <EditText
         android:id="@+id/txtcorreocontraolvidada"
-        android:layout_width="356dp"
-        android:layout_height="56dp"
+        android:layout_width="364dp"
+        android:layout_height="68dp"
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/inter_semibold"

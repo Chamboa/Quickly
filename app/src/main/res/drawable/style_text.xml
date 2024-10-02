@@ -2,14 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <solid android:color="#D9D9D9"></solid>
-            <corners android:radius="20dp"></corners>
-            <gradient
-                android:centerX="0"
-                android:endColor="#D9D9D9"
-                android:startColor="#D9D9D8"
-                android:type="sweep"/>
+            <solid android:color="#C9D9D9D9"></solid>
+            <corners android:radius="10dp"></corners>
         </shape>
     </item>
-
 </selector>

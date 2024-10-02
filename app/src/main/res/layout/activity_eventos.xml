@@ -5,33 +5,37 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Eventos">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:fontFamily="@font/inter_extrabold"
         android:gravity="center_horizontal"
         android:text="Agregar Evento"
         android:textColor="#121212"
-        android:textSize="24sp"
+        android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintVertical_bias="0.066" />
 
     <EditText
         android:id="@+id/txtNombreEvento"
-        android:layout_width="272dp"
-        android:layout_height="58dp"
-        android:background="@null"
+        android:layout_width="290dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
         android:ems="10"
-        android:hint="Nombre_evento"
+        android:fontFamily="@font/inter_semibold"
+        android:hint="Nombre del evento"
         android:inputType="text"
         android:shadowColor="#000000"
+        android:textColor="#000000"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,103 +44,118 @@
 
     <EditText
         android:id="@+id/txtDescripcion"
-        android:layout_width="282dp"
-        android:layout_height="132dp"
-        android:background="@drawable/reunded_textview"
+        android:layout_width="292dp"
+        android:layout_height="162dp"
+        android:background="@drawable/style_text"
+        android:fontFamily="@font/inter_semibold"
         android:gravity="center"
-        android:hint="Ingresa una descripcion"
-        android:textColor="#000000"
-        android:textSize="16sp"
+        android:textAlignment="textStart"
+        android:textColor="#3C3C3C"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.48" />
+        app:layout_constraintVertical_bias="0.425" />
 
     <TextView
         android:id="@+id/txtD"
-        android:layout_width="125dp"
-        android:layout_height="35dp"
-        android:text="Descripcion"
-        android:textSize="20sp"
+        android:layout_width="118dp"
+        android:layout_height="23dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Descripción:"
+        android:textColor="#404040"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.269"
+        app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349" />
+        app:layout_constraintVertical_bias="0.309" />
 
     <EditText
         android:id="@+id/txtLugar"
-        android:layout_width="257dp"
-        android:layout_height="41dp"
+        android:layout_width="290dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
         android:ems="10"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Lugar"
         android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintVertical_bias="0.625" />
 
     <EditText
         android:id="@+id/txtFecha"
-        android:layout_width="152dp"
-        android:layout_height="63dp"
+        android:layout_width="143dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
         android:ems="10"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Fecha"
         android:inputType="text"
         android:textColor="#000000"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.781" />
+        app:layout_constraintVertical_bias="0.736" />
 
     <EditText
         android:id="@+id/txtHora"
-        android:layout_width="159dp"
-        android:layout_height="58dp"
+        android:layout_width="143dp"
+        android:layout_height="55dp"
+        android:background="@drawable/style_text"
         android:ems="10"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Hora"
         android:inputType="text"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.787"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775" />
+        app:layout_constraintVertical_bias="0.736" />
 
     <Button
         android:id="@+id/btnCancelar"
-        android:layout_width="140dp"
-        android:layout_height="63dp"
-        android:backgroundTint="#ff6961"
-        android:shadowColor="#ff6961"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#EE4E64"
+        android:fontFamily="@font/inter_bold"
         android:text="Cancelar"
-        android:textColorHint="#ff6961"
+        android:textSize="15.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952"
-        app:strokeColor="#ff6961" />
+        app:layout_constraintVertical_bias="0.886" />
 
     <Button
         android:id="@+id/btnAgregarEvento"
-        android:layout_width="166dp"
+        android:layout_width="145dp"
         android:layout_height="60dp"
-        android:backgroundTint="#67B46A"
-        android:text="Agregar Evento"
+        android:backgroundTint="#6DBB6B"
+        android:fontFamily="@font/inter_bold"
+        android:text="Agregar"
+        android:textSize="15.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintHorizontal_bias="0.793"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.886" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -9,69 +10,113 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvNombreEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre del Evento"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="153dp">
 
-        <TextView
-            android:id="@+id/tvDescripcionEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Descripción del Evento"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp" />
+            <ImageButton
+                android:id="@+id/btnEditar"
+                android:layout_width="45dp"
+                android:layout_height="57dp"
+                android:background="@drawable/ic_editar"
+                android:contentDescription="@string/edit_event"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.77"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.560" />
 
-        <TextView
-            android:id="@+id/tvFechaEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fecha del Evento"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp" />
+            <ImageButton
+                android:id="@+id/btnEliminar"
+                android:layout_width="45dp"
+                android:layout_height="57dp"
+                android:background="@drawable/ic_eliminar"
+                android:contentDescription="@string/delete_event"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.949"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.528" />
 
-        <TextView
-            android:id="@+id/tvHoraEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hora del Evento"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp" />
+            <TextView
+                android:id="@+id/tvDescripcionEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="Descripción del Evento"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.071"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.37" />
+
+            <TextView
+                android:id="@+id/tvFechaEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Fecha del Evento"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.573" />
+
+            <TextView
+                android:id="@+id/tvHoraEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Hora del Evento"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.059"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.776" />
+
+            <TextView
+                android:id="@+id/tvNombreEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Nombre del Evento"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#FF7A22"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.051" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="end"
             android:gravity="end"
-            android:layout_gravity="end">
+            android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/btnEditar"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/baseline_edit_square_24"
-                android:contentDescription="@string/edit_event"
-                app:tint="?attr/colorPrimary" />
-
-            <ImageButton
-                android:id="@+id/btnEliminar"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/baseline_delete_24"
-                android:contentDescription="@string/delete_event"
-                app:tint="?attr/colorError" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

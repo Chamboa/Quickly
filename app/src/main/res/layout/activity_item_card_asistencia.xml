@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="115dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:id="@+id/cardview"
@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="52dp">
 
         <TextView
             android:id="@+id/txtAsistencia"
@@ -23,7 +23,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Text"
+            android:textColor="#00BBD4"
             android:textSize="34dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnCheck_si"
@@ -32,8 +34,8 @@
 
         <ImageView
             android:id="@+id/imgAgregarHoras"
-            android:layout_width="38dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="12dp"
@@ -42,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ac_agregahora" />
+            app:srcCompat="@drawable/ic_agregarhoras" />
 
         <CheckBox
             android:id="@+id/btnCheck_si"
@@ -50,6 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="13dp"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="#2196F3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnCheck_no"
             app:layout_constraintTop_toTopOf="parent" />
@@ -60,6 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="19dp"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="#00BCD4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgAgregarHoras"
             app:layout_constraintTop_toTopOf="parent" />

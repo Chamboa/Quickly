@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Correoconfirmacion">
 
     <TextView
@@ -28,17 +29,17 @@
         android:id="@+id/btnenviarcod"
         android:layout_width="375dp"
         android:layout_height="65dp"
-        android:backgroundTint="#C2DCF8"
+        android:backgroundTint="#FDD7AD"
         android:fontFamily="@font/inter_bold"
-        android:text="Enviar"
-        android:textColor="#006CDA"
+        android:text="Verificar"
+        android:textColor="#FF9000"
         android:textColorLink="#ff6750a4"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.566" />
 
     <View
         android:id="@+id/vwcodigorecu"
@@ -56,12 +57,12 @@
 
     <EditText
         android:id="@+id/etxtcodigoconfirmacion"
-        android:layout_width="356dp"
-        android:layout_height="56dp"
+        android:layout_width="366dp"
+        android:layout_height="66dp"
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/inter_semibold"
-        android:hint="XXXXXX"
+        android:hint="XXXX"
         android:inputType="text"
         android:textAlignment="center"
         android:textSize="22sp"
