@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_mensaje_sent"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -30,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
                 android:text="Mensaje"
-                android:textColor="@android:color/black"
+                android:textColor="@color/material_dynamic_primary20"
                 android:textSize="16sp" />
 
             <TextView
@@ -40,7 +41,7 @@
                 android:layout_gravity="end"
                 android:fontFamily="@font/inter_semibold"
                 android:text="10:30 AM"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>

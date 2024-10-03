@@ -19,16 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icregresar" />
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="77dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="644dp"
-        android:layout_marginEnd="336dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/elipalumdos" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvAsistencia"
         android:layout_width="370dp"
@@ -41,6 +31,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.900" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="149dp"
+        android:layout_height="159dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956"
+        app:srcCompat="@drawable/asisus" />
 
     <ImageView
         android:id="@+id/imageView27"

@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#BCBCBC"
+        android:background="#FFE9C9"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -22,10 +22,11 @@
                 android:id="@+id/txtNombreAlumnoExpediente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/inter_bold"
                 android:text="TextView"
-                android:textColor="#000000"
-                android:textSize="15sp"
+                android:textAlignment="center"
+                android:textColor="#FFC107"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

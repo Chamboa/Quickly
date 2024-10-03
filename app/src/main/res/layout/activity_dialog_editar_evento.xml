@@ -1,59 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="410dp"
-    android:layout_height="300dp"
+    android:layout_height="420dp"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etNombreEvento"
-        android:layout_width="375dp"
-        android:layout_height="55dp"
-        android:background="@drawable/style_text"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Nombre del Evento"
-        android:inputType="text"
-        android:textSize="15sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etDescripcionEvento"
-        android:layout_width="375dp"
-        android:layout_height="55dp"
-        android:background="@drawable/style_text"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Descripción"
-        android:inputType="text"
-        android:textSize="15sp" />
+        <EditText
+            android:id="@+id/etDescripcionEvento"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Descripción"
+            android:inputType="text"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etNombreEvento" />
 
-    <EditText
-        android:id="@+id/etFechaEvento"
-        android:layout_width="375dp"
-        android:layout_height="55dp"
-        android:background="@drawable/style_text"
-        android:clickable="true"
-        android:focusable="false"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Fecha"
-        android:textSize="15sp" />
+        <EditText
+            android:id="@+id/etNombreEvento"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Nombre del Evento"
+            android:inputType="text"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etHoraEvento"
-        android:layout_width="375dp"
-        android:layout_height="55dp"
-        android:background="@drawable/style_text"
-        android:clickable="true"
-        android:focusable="false"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Hora"
-        android:textSize="15sp" />
+        <EditText
+            android:id="@+id/etFechaEvento"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/style_text"
+            android:clickable="true"
+            android:focusable="false"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Fecha"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etDescripcionEvento" />
 
-    <EditText
-        android:id="@+id/etLugarEvento"
-        android:layout_width="375dp"
-        android:layout_height="55dp"
-        android:background="@drawable/style_text"
-        android:fontFamily="@font/inter_semibold"
-        android:hint="Lugar"
-        android:inputType="text"
-        android:textSize="15sp" />
+        <EditText
+            android:id="@+id/etHoraEvento"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/style_text"
+            android:clickable="true"
+            android:focusable="false"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Hora"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etFechaEvento" />
+
+        <EditText
+            android:id="@+id/etLugarEvento"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Lugar"
+            android:inputType="text"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etHoraEvento" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

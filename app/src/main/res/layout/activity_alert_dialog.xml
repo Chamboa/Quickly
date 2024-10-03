@@ -10,98 +10,127 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="411dp"
         android:layout_height="729dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <EditText
-            android:id="@+id/etCorreo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nuevo correo electrónico"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageButton
+            android:id="@+id/imgActualizarIMG"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/icfotoperfil"
+            app:layout_constraintBottom_toTopOf="@+id/etCorreo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.324" />
+            app:layout_constraintVertical_bias="0.419" />
 
         <EditText
             android:id="@+id/etContraseña"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="344dp"
+            android:layout_height="57dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
             android:hint="ricaldone.edu.sv"
             android:inputType="textPassword"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.358"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.441" />
-
-        <Spinner
-            android:id="@+id/spCommite"
-            android:layout_width="362dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.326"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.592" />
+            app:layout_constraintVertical_bias="0.532" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="288dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Seleccionar comité:"
+            android:textColor="#000000"
+            android:textSize="16.5sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.103"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.53" />
+            app:layout_constraintVertical_bias="0.614" />
 
-        <ImageButton
-            android:id="@+id/imgActualizarIMG"
-            android:layout_width="169dp"
-            android:layout_height="149dp"
-            app:layout_constraintBottom_toTopOf="@+id/etCorreo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.242"
-            tools:srcCompat="@drawable/icfotoperfil" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="175dp"
-            android:layout_height="25dp"
-            android:text="Correo Electronico"
-            android:textSize="18dp"
+        <Spinner
+            android:id="@+id/spCommite"
+            android:layout_width="227dp"
+            android:layout_height="63dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintHorizontal_bias="0.13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.278" />
+            app:layout_constraintVertical_bias="0.69" />
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="117dp"
             android:layout_height="24dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Constraseña"
-            android:textSize="18dp"
+            android:textColor="#000000"
+            android:textSize="16.5sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintHorizontal_bias="0.081"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.394" />
+            app:layout_constraintVertical_bias="0.473" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="175dp"
+            android:layout_height="25dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Correo Electronico"
+            android:textColor="#000000"
+            android:textSize="16.5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.309" />
+
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="344dp"
+            android:layout_height="57dp"
+            android:background="@drawable/style_text"
+            android:fontFamily="@font/inter_semibold"
+            android:hint="Nuevo correo electrónico"
+            android:inputType="textEmailAddress"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.358"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.361" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_extrabold"
+            android:text="-Toca para actualizar la imagen-"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.022" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
