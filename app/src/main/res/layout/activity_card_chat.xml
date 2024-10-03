@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="101dp"
             android:animationCache="false"
-            android:background="#C4F0F6">
+            android:background="#D8F4FF">
 
             <TextView
                 android:id="@+id/txtLlenado"

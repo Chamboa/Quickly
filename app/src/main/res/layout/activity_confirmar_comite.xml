@@ -58,7 +58,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/inter_bold"
             android:text="Comunicaciones"
-            android:textColor="#9C27B0"
+            android:textColor="#648BD0"
             android:textSize="20sp" />
 
         <TextView
