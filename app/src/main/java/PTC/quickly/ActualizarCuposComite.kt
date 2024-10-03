@@ -128,9 +128,9 @@ class ActualizarCuposComite : AppCompatActivity() {
     }
 
     suspend fun actualizarComite(id_comite: Int, nuevoNombre: String, nuevaDescripcion: String, nuevosCupos: Int): Boolean {
-        if (nuevoNombre.isBlank() || nuevaDescripcion.isBlank() || nuevosCupos <= 0) {
+        if (nuevoNombre.isBlank() || nuevaDescripcion.isBlank()) {
             withContext(Dispatchers.Main) {
-                Toast.makeText(this@ActualizarCuposComite, "Por favor, ingresa valores válidos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ActualizarCuposComite, "Por favor, ingresa un nombre y descripción válidos", Toast.LENGTH_SHORT).show()
             }
             return false
         }
@@ -142,7 +142,7 @@ class ActualizarCuposComite : AppCompatActivity() {
                 val statement = objConexion?.prepareStatement(query)
                 statement?.setString(1, nuevoNombre)
                 statement?.setString(2, nuevaDescripcion)
-                statement?.setInt(3, nuevosCupos)
+                statement?.setInt(3, nuevosCupos)  // Permitimos cupos en 0
                 statement?.setInt(4, id_comite)
                 val rowsUpdated = statement?.executeUpdate() ?: 0
                 statement?.close()

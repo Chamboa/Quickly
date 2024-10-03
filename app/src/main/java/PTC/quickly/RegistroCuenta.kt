@@ -30,6 +30,7 @@ import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
 import java.util.UUID
 import com.example.ptc1.RecyclerViewRegistroCuenta.AdRegistroCuenta as adRegistroCuenta
+import java.sql.Connection
 
 class RegistroCuenta : AppCompatActivity() {
     private val codigoOpcionalGaleria = 102
@@ -77,11 +78,26 @@ class RegistroCuenta : AppCompatActivity() {
         }
 
         btnCrearCuenta.setOnClickListener {
-            val uuid = UUID.randomUUID().toString() // Generar UUID para el nuevo usuario
-            uuidUsuarioCreado = uuid // Guardar el UUID globalmente
-
-            // Validar el correo antes de proceder
+            // Obtener los valores de los campos
+            val nombre = txtNombreRegistro.text.toString()
             val correo = txtCorreoRegistro.text.toString()
+            val contrasenia = txtContraseñaRegistro.text.toString()
+
+            // Verificar si los campos están vacíos
+            if (nombre.isEmpty()) {
+                Toast.makeText(this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (correo.isEmpty()) {
+                Toast.makeText(this, "El correo no puede estar vacío", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (contrasenia.isEmpty()) {
+                Toast.makeText(this, "La contraseña no puede estar vacía", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Validar formato de correo
             if (!validarCorreo(correo)) {
                 Toast.makeText(
                     this@RegistroCuenta,
@@ -95,8 +111,37 @@ class RegistroCuenta : AppCompatActivity() {
                 try {
                     val objConexion = ClaseConexion().cadenaConexion()
                     objConexion?.use { connection ->
+
+                        // Verificar si el correo ya existe en la base de datos
+                        val correoExistente = verificarCorreoExistente(connection, correo)
+                        if (correoExistente) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(
+                                    this@RegistroCuenta,
+                                    "El correo ya está registrado, intenta con otro",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            return@launch
+                        }
+
+                        // Verificar cupos del comité si el rol es de comité
+                        if (rolidentificador == 2) {
+                            val cuposDisponibles = verificarCuposComite(connection, sp.selectedItemPosition + 1)
+                            if (cuposDisponibles <= 0) {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        this@RegistroCuenta,
+                                        "No hay cupos disponibles en el comité seleccionado",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                                return@launch
+                            }
+                        }
+
                         connection.autoCommit = false
-                        val contraseniaEncriptada = hashSHA256(txtContraseñaRegistro.text.toString())
+                        val contraseniaEncriptada = hashSHA256(contrasenia)
                         val crearUsuario = connection.prepareStatement(
                             if (rolidentificador == 1) {
                                 "INSERT INTO Usuario(UUID_Usuario, nombre, correo_electronico, contraseña, id_rol, id_grado) VALUES (?, ?, ?, ?, ?, ?)"
@@ -104,10 +149,12 @@ class RegistroCuenta : AppCompatActivity() {
                                 "INSERT INTO Usuario(UUID_Usuario, nombre, correo_electronico, contraseña, id_rol, id_comite) VALUES (?, ?, ?, ?, ?, ?)"
                             }
                         )
+
                         crearUsuario.use {
                             it.setString(1, uuid)
-                            it.setString(2, txtNombreRegistro.text.toString())
-                            it.setString(3, txtCorreoRegistro.text.toString())
+                            println(uuid)
+                            it.setString(2, nombre)
+                            it.setString(3, correo)
                             it.setString(4, contraseniaEncriptada)
                             it.setInt(5, spRoles.selectedItemPosition + 1)
                             it.setInt(6, sp.selectedItemPosition + 1)
@@ -124,6 +171,7 @@ class RegistroCuenta : AppCompatActivity() {
                                     // Habilitar el botón para subir la foto
                                     btnSubirFoto.isEnabled = true
 
+                                    // Limpiar los campos
                                     txtNombreRegistro.setText("")
                                     txtCorreoRegistro.setText("")
                                     txtContraseñaRegistro.setText("")
@@ -161,29 +209,37 @@ class RegistroCuenta : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Main).launch {
             val listaRoles = obtenerRoles()
-            val roles = listaRoles.map { it.tipo_rol }
+
+            // Filtrar los roles para excluir los que tienen id_rol = 3
+            val rolesFiltrados = listaRoles.filter { it.id_Rol == 1 || it.id_Rol == 2 }
+            val roles = rolesFiltrados.map { it.tipo_rol }
+
             val adaptador = ArrayAdapter(this@RegistroCuenta, android.R.layout.simple_spinner_dropdown_item, roles)
             spRoles.adapter = adaptador
 
             spRoles.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    if (position + 1 == 1) {
+                    // Identificar el id_rol seleccionado basado en los roles filtrados
+                    val rolSeleccionado = rolesFiltrados[position]
+
+                    if (rolSeleccionado.id_Rol == 1) {
+                        // Mostrar los grados para el rol de id_rol = 1
                         CoroutineScope(Dispatchers.Main).launch {
                             val listaGrado = obtenerGrado()
                             val grados = listaGrado.map { it.grado }
                             val adaptadorGrados = ArrayAdapter(this@RegistroCuenta, android.R.layout.simple_spinner_dropdown_item, grados)
                             sp.adapter = adaptadorGrados
                             sp.visibility = View.VISIBLE
-
                             rolidentificador = 1
                         }
-                    } else if (position + 1 == 2) {
+                    } else if (rolSeleccionado.id_Rol == 2) {
+                        // Mostrar los comités para el rol de id_rol = 2
                         CoroutineScope(Dispatchers.Main).launch {
                             val listaComites = obtenerComites()
                             val comites = listaComites.map { it.comite }
                             val adaptadorComites = ArrayAdapter(this@RegistroCuenta, android.R.layout.simple_spinner_dropdown_item, comites)
                             sp.adapter = adaptadorComites
-
+                            sp.visibility = View.VISIBLE
                             rolidentificador = 2
                         }
                     } else {
@@ -193,120 +249,144 @@ class RegistroCuenta : AppCompatActivity() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // No action needed
+                    // No hacer nada
                 }
             }
         }
 
         btnAtrasAgregarU.setOnClickListener {
-            val intent = Intent(this@RegistroCuenta, MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private suspend fun verificarCorreoExistente(connection: Connection, correo: String): Boolean {
+        return withContext(Dispatchers.IO) {
+            val consulta = connection.prepareStatement("SELECT COUNT(*) FROM Usuario WHERE correo_electronico = ?")
+            consulta.use {
+                it.setString(1, correo)
+                val resultSet = it.executeQuery()
+                if (resultSet.next()) {
+                    return@withContext resultSet.getInt(1) > 0
+                }
+            }
+            return@withContext false
+        }
+    }
+
+    private suspend fun verificarCuposComite(connection: Connection, idComite: Int): Int {
+        return withContext(Dispatchers.IO) {
+            val consultaCupos = connection.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = ?")
+            consultaCupos.use {
+                it.setInt(1, idComite)
+                val resultSet = it.executeQuery()
+                if (resultSet.next()) {
+                    return@withContext resultSet.getInt("cupos")
+                }
+            }
+            return@withContext 0
         }
     }
 
     private suspend fun obtenerRoles(): List<dcRoles> {
         return withContext(Dispatchers.IO) {
+            val roles = mutableListOf<dcRoles>()
             val objConexion = ClaseConexion().cadenaConexion()
-            val statement = objConexion?.createStatement()!!
-            val resultSet = statement.executeQuery("SELECT * FROM Rol")
-            val lista = mutableListOf<dcRoles>()
-            while (resultSet.next()) {
-                val id_rol = resultSet.getInt("id_Rol")
-                val nombreRol = resultSet.getString("tipo_rol")
-                val valoresJuntos = dcRoles(id_rol, nombreRol)
-                lista.add(valoresJuntos)
+            objConexion?.use { connection ->
+                val statement = connection.createStatement()
+                val resultSet = statement.executeQuery("SELECT id_rol, tipo_rol FROM Rol")
+
+                while (resultSet.next()) {
+                    val idRol = resultSet.getInt("id_rol")
+                    val tipoRol = resultSet.getString("tipo_rol")
+                    val rol = dcRoles(idRol, tipoRol)
+                    roles.add(rol)
+                }
             }
-            return@withContext lista
+            return@withContext roles
         }
     }
 
     private suspend fun obtenerGrado(): List<dcGrado> {
         return withContext(Dispatchers.IO) {
+            val grados = mutableListOf<dcGrado>()
             val objConexion = ClaseConexion().cadenaConexion()
-            val statement = objConexion?.createStatement()!!
-            val resultSet = statement.executeQuery("SELECT * FROM Grado")
-            val lista = mutableListOf<dcGrado>()
-            while (resultSet.next()) {
-                val id_grado = resultSet.getInt("id_grado")
-                val nombreGrado = resultSet.getString("grado")
-                val valoresJuntos = dcGrado(id_grado, nombreGrado)
-                lista.add(valoresJuntos)
+            objConexion?.use { connection ->
+                val statement = connection.createStatement()
+                val resultSet = statement.executeQuery("SELECT id_grado, grado FROM Grado")
+
+                while (resultSet.next()) {
+                    val idGrado = resultSet.getInt("id_grado")
+                    val grado = resultSet.getString("grado")
+                    val gradoObj = dcGrado(idGrado, grado)
+                    grados.add(gradoObj)
+                }
             }
-            return@withContext lista
+            return@withContext grados
         }
     }
 
     private suspend fun obtenerComites(): List<dcComites> {
         return withContext(Dispatchers.IO) {
+            val comites = mutableListOf<dcComites>()
             val objConexion = ClaseConexion().cadenaConexion()
-            val statement = objConexion?.createStatement()!!
-            val resultSet = statement.executeQuery("SELECT * FROM Comite")
-            val lista = mutableListOf<dcComites>()
-            while (resultSet.next()) {
-                val id_comite = resultSet.getInt("id_comite")
-                val nombreComite = resultSet.getString("comite")
-                val valoresJuntos = dcComites(id_comite, nombreComite)
-                lista.add(valoresJuntos)
+            objConexion?.use { connection ->
+                val statement = connection.createStatement()
+                val resultSet = statement.executeQuery("SELECT id_comite, comite FROM Comite")
+
+                while (resultSet.next()) {
+                    val idComite = resultSet.getInt("id_comite")
+                    val comite = resultSet.getString("comite")
+                    val comiteObj = dcComites(idComite, comite)
+                    comites.add(comiteObj)
+                }
             }
-            return@withContext lista
+            return@withContext comites
         }
     }
 
-    // Función para validar el formato del correo
-    fun validarCorreo(correo: String): Boolean {
-        val emailPattern = Patterns.EMAIL_ADDRESS
-        return correo.endsWith("@ricaldone.edu.sv") && emailPattern.matcher(correo).matches()
+    // Validar que el correo termine con @ricaldone.edu.sv
+    private fun validarCorreo(correo: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(correo).matches() && correo.endsWith("@ricaldone.edu.sv")
     }
 
-    // Función para abrir la galería de imágenes
+    // Verificar si el permiso de almacenamiento externo está concedido
+    private fun checkStoragePermission() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), READ_EXTERNAL_STORAGE_REQUEST)
+        }
+    }
+
+    // Abrir la galería de imágenes
     private fun abrirGaleria() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, codigoOpcionalGaleria)
     }
 
-    // Función para pedir permiso de almacenamiento si no se tiene
-    private fun checkStoragePermission() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                READ_EXTERNAL_STORAGE_REQUEST
-            )
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == codigoOpcionalGaleria && resultCode == Activity.RESULT_OK && data != null) {
-            val imageUri: Uri? = data.data
-            imageView.setImageURI(imageUri)
 
-            // Cargar la imagen a Firebase Storage utilizando el UUID del usuario
-            if (uuidUsuarioCreado != null && imageUri != null) {
-                subirImagenAFirebase(imageUri)
-            } else {
-                Toast.makeText(this, "Error al subir la imagen", Toast.LENGTH_SHORT).show()
+        if (resultCode == Activity.RESULT_OK && requestCode == codigoOpcionalGaleria) {
+            val selectedImageUri: Uri? = data?.data
+            imageView.setImageURI(selectedImageUri)
+
+            if (selectedImageUri != null) {
+                val uuid = uuidUsuarioCreado
+                val imageRef = Firebase.storage.reference.child("images/$uuid.jpg")
+                val bitmap: Bitmap =
+                    MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+                val baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                val uploadTask = imageRef.putBytes(data)
+                uploadTask.addOnFailureListener {
+                    Toast.makeText(this, "Error al subir imagen", Toast.LENGTH_SHORT).show()
+                }.addOnSuccessListener {
+                    Toast.makeText(this, "Imagen subida con éxito", Toast.LENGTH_SHORT).show()
+                }
             }
-        }
-    }
-
-    private fun subirImagenAFirebase(imageUri: Uri) {
-        val storage = Firebase.storage
-        val storageRef = storage.reference
-        val imagenPerfilRef = storageRef.child("images/$uuidUsuarioCreado.jpg")
-
-        // Convertir la imagen URI a Bitmap
-        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val data = baos.toByteArray()
-
-        val uploadTask = imagenPerfilRef.putBytes(data)
-        uploadTask.addOnFailureListener {
-            Toast.makeText(this, "Error al subir la imagen: ${it.message}", Toast.LENGTH_SHORT).show()
-        }.addOnSuccessListener {
-            Toast.makeText(this, "Imagen subida correctamente", Toast.LENGTH_SHORT).show()
         }
     }
 }

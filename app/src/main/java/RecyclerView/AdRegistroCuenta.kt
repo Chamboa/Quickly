@@ -55,7 +55,7 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
         notifyDataSetChanged()
     }
 
-    fun eliminarRegistroCuenta(uuid: String, position: Int) {
+    fun eliminarRegistroCuenta(uuid: String, position: Int, context: android.content.Context) {
         CoroutineScope(Dispatchers.IO).launch {
             val listaDatos = Datos.toMutableList()
             val objConexion = ClaseConexion().cadenaConexion()
@@ -92,33 +92,59 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
                 Datos = listaDatos
                 notifyItemRemoved(position)
                 notifyDataSetChanged()
+
+                Toast.makeText(context, "Usuario eliminado correctamente.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    fun editarRegistroUsuario(uuid: String, nuevaContraseña: String?, nuevoCorreo: String, nuevoIdComite: Int) {
+    // Nueva función para obtener los cupos disponibles de un comité
+    fun obtenerCuposComite(idComite: Int): Int {
+        val objConexion = ClaseConexion().cadenaConexion()
+        val query = objConexion?.prepareStatement("SELECT cupos FROM Comite WHERE id_comite = ?")
+        query?.setInt(1, idComite)
+        val resultSet = query?.executeQuery()
+
+        return if (resultSet?.next() == true) {
+            resultSet.getInt("cupos")
+        } else {
+            0 // En caso de que no encuentre el comité, retornamos 0
+        }
+    }
+
+    fun editarRegistroUsuario(uuid: String, nuevaContraseña: String?, nuevoCorreo: String, nuevoIdComite: Int, context: android.content.Context) {
         CoroutineScope(Dispatchers.IO).launch {
-            val objConexion = ClaseConexion().cadenaConexion()
-            val hashedPassword = nuevaContraseña?.let { hashPassword(it) }
+            val cuposDisponibles = obtenerCuposComite(nuevoIdComite)
 
-            val updateRegistroCuenta = objConexion?.prepareStatement(
-                "UPDATE Usuario SET ${if (hashedPassword != null) "contraseña = ?, " else ""}correo_electronico = ?, id_comite = ? WHERE UUID_Usuario = ?"
-            )
+            if (cuposDisponibles > 0) {
+                val objConexion = ClaseConexion().cadenaConexion()
+                val hashedPassword = nuevaContraseña?.let { hashPassword(it) }
 
-            var paramIndex = 1
-            hashedPassword?.let {
-                updateRegistroCuenta?.setString(paramIndex++, it)
-            }
-            updateRegistroCuenta?.setString(paramIndex++, nuevoCorreo)
-            updateRegistroCuenta?.setInt(paramIndex++, nuevoIdComite)
-            updateRegistroCuenta?.setString(paramIndex, uuid)
-            updateRegistroCuenta?.executeUpdate()
+                val updateRegistroCuenta = objConexion?.prepareStatement(
+                    "UPDATE Usuario SET ${if (hashedPassword != null) "contraseña = ?, " else ""}correo_electronico = ?, id_comite = ? WHERE UUID_Usuario = ?"
+                )
 
-            val commit = objConexion?.prepareStatement("COMMIT")
-            commit?.executeUpdate()
+                var paramIndex = 1
+                hashedPassword?.let {
+                    updateRegistroCuenta?.setString(paramIndex++, it)
+                }
+                updateRegistroCuenta?.setString(paramIndex++, nuevoCorreo)
+                updateRegistroCuenta?.setInt(paramIndex++, nuevoIdComite)
+                updateRegistroCuenta?.setString(paramIndex, uuid)
+                updateRegistroCuenta?.executeUpdate()
 
-            withContext(Dispatchers.Main) {
-                actualizarPantallaRegistroCuenta(uuid, hashedPassword, nuevoCorreo, nuevoIdComite)
+                val commit = objConexion?.prepareStatement("COMMIT")
+                commit?.executeUpdate()
+
+                withContext(Dispatchers.Main) {
+                    actualizarPantallaRegistroCuenta(uuid, hashedPassword, nuevoCorreo, nuevoIdComite)
+                    Toast.makeText(context, "Usuario actualizado correctamente.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                // Mover el Toast a Main Dispatch
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "El comité seleccionado no tiene cupos disponibles.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -147,16 +173,17 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
 
     override fun onBindViewHolder(holder: VHRegistroCuenta, position: Int) {
         val item = Datos[position]
+        val context = holder.itemView.context // Obtener el contexto a partir de la vista del holder
+
         holder.txtNombreCard.text = item.nombre
 
         holder.btnBorrarRegistroCuenta.setOnClickListener {
-            val contexto = holder.txtNombreCard.context
-            val builder = AlertDialog.Builder(contexto)
+            val builder = AlertDialog.Builder(context)
             builder.setTitle("Eliminar")
             builder.setMessage("¿Estás seguro que deseas eliminar este usuario?")
 
             builder.setPositiveButton("Sí") { dialog, which ->
-                eliminarRegistroCuenta(item.uuid, position)
+                eliminarRegistroCuenta(item.uuid, position, context)
             }
 
             builder.setNegativeButton("No") { dialog, which ->
@@ -166,7 +193,6 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
         }
 
         holder.btnEditarRegistroCuenta.setOnClickListener {
-            val context = holder.itemView.context
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Actualizar Usuario")
 
@@ -207,15 +233,12 @@ class AdRegistroCuenta(var Datos: List<tbUsuario>) : RecyclerView.Adapter<VHRegi
                         val nuevoCorreo = etCorreo.text.toString()
                         val nuevoIdComite = comites[spinnerComite.selectedItemPosition].idComite
 
-                        // Validaciones antes de actualizar
-                        if (nuevoCorreo.isNotEmpty() && validarCorreo(nuevoCorreo)) {
-                            if (nuevaContraseña == null || validarContraseña(nuevaContraseña)) {
-                                editarRegistroUsuario(item.uuid, nuevaContraseña, nuevoCorreo, nuevoIdComite)
-                            } else {
-                                Toast.makeText(context, "La contraseña debe tener al menos 8 caracteres, incluir letras, números y caracteres especiales", Toast.LENGTH_SHORT).show()
-                            }
+                        if (nuevaContraseña != null && !validarContraseña(nuevaContraseña)) {
+                            Toast.makeText(context, "La contraseña debe tener al menos 8 caracteres, un número, una letra y un carácter especial.", Toast.LENGTH_SHORT).show()
+                        } else if (!validarCorreo(nuevoCorreo)) {
+                            Toast.makeText(context, "Por favor, ingresa un correo válido de Ricaldone.", Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(context, "Por favor, introduce un correo válido que termine en @ricaldone.edu.sv", Toast.LENGTH_SHORT).show()
+                            editarRegistroUsuario(item.uuid, nuevaContraseña, nuevoCorreo, nuevoIdComite, context)
                         }
                     }
 

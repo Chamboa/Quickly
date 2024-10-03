@@ -63,10 +63,11 @@ class EditarCuenta : AppCompatActivity() {
                         val nombre = resultSet.getString("nombre")
                         val correo_electronico = resultSet.getString("correo_electronico")
                         val contrasena = resultSet.getString("contraseña")
+                        val rol = resultSet.getInt("id_rol") // Suponiendo que la columna 'rol' existe en la tabla
 
-                        // Validar que los campos no estén vacíos
-                        if (!uuid.isNullOrEmpty() && !nombre.isNullOrEmpty() && !correo_electronico.isNullOrEmpty() && !contrasena.isNullOrEmpty()) {
-                            val usuario = tbUsuario(uuid, nombre, contrasena, correo_electronico, 0, 0, 0)
+                        // Validar que los campos no estén vacíos y que el rol no sea 3
+                        if (!uuid.isNullOrEmpty() && !nombre.isNullOrEmpty() && !correo_electronico.isNullOrEmpty() && !contrasena.isNullOrEmpty() && rol != 3) {
+                            val usuario = tbUsuario(uuid, nombre, contrasena, correo_electronico, 0, 0, rol)
                             listaRegistroUsuario.add(usuario)
                         }
                     }

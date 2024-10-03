@@ -1,5 +1,6 @@
 package com.example.ptc1.RecyclerView
 
+import PTC.quickly.Login
 import PTC.quickly.Login.Companion.userRoleId
 import PTC.quickly.R
 import android.view.LayoutInflater
@@ -9,12 +10,11 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ptc1.modelo.DTEvento
-import kotlin.reflect.KFunction1
 
 class EventosAdapter(
-    private var eventos: MutableList<DTEvento>,
-    private val onEdit: KFunction1<DTEvento, Unit>,
-    private val onDelete: KFunction1<DTEvento, Unit>
+    private var eventos: List<DTEvento>,  // Cambiamos MutableList por List
+    private val onEdit: (DTEvento) -> Unit,
+    private val onDelete: (DTEvento) -> Unit
 ) : RecyclerView.Adapter<EventosAdapter.EventoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventoViewHolder {
@@ -30,7 +30,7 @@ class EventosAdapter(
     override fun getItemCount(): Int = eventos.size
 
     fun updateList(newEventos: List<DTEvento>) {
-        this.eventos = newEventos.toMutableList()
+        this.eventos = newEventos // Como ahora es List, no necesitamos convertir
         notifyDataSetChanged()
     }
 
@@ -42,7 +42,7 @@ class EventosAdapter(
         private val btnEditar: ImageButton = view.findViewById(R.id.btnEditar)
         private val btnEliminar: ImageButton = view.findViewById(R.id.btnEliminar)
 
-        fun bind(evento: DTEvento, onEdit: KFunction1<DTEvento, Unit>, onDelete: KFunction1<DTEvento, Unit>) {
+        fun bind(evento: DTEvento, onEdit: (DTEvento) -> Unit, onDelete: (DTEvento) -> Unit) {
             txNombreEvento.text = evento.nombre
             txDescripcionEvento.text = evento.descripcion
             txFechaEvento.text = evento.fecha
@@ -55,7 +55,6 @@ class EventosAdapter(
                 btnEditar.visibility = View.VISIBLE
                 btnEliminar.visibility = View.VISIBLE
             }
-
 
             btnEditar.setOnClickListener { onEdit(evento) }
             btnEliminar.setOnClickListener { onDelete(evento) }

@@ -28,6 +28,7 @@ class Login : AppCompatActivity() {
         var userRoleId: Int? = null
         var userEmail: String? = null
         var userName: String? = null
+        var id_comite: Int? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,7 +129,10 @@ class Login : AppCompatActivity() {
                     userUUID = resultado.getString("UUID_Usuario")
                     userEmail = resultado.getString("correo_electronico")
                     userName = resultado.getString("nombre")
+
                     val idComite = resultado.getString("id_comite")
+                    id_comite = idComite.toInt()
+                    println("ID del comité: $id_comite")
 
                     // Guardar las credenciales y los datos del usuario en SharedPreferences
                     val sharedPref = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)

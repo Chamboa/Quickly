@@ -71,29 +71,36 @@ class Pantalla_perfil : Fragment() {
     }
 
     private fun cargarImagenDePerfil() {
-        // Referencia al storage de Firebase
-        val storageRef = Firebase.storage.reference.child("images/$UUIDlogueado.jpg")
-        println("Referencia al storage: $storageRef")
-        println("UUID del usuario logueado: $UUIDlogueado")
+        try {
+            // Referencia al storage de Firebase
+            val storageRef = Firebase.storage.reference.child("images/$UUIDlogueado.jpg")
+            println("Intentando cargar la imagen desde: images/$UUIDlogueado.jpg")
 
-        // Intentar descargar la URL de la imagen
-        storageRef.downloadUrl.addOnSuccessListener { uri ->
-            // Si se obtiene la URL, cargarla en el ImageView con Glide
-            Glide.with(this)
-                .load(uri)
-                .placeholder(R.drawable.ic_perfil) // Imagen por defecto mientras se carga
-                .error(R.drawable.ic_perfil) // Imagen en caso de error
-                .into(ImgPerfil)
-        }.addOnFailureListener { exception ->
-            // Manejar el error cuando la imagen no exista
-            if (exception is com.google.firebase.storage.StorageException && exception.errorCode == StorageException.ERROR_OBJECT_NOT_FOUND) {
-                // Imagen no encontrada, mostrar imagen predeterminada
-                Toast.makeText(requireContext(), "Imagen de perfil no encontrada, cargando predeterminada", Toast.LENGTH_SHORT).show()
-                ImgPerfil.setImageResource(R.drawable.ic_perfil)
-            } else {
-                // Otro tipo de error, mostrar mensaje de error
-                Toast.makeText(requireContext(), "Error al cargar la imagen de perfil: ${exception.message}", Toast.LENGTH_SHORT).show()
+            // Intentar descargar la URL de la imagen
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                // Si se obtiene la URL, cargarla en el ImageView con Glide
+                Glide.with(this)
+                    .load(uri)
+                    .placeholder(R.drawable.ic_perfil)
+                    .error(R.drawable.ic_perfil)
+                    .into(ImgPerfil)
+            }.addOnFailureListener { exception ->
+                // Manejar el error cuando la imagen no exista
+                when {
+                    exception is StorageException && exception.errorCode == StorageException.ERROR_OBJECT_NOT_FOUND -> {
+                        Toast.makeText(requireContext(), "Imagen no encontrada, cargando predeterminada", Toast.LENGTH_SHORT).show()
+                        ImgPerfil.setImageResource(R.drawable.ic_perfil)
+                    }
+                    else -> {
+                        Toast.makeText(requireContext(), "Error al cargar la imagen: ${exception.message}", Toast.LENGTH_SHORT).show()
+                        ImgPerfil.setImageResource(R.drawable.ic_perfil)
+                    }
+                }
             }
+        } catch (e: Exception) {
+            // Atrapar cualquier otra excepción y prevenir el crasheo
+            Toast.makeText(requireContext(), "Se produjo un error inesperado: ${e.message}", Toast.LENGTH_SHORT).show()
+            ImgPerfil.setImageResource(R.drawable.ic_perfil)
         }
     }
 

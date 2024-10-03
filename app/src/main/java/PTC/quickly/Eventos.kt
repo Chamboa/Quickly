@@ -34,6 +34,7 @@ class Eventos : AppCompatActivity() {
 
     private lateinit var selectedDate: String
     private val notificationRequestCode = 1001  // Código de solicitud para notificaciones
+    val comite = Login.id_comite
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
