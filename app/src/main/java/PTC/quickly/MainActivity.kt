@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         createNotificationChannel()
-        loadUserData()
+        loadUserData()  // Asegura cargar el id_comite
         supportActionBar?.hide()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -78,6 +78,12 @@ class MainActivity : AppCompatActivity() {
         Login.userRoleId = sharedPref.getInt("userRoleId", -1)
         Login.userEmail = sharedPref.getString("userEmail", null)
         Login.userName = sharedPref.getString("userName", null)
+        Login.id_comite = sharedPref.getInt("id_comite", -1)
+
+        // Verificar que id_comite no sea nulo
+        if (Login.id_comite == -1) {
+            throw IllegalStateException("id_comite no puede ser nulo. Se requiere iniciar sesión nuevamente.")
+        }
     }
 
     private fun configureNavigationForRole(roleId: Int, menu: Menu) {

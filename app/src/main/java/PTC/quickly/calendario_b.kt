@@ -31,7 +31,7 @@ class calendario_b : Fragment() {
     private lateinit var eventosAdapter: EventosAdapter
     private val eventosList = mutableListOf<DTEvento>()
     private var selectedDate: String? = null
-
+    val id_comite = Login.id_comite
     var id_rol = Login.userRoleId
 
     override fun onCreateView(
@@ -199,31 +199,74 @@ class calendario_b : Fragment() {
             val lista = mutableListOf<DTEvento>()
             val objConexion = ClaseConexion().cadenaConexion()
             objConexion?.use { connection ->
-                val query = "SELECT * FROM Eventos"
-                val statement = connection.prepareStatement(query)
-                val resultSet = statement.executeQuery()
+                if (id_rol == 3) {
+                    // Mostrar todos los eventos si el rol es 3
+                    val query = "SELECT * FROM Eventos"
+                    val statement = connection.prepareStatement(query)
+                    val resultSet = statement.executeQuery()
 
-                while (resultSet.next()) {
-                    val UUIDA = resultSet.getString("UUID_Evento")
-                    val UUIDU = resultSet.getString("UUID_Usuario")
-                    val nombre = resultSet.getString("nombre")
-                    val hora = resultSet.getString("hora")
-                    val descripcion = resultSet.getString("descripcion")
-                    val lugar = resultSet.getString("lugar")
-                    val fecha = resultSet.getDate("fecha")
-                    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                    val fechaStr = sdf.format(fecha)
+                    while (resultSet.next()) {
+                        val UUIDA = resultSet.getString("UUID_Evento")
+                        val UUIDU = resultSet.getString("UUID_Usuario")
+                        val nombre = resultSet.getString("nombre")
+                        val hora = resultSet.getString("hora")
+                        val descripcion = resultSet.getString("descripcion")
+                        val lugar = resultSet.getString("lugar")
+                        val fecha = resultSet.getDate("fecha")
+                        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                        val fechaStr = sdf.format(fecha)
 
-                    val evento = DTEvento(
-                        UUID = UUIDA,
-                        UUID_Usuario = UUIDU,
-                        lugar = lugar,
-                        descripcion = descripcion,
-                        fecha = fechaStr,
-                        hora = hora,
-                        nombre = nombre
-                    )
-                    lista.add(evento)
+                        val evento = DTEvento(
+                            UUID = UUIDA,
+                            UUID_Usuario = UUIDU,
+                            lugar = lugar,
+                            descripcion = descripcion,
+                            fecha = fechaStr,
+                            hora = hora,
+                            nombre = nombre
+                        )
+                        lista.add(evento)
+                    }
+                } else {
+                    // Verifica que id_comite no sea null antes de ejecutar la consulta
+                    if (id_comite != null) {
+                        // Mostrar solo los eventos del mismo comité si el rol es 1 o 2
+                        val query = """
+                        SELECT e.UUID_Evento, e.UUID_Usuario, e.lugar, e.descripcion, e.nombre, e.fecha, e.hora
+                        FROM Eventos e
+                        JOIN Usuario u ON e.UUID_Usuario = u.UUID_Usuario
+                        WHERE u.id_comite = ?
+                    """
+                        val statement = connection.prepareStatement(query)
+                        statement.setInt(1, id_comite!!)  // Se asegura de que id_comite no es null
+                        val resultSet = statement.executeQuery()
+
+                        while (resultSet.next()) {
+                            val UUIDA = resultSet.getString("UUID_Evento")
+                            val UUIDU = resultSet.getString("UUID_Usuario")
+                            val nombre = resultSet.getString("nombre")
+                            val hora = resultSet.getString("hora")
+                            val descripcion = resultSet.getString("descripcion")
+                            val lugar = resultSet.getString("lugar")
+                            val fecha = resultSet.getDate("fecha")
+                            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                            val fechaStr = sdf.format(fecha)
+
+                            val evento = DTEvento(
+                                UUID = UUIDA,
+                                UUID_Usuario = UUIDU,
+                                lugar = lugar,
+                                descripcion = descripcion,
+                                fecha = fechaStr,
+                                hora = hora,
+                                nombre = nombre
+                            )
+                            lista.add(evento)
+                        }
+                    } else {
+                        // Maneja el caso en que id_comite sea null
+                        throw IllegalStateException("id_comite no puede ser null para este rol")
+                    }
                 }
             }
             lista

@@ -38,7 +38,6 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
 
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -86,7 +85,7 @@ class Login : AppCompatActivity() {
             val Contrasena = txtcontralogin.text.toString()
             var hayErrores = false
 
-            // Aquí cambiamos la validación para que el correo termine en @ricaldone.edu.sv
+            // Validación del correo que debe terminar en @ricaldone.edu.sv
             if (!Correo.endsWith("@ricaldone.edu.sv")) {
                 txtcorreologin.error = "Tu correo debe terminar en @ricaldone.edu.sv"
                 hayErrores = true
@@ -131,7 +130,7 @@ class Login : AppCompatActivity() {
                     userName = resultado.getString("nombre")
 
                     val idComite = resultado.getString("id_comite")
-                    id_comite = idComite.toInt()
+                    id_comite = idComite?.toInt()
                     println("ID del comité: $id_comite")
 
                     // Guardar las credenciales y los datos del usuario en SharedPreferences
@@ -142,6 +141,7 @@ class Login : AppCompatActivity() {
                         putString("userUUID", userUUID)
                         putString("userName", userName)
                         putInt("userRoleId", userRoleId ?: -1)
+                        putInt("id_comite", id_comite ?: -1)
                         apply()
                     }
 
