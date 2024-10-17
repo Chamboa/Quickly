@@ -36,7 +36,7 @@ class Agregar_Horas : AppCompatActivity() {
             insets
         }
 
-        val imgRegresar = findViewById<ImageView>(R.id.img_regresar)
+        val imgRegresar = findViewById<Button>(R.id.btnCancelarHoras)
         val txtnombre = findViewById<EditText>(R.id.txtNomEvento)
         val txtfecha = findViewById<EditText>(R.id.txtFechaHoras)
         val txtentrada = findViewById<EditText>(R.id.txtEntradaHoras)
@@ -153,6 +153,7 @@ class Agregar_Horas : AppCompatActivity() {
                     objConexion?.close()
                 }
             }
+            finish()
         }
 
         // Selector de fecha

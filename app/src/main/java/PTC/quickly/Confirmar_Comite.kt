@@ -28,8 +28,19 @@ class Confirmar_Comite : AppCompatActivity() {
         lblComite.text = comision
 
         btnAceptar.setOnClickListener {
+            // Guardar comité en SharedPreferences
+            val sharedPref = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
+            with (sharedPref.edit()) {
+                putString("comiteSeleccionado", comision) // Guarda el nombre del comité
+                apply() // Confirma los cambios
+            }
+
             actualizarComiteUsuario(comision)
+
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
         }
+
 
         btnCancel.setOnClickListener {
             val intent = Intent(this, Unirse_Comite::class.java)

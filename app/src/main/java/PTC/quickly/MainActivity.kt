@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.pantalla_admin, R.id.calendario_b, R.id.pantalla_perfil, R.id.pantalla_configuracion)
+            setOf(R.id.pantalla_admin, R.id.calendario_b, R.id.pantalla_perfil)
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -80,9 +80,12 @@ class MainActivity : AppCompatActivity() {
         Login.userName = sharedPref.getString("userName", null)
         Login.id_comite = sharedPref.getInt("id_comite", -1)
 
+        println("adjoasdv ${Login.id_comite}")
+
         // Verificar que id_comite no sea nulo
         if (Login.id_comite == -1) {
             throw IllegalStateException("id_comite no puede ser nulo. Se requiere iniciar sesión nuevamente.")
+
         }
     }
 
