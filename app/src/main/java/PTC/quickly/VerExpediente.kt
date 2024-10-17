@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -28,6 +29,8 @@ class VerExpediente : AppCompatActivity() {
     private var UUID_Alumno = AdVerExpedienteAlumnos.UUID_alumno
     var UUID_Login = Login.userUUID
 
+    private lateinit var progressBar: ProgressBar  // ProgressBar para mostrar las horas agregadas
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_expediente)
@@ -35,6 +38,7 @@ class VerExpediente : AppCompatActivity() {
 
         val tableLayout = findViewById<TableLayout>(R.id.tableExpediente)
         val btnAtras = findViewById<ImageView>(R.id.btnAtrasa)
+        progressBar = findViewById(R.id.progressBar)  // Referencia al ProgressBar
 
         btnAtras.setOnClickListener {
             finish()
@@ -50,6 +54,8 @@ class VerExpediente : AppCompatActivity() {
                     mostrarMensajeNoExpedientes()
                 } else {
                     Log.d("VerExpediente", "Se encontraron ${expedientes.size} expedientes")
+                    val totalHoras = expedientes.sumOf { it.horasAgregadas }
+                    actualizarBarraProgreso(totalHoras)
                     mostrarExpedientes(expedientes, tableLayout)
                 }
             } catch (e: Exception) {
@@ -150,6 +156,15 @@ class VerExpediente : AppCompatActivity() {
 
                 tableLayout.addView(tableRow)
             }
+        }
+    }
+
+    private fun actualizarBarraProgreso(totalHoras: Int) {
+        runOnUiThread {
+            // Supongamos que el máximo de horas es 100, puedes ajustar este valor
+            val maxHoras = 150
+            val progreso = if (totalHoras >= maxHoras) 100 else (totalHoras * 100) / maxHoras
+            progressBar.progress = progreso
         }
     }
 
